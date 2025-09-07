@@ -14,6 +14,14 @@ export const dataUserSchema = z.object({
 });
 export type UserResponse = z.infer<typeof dataUserSchema>;
 
+export const dataCommentSchema = z.object({
+  id: z.string(),
+  content: z.string(),
+  author: dataUserSchema,
+  createdAt: z.string(),
+});
+export type CommentResponse = z.infer<typeof dataCommentSchema>;
+
 // Photo/Post object returned from backend
 export const dataPhotoSchema = z.object({
   id: z.string(),
@@ -23,14 +31,7 @@ export const dataPhotoSchema = z.object({
   updatedAt: z.string().optional(),
   author: dataUserSchema,
   likes: z.number(),
-  comments: z.array(
-    z.object({
-      id: z.string(),
-      content: z.string(),
-      author: dataUserSchema,
-      createdAt: z.string(),
-    })
-  ),
+  comments: z.array(dataCommentSchema),
   tags: z.array(z.string()).optional(),
 });
 export type PhotoResponse = z.infer<typeof dataPhotoSchema>;
