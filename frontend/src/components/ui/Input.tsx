@@ -4,7 +4,7 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
   error?: string;
   helperText?: string;
-}
+};
 
 const Input: React.FC<InputProps> = ({
   label,
