@@ -1,4 +1,5 @@
-import React from 'react';
+import { Link } from 'react-router-dom';
+import Button from '../components/ui/Button';
 
 export type ProtectedRouteProps = {
   children: React.ReactNode;
@@ -23,12 +24,9 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
           <p className="text-gray-600 mb-4">
             Please log in to access this page.
           </p>
-          <a
-            href="/login"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-          >
-            Go to Login
-          </a>
+          <Link to="/login">
+            <Button variant="primary">Go to Login</Button>
+          </Link>
         </div>
       </div>
     );
@@ -44,12 +42,9 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({
           <p className="text-gray-600 mb-4">
             You don&apos;t have admin privileges to access this page.
           </p>
-          <a
-            href="/"
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
-          >
-            Go to Home
-          </a>
+          <Link to="/">
+            <Button variant="primary">Go to Home</Button>
+          </Link>
         </div>
       </div>
     );
