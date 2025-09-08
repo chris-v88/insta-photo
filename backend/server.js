@@ -3,6 +3,8 @@ import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 
+import { appError } from './middlewares/appError';
+
 const app = express();
 
 app.use(express.static('public'));

@@ -8,6 +8,9 @@
     "dev": "nodemon --import=extensionless/register server.js",
     "start": "node --import=extensionless/register server.js",
     "prisma": "npx prisma db pull && npx prisma generate",
+    "lint": "eslint src --ext .ts,.tsx",
+    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "format": "prettier --check src/**/*.{ts,tsx,css}",
     "format:fix": "prettier --write \"src/**/*.{js,ts,jsx,tsx,json,css,md}\" --ignore-path .prettierignore"
   },
   "author": "",
@@ -25,7 +28,7 @@
     "jest": "^30.0.5",
     "jsonwebtoken": "^9.0.2",
     "multer": "^2.0.2",
-    "mysql2": "^3.14.3",
+    "mysql2": "^3.14.4",
     "nodemailer": "^7.0.5",
     "nodemon": "^3.1.10",
     "passport": "^0.7.0",
