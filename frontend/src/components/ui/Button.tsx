@@ -1,14 +1,14 @@
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
   leftIcon?: LucideIcon;
   rightIcon?: LucideIcon;
   children: React.ReactNode;
-}
+};
 
 const Button: React.FC<ButtonProps> = ({
   variant = 'primary',
