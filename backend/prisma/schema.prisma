@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Comments {
+  id         Int       @id @default(autoincrement())
+  photo_id   Int
+  user_id    Int
+  content    String    @db.Text
+  created_at DateTime? @default(now()) @db.DateTime(0)
+  Photos     Photos    @relation(fields: [photo_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "Comments_ibfk_1")
+  Users      Users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "Comments_ibfk_2")
+
+  @@index([photo_id], map: "photo_id")
+  @@index([user_id], map: "user_id")
+}
+
+model Follows {
+  id                                Int       @id @default(autoincrement())
+  follower_id                       Int
+  following_id                      Int
+  created_at                        DateTime? @default(now()) @db.DateTime(0)
+  Users_Follows_follower_idToUsers  Users     @relation("Follows_follower_idToUsers", fields: [follower_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "Follows_ibfk_1")
+  Users_Follows_following_idToUsers Users     @relation("Follows_following_idToUsers", fields: [following_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "Follows_ibfk_2")
+
+  @@unique([follower_id, following_id], map: "unique_follow")
+  @@index([following_id], map: "following_id")
+}
+
+model Photo_Likes {
+  id         Int       @id @default(autoincrement())
+  photo_id   Int
+  user_id    Int
+  created_at DateTime? @default(now()) @db.DateTime(0)
+  Photos     Photos    @relation(fields: [photo_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "Photo_Likes_ibfk_1")
+  Users      Users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "Photo_Likes_ibfk_2")
+
+  @@unique([photo_id, user_id], map: "unique_photo_like")
+  @@index([user_id], map: "user_id")
+}
+
+model Photos {
+  id             Int           @id @default(autoincrement())
+  user_id        Int
+  title          String?       @db.VarChar(255)
+  description    String?       @db.Text
+  image_url      String        @db.VarChar(500)
+  likes_count    Int?          @default(0)
+  comments_count Int?          @default(0)
+  created_at     DateTime?     @default(now()) @db.DateTime(0)
+  updated_at     DateTime?     @default(now()) @db.DateTime(0)
+  Comments       Comments[]
+  Photo_Likes    Photo_Likes[]
+  Users          Users         @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "Photos_ibfk_1")
+
+  @@index([user_id], map: "user_id")
+}
+
+model User_Sessions {
+  id            Int       @id @default(autoincrement())
+  user_id       Int
+  refresh_token String    @db.VarChar(500)
+  expires_at    DateTime  @db.DateTime(0)
+  created_at    DateTime? @default(now()) @db.DateTime(0)
+  Users         Users     @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "User_Sessions_ibfk_1")
+
+  @@index([user_id], map: "user_id")
+}
+
+model Users {
+  id                                  Int             @id @default(autoincrement())
+  email                               String          @unique(map: "email") @db.VarChar(255)
+  username                            String          @unique(map: "username") @db.VarChar(100)
+  password                            String          @db.VarChar(255)
+  full_name                           String?         @db.VarChar(255)
+  avatar                              String?         @db.VarChar(255)
+  bio                                 String?         @db.Text
+  is_admin                            Boolean?        @default(false)
+  followers_count                     Int?            @default(0)
+  following_count                     Int?            @default(0)
+  created_at                          DateTime?       @default(now()) @db.DateTime(0)
+  updated_at                          DateTime?       @default(now()) @db.DateTime(0)
+  Comments                            Comments[]
+  Follows_Follows_follower_idToUsers  Follows[]       @relation("Follows_follower_idToUsers")
+  Follows_Follows_following_idToUsers Follows[]       @relation("Follows_following_idToUsers")
+  Photo_Likes                         Photo_Likes[]
+  Photos                              Photos[]
+  User_Sessions                       User_Sessions[]
+}
