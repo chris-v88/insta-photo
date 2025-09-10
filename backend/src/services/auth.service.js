@@ -27,6 +27,24 @@ export const authService = {
   },
 
   login: async (req) => {
+    const { username, password } = req.body;
+    const user = await prisma.users.findUnique({
+        where: {
+            username: username,
+        }
+    })
+    if (!user) {
+        throw new BadResquestException('Tài khoản không tồn tại');
+    }
+    if (!user.password) {
+        throw new BadResquestException('Mat khẩu không tồn tại');
+    }
+
+    const isPasswordValid = bcrypt.compareSync(password, user.password);
+    if (!isPasswordValid) {
+        throw new BadResquestException('Mật khẩu không đúng');
+    }
+
     return `This action logs in a auth`;
   },
 
