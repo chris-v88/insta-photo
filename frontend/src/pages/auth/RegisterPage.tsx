@@ -6,18 +6,31 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import { registerSchema, RegisterFormData } from '../../schemas/formValidate';
+import { postRegisterUser } from '../../apis/register.api';
 
 const RegisterPage: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
+    mode: 'onChange',
   });
 
-  const onSubmit = (data: RegisterFormData) => {
-    console.log(data);
+  const onSubmit = async (data: RegisterFormData) => {
+    try {
+      const payload = {
+        full_name: data.name,
+        username: data.username,
+        email: data.email,
+        password: data.password,
+      };
+      const response = await postRegisterUser(payload);
+      console.log('Registration successful:', response);
+    } catch (error) {
+      console.error('Registration failed:', error);
+    }
   };
 
   return (
@@ -72,7 +85,7 @@ const RegisterPage: React.FC = () => {
             )}
           </div>
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" disabled={!isValid}>
             Create account
           </Button>
 
