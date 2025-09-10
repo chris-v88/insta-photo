@@ -26,6 +26,10 @@ export const authService = {
     return newUser;
   },
 
+  login: async (req) => {
+    return `This action logs in a auth`;
+  },
+
   findAll: async (req) => {
     return `This action returns all auth`;
   },

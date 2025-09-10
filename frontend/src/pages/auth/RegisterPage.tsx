@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
-import { registerSchema, RegisterFormData } from '../../schemas/formValidate';
+import { registerSchema, RegisterFormData } from '../../schemas/form-register.schema';
 import { postRegisterUser } from '../../apis/register.api';
 
 const RegisterPage: React.FC = () => {
