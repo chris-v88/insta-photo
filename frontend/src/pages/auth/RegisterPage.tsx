@@ -1,9 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
+import { registerSchema, RegisterFormData } from '../../schemas/formValidate';
 
 const RegisterPage: React.FC = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(registerSchema),
+  });
+
+  const onSubmit = (data: RegisterFormData) => {
+    console.log(data);
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
@@ -16,34 +32,44 @@ const RegisterPage: React.FC = () => {
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{' '}
-            <Link
-              to="/login"
-              className="font-medium text-blue-600 hover:text-blue-500"
-            >
+            <Link to="/login" className="font-medium text-blue-600 hover:text-blue-500">
               sign in to your existing account
             </Link>
           </p>
         </div>
 
-        <form className="mt-8 space-y-6">
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
-            <Input label="Full Name" type="text" autoComplete="name" />
+            <Input label="Full Name" type="text" autoComplete="name" {...register('name')} />
+            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
 
-            <Input label="Username" type="text" autoComplete="username" />
+            <Input label="Username" type="text" autoComplete="username" {...register('username')} />
+            {errors.username && (
+              <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>
+            )}
 
-            <Input label="Email address" type="email" autoComplete="email" />
+            <Input label="Email address" type="email" autoComplete="email" {...register('email')} />
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
 
             <Input
               label="Password"
               type="password"
               autoComplete="new-password"
+              {...register('password')}
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+            )}
 
             <Input
               label="Confirm Password"
               type="password"
               autoComplete="new-password"
+              {...register('confirmPassword')}
             />
+            {errors.confirmPassword && (
+              <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
+            )}
           </div>
 
           <Button type="submit" className="w-full">

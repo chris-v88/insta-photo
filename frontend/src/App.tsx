@@ -25,18 +25,8 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route
-            path="/register"
-            element={
-              isAuthenticated ? <Navigate to="/" replace /> : <RegisterPage />
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              isAuthenticated ? <Navigate to="/" replace /> : <LoginPage />
-            }
-          />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
       </div>
     </BrowserRouter>

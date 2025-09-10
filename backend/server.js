@@ -3,7 +3,9 @@ import 'dotenv/config';
 import cors from 'cors';
 import express from 'express';
 
-import { appError } from './middlewares/appError';
+import { appError } from './src/common/app-error/app-error.error';
+import { responseError } from './src/common/helpers/response.helpers';
+import rootRouter from './src/routers/root.router';
 
 const app = express();
 
@@ -26,6 +28,6 @@ app.use((err, req, res, next) => {
 });
 
 const port = 3069;
-httpServer.listen(port, () => {
+app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
