@@ -21,3 +21,9 @@ export type CreateUserPayload = {
   full_name: string;
   password: string;
 };
+
+// PAYLOAD -- for login
+export type LoginUserPayload = {
+  username: string;
+  password: string;
+};
