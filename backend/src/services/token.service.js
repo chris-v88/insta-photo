@@ -25,7 +25,7 @@ export const tokenService = {
 
   verifyAccessToken: (accessToken, options = {}) => {
     try {
-      return jwt.verify(accessToken, ACCESS_TOKEN_SECRET, options);
+      return jwt.verify(accessToken, ACCESS_TOKEN_KEY, options);
     } catch (err) {
       console.error(err);
       throw new BadResquestException('Token đã hết hạn hoặc không hợp lệ');
@@ -34,7 +34,7 @@ export const tokenService = {
 
   verifyRefreshToken: (refreshToken, options = {}) => {
     try {
-      return jwt.verify(refreshToken, REFRESH_TOKEN_SECRET, options);
+      return jwt.verify(refreshToken, ACCESS_REFRESH_SECRET, options);
     } catch (err) {
       console.error(err);
       throw new BadResquestException('Token đã hết hạn hoặc không hợp lệ');

@@ -40,7 +40,7 @@ export const authService = {
       throw new BadResquestException('Tài khoản không tồn tại');
     }
     if (!user.password) {
-      throw new BadResquestException('Mat khẩu không tồn tại');
+      throw new BadResquestException('Mật khẩu không tồn tại');
     }
 
     const isPasswordValid = bcrypt.compareSync(password, user.password);
