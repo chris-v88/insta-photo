@@ -3,8 +3,8 @@ import * as bcrypt from 'bcrypt';
 import { BadResquestException } from '../common/helpers/exception.helper';
 import prisma from '../common/prisma/init.prisma';
 import { tokenService } from './token.service';
-import { convertTimeToMilliseconds } from '@common/utils/convertors';
-import { ACCESS_TOKEN_EXPIRES_IN } from '@common/constants/app.constant';
+import { convertTimeToMilliseconds } from '../common/utils/convertors';
+import { ACCESS_TOKEN_EXPIRES_IN, ACCESS_REFRESH_EXPIRES_IN } from '../common/constants/app.constant';
 
 export const authService = {
   register: async (req) => {

@@ -5,7 +5,7 @@ import {
   ACCESS_REFRESH_SECRET,
   ACCESS_REFRESH_EXPIRES_IN,
 } from '../common/constants/app.constant';
-import { BadResquestException } from '@common/helpers/exception.helper';
+import { BadResquestException } from '../common/helpers/exception.helper';
 
 export const tokenService = {
   createTokens: (userId) => {

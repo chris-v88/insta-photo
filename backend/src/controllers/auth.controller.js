@@ -9,7 +9,7 @@ export const authController = {
   },
 
   login: async (req, res, next) => {
-    const result = await authService.register(req);
+    const result = await authService.login(req, res);
     const response = responseSuccess(result, `Login successfully`);
     res.status(response.statusCode).json(response);
   },
