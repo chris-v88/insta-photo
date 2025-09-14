@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import { LoginFormData, loginSchema } from '../../schemas/form-login.schema';
+import { postLoginUser } from '../../apis/login.api';
 
 const LoginPage: React.FC = () => {
   const {
@@ -19,6 +20,16 @@ const LoginPage: React.FC = () => {
 
   const onSubmit = async (data: LoginFormData) => {
     console.log(data);
+    try {
+      const payload = {
+        username: data.username,
+        password: data.password,
+      };
+      const response = await postLoginUser(payload);
+      console.log('Login successful:', response);
+    } catch (err) {
+      console.error('Login failed:', err);
+    }
   };
 
   return (
@@ -39,9 +50,10 @@ const LoginPage: React.FC = () => {
           </p>
         </div>
 
-        <form className="mt-8 space-y-6">
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
           <div className="space-y-4">
             <Input label="Username" type="text" autoComplete="username" {...register('username')} />
+            {errors.username && <p className="text-red-500 text-sm">{errors.username.message}</p>}
 
             <Input
               label="Password"
@@ -49,6 +61,7 @@ const LoginPage: React.FC = () => {
               autoComplete="current-password"
               {...register('password')}
             />
+            {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
 
           <Button type="submit" className="w-full">
