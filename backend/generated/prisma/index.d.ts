@@ -24,16 +24,6 @@ export type Comments = $Result.DefaultSelection<Prisma.$CommentsPayload>
  */
 export type Follows = $Result.DefaultSelection<Prisma.$FollowsPayload>
 /**
- * Model Photo_Likes
- * 
- */
-export type Photo_Likes = $Result.DefaultSelection<Prisma.$Photo_LikesPayload>
-/**
- * Model Photos
- * 
- */
-export type Photos = $Result.DefaultSelection<Prisma.$PhotosPayload>
-/**
  * Model User_Sessions
  * 
  */
@@ -43,6 +33,16 @@ export type User_Sessions = $Result.DefaultSelection<Prisma.$User_SessionsPayloa
  * 
  */
 export type Users = $Result.DefaultSelection<Prisma.$UsersPayload>
+/**
+ * Model Post_Likes
+ * 
+ */
+export type Post_Likes = $Result.DefaultSelection<Prisma.$Post_LikesPayload>
+/**
+ * Model Posts
+ * 
+ */
+export type Posts = $Result.DefaultSelection<Prisma.$PostsPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -183,26 +183,6 @@ export class PrismaClient<
   get follows(): Prisma.FollowsDelegate<ExtArgs, ClientOptions>;
 
   /**
-   * `prisma.photo_Likes`: Exposes CRUD operations for the **Photo_Likes** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Photo_Likes
-    * const photo_Likes = await prisma.photo_Likes.findMany()
-    * ```
-    */
-  get photo_Likes(): Prisma.Photo_LikesDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.photos`: Exposes CRUD operations for the **Photos** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Photos
-    * const photos = await prisma.photos.findMany()
-    * ```
-    */
-  get photos(): Prisma.PhotosDelegate<ExtArgs, ClientOptions>;
-
-  /**
    * `prisma.user_Sessions`: Exposes CRUD operations for the **User_Sessions** model.
     * Example usage:
     * ```ts
@@ -221,6 +201,26 @@ export class PrismaClient<
     * ```
     */
   get users(): Prisma.UsersDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.post_Likes`: Exposes CRUD operations for the **Post_Likes** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Post_Likes
+    * const post_Likes = await prisma.post_Likes.findMany()
+    * ```
+    */
+  get post_Likes(): Prisma.Post_LikesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.posts`: Exposes CRUD operations for the **Posts** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Posts
+    * const posts = await prisma.posts.findMany()
+    * ```
+    */
+  get posts(): Prisma.PostsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -663,10 +663,10 @@ export namespace Prisma {
   export const ModelName: {
     Comments: 'Comments',
     Follows: 'Follows',
-    Photo_Likes: 'Photo_Likes',
-    Photos: 'Photos',
     User_Sessions: 'User_Sessions',
-    Users: 'Users'
+    Users: 'Users',
+    Post_Likes: 'Post_Likes',
+    Posts: 'Posts'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -685,7 +685,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "comments" | "follows" | "photo_Likes" | "photos" | "user_Sessions" | "users"
+      modelProps: "comments" | "follows" | "user_Sessions" | "users" | "post_Likes" | "posts"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -821,138 +821,6 @@ export namespace Prisma {
           }
         }
       }
-      Photo_Likes: {
-        payload: Prisma.$Photo_LikesPayload<ExtArgs>
-        fields: Prisma.Photo_LikesFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.Photo_LikesFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Photo_LikesPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.Photo_LikesFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Photo_LikesPayload>
-          }
-          findFirst: {
-            args: Prisma.Photo_LikesFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Photo_LikesPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.Photo_LikesFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Photo_LikesPayload>
-          }
-          findMany: {
-            args: Prisma.Photo_LikesFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Photo_LikesPayload>[]
-          }
-          create: {
-            args: Prisma.Photo_LikesCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Photo_LikesPayload>
-          }
-          createMany: {
-            args: Prisma.Photo_LikesCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.Photo_LikesDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Photo_LikesPayload>
-          }
-          update: {
-            args: Prisma.Photo_LikesUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Photo_LikesPayload>
-          }
-          deleteMany: {
-            args: Prisma.Photo_LikesDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.Photo_LikesUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.Photo_LikesUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$Photo_LikesPayload>
-          }
-          aggregate: {
-            args: Prisma.Photo_LikesAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePhoto_Likes>
-          }
-          groupBy: {
-            args: Prisma.Photo_LikesGroupByArgs<ExtArgs>
-            result: $Utils.Optional<Photo_LikesGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.Photo_LikesCountArgs<ExtArgs>
-            result: $Utils.Optional<Photo_LikesCountAggregateOutputType> | number
-          }
-        }
-      }
-      Photos: {
-        payload: Prisma.$PhotosPayload<ExtArgs>
-        fields: Prisma.PhotosFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.PhotosFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotosPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.PhotosFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotosPayload>
-          }
-          findFirst: {
-            args: Prisma.PhotosFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotosPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.PhotosFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotosPayload>
-          }
-          findMany: {
-            args: Prisma.PhotosFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotosPayload>[]
-          }
-          create: {
-            args: Prisma.PhotosCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotosPayload>
-          }
-          createMany: {
-            args: Prisma.PhotosCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          delete: {
-            args: Prisma.PhotosDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotosPayload>
-          }
-          update: {
-            args: Prisma.PhotosUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotosPayload>
-          }
-          deleteMany: {
-            args: Prisma.PhotosDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.PhotosUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          upsert: {
-            args: Prisma.PhotosUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$PhotosPayload>
-          }
-          aggregate: {
-            args: Prisma.PhotosAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregatePhotos>
-          }
-          groupBy: {
-            args: Prisma.PhotosGroupByArgs<ExtArgs>
-            result: $Utils.Optional<PhotosGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.PhotosCountArgs<ExtArgs>
-            result: $Utils.Optional<PhotosCountAggregateOutputType> | number
-          }
-        }
-      }
       User_Sessions: {
         payload: Prisma.$User_SessionsPayload<ExtArgs>
         fields: Prisma.User_SessionsFieldRefs
@@ -1085,6 +953,138 @@ export namespace Prisma {
           }
         }
       }
+      Post_Likes: {
+        payload: Prisma.$Post_LikesPayload<ExtArgs>
+        fields: Prisma.Post_LikesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.Post_LikesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Post_LikesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.Post_LikesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Post_LikesPayload>
+          }
+          findFirst: {
+            args: Prisma.Post_LikesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Post_LikesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.Post_LikesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Post_LikesPayload>
+          }
+          findMany: {
+            args: Prisma.Post_LikesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Post_LikesPayload>[]
+          }
+          create: {
+            args: Prisma.Post_LikesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Post_LikesPayload>
+          }
+          createMany: {
+            args: Prisma.Post_LikesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.Post_LikesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Post_LikesPayload>
+          }
+          update: {
+            args: Prisma.Post_LikesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Post_LikesPayload>
+          }
+          deleteMany: {
+            args: Prisma.Post_LikesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.Post_LikesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.Post_LikesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$Post_LikesPayload>
+          }
+          aggregate: {
+            args: Prisma.Post_LikesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePost_Likes>
+          }
+          groupBy: {
+            args: Prisma.Post_LikesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Post_LikesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.Post_LikesCountArgs<ExtArgs>
+            result: $Utils.Optional<Post_LikesCountAggregateOutputType> | number
+          }
+        }
+      }
+      Posts: {
+        payload: Prisma.$PostsPayload<ExtArgs>
+        fields: Prisma.PostsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PostsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PostsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostsPayload>
+          }
+          findFirst: {
+            args: Prisma.PostsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PostsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostsPayload>
+          }
+          findMany: {
+            args: Prisma.PostsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostsPayload>[]
+          }
+          create: {
+            args: Prisma.PostsCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostsPayload>
+          }
+          createMany: {
+            args: Prisma.PostsCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.PostsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostsPayload>
+          }
+          update: {
+            args: Prisma.PostsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostsPayload>
+          }
+          deleteMany: {
+            args: Prisma.PostsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PostsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.PostsUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PostsPayload>
+          }
+          aggregate: {
+            args: Prisma.PostsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePosts>
+          }
+          groupBy: {
+            args: Prisma.PostsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PostsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PostsCountArgs<ExtArgs>
+            result: $Utils.Optional<PostsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1179,10 +1179,10 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     comments?: CommentsOmit
     follows?: FollowsOmit
-    photo_Likes?: Photo_LikesOmit
-    photos?: PhotosOmit
     user_Sessions?: User_SessionsOmit
     users?: UsersOmit
+    post_Likes?: Post_LikesOmit
+    posts?: PostsOmit
   }
 
   /* Types for Logging */
@@ -1259,46 +1259,6 @@ export namespace Prisma {
 
 
   /**
-   * Count Type PhotosCountOutputType
-   */
-
-  export type PhotosCountOutputType = {
-    Comments: number
-    Photo_Likes: number
-  }
-
-  export type PhotosCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Comments?: boolean | PhotosCountOutputTypeCountCommentsArgs
-    Photo_Likes?: boolean | PhotosCountOutputTypeCountPhoto_LikesArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * PhotosCountOutputType without action
-   */
-  export type PhotosCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the PhotosCountOutputType
-     */
-    select?: PhotosCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * PhotosCountOutputType without action
-   */
-  export type PhotosCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CommentsWhereInput
-  }
-
-  /**
-   * PhotosCountOutputType without action
-   */
-  export type PhotosCountOutputTypeCountPhoto_LikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Photo_LikesWhereInput
-  }
-
-
-  /**
    * Count Type UsersCountOutputType
    */
 
@@ -1306,8 +1266,8 @@ export namespace Prisma {
     Comments: number
     Follows_Follows_follower_idToUsers: number
     Follows_Follows_following_idToUsers: number
-    Photo_Likes: number
-    Photos: number
+    Post_Likes: number
+    Posts: number
     User_Sessions: number
   }
 
@@ -1315,8 +1275,8 @@ export namespace Prisma {
     Comments?: boolean | UsersCountOutputTypeCountCommentsArgs
     Follows_Follows_follower_idToUsers?: boolean | UsersCountOutputTypeCountFollows_Follows_follower_idToUsersArgs
     Follows_Follows_following_idToUsers?: boolean | UsersCountOutputTypeCountFollows_Follows_following_idToUsersArgs
-    Photo_Likes?: boolean | UsersCountOutputTypeCountPhoto_LikesArgs
-    Photos?: boolean | UsersCountOutputTypeCountPhotosArgs
+    Post_Likes?: boolean | UsersCountOutputTypeCountPost_LikesArgs
+    Posts?: boolean | UsersCountOutputTypeCountPostsArgs
     User_Sessions?: boolean | UsersCountOutputTypeCountUser_SessionsArgs
   }
 
@@ -1355,15 +1315,15 @@ export namespace Prisma {
   /**
    * UsersCountOutputType without action
    */
-  export type UsersCountOutputTypeCountPhoto_LikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Photo_LikesWhereInput
+  export type UsersCountOutputTypeCountPost_LikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Post_LikesWhereInput
   }
 
   /**
    * UsersCountOutputType without action
    */
-  export type UsersCountOutputTypeCountPhotosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PhotosWhereInput
+  export type UsersCountOutputTypeCountPostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostsWhereInput
   }
 
   /**
@@ -1371,6 +1331,46 @@ export namespace Prisma {
    */
   export type UsersCountOutputTypeCountUser_SessionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: User_SessionsWhereInput
+  }
+
+
+  /**
+   * Count Type PostsCountOutputType
+   */
+
+  export type PostsCountOutputType = {
+    Comments: number
+    Post_Likes: number
+  }
+
+  export type PostsCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Comments?: boolean | PostsCountOutputTypeCountCommentsArgs
+    Post_Likes?: boolean | PostsCountOutputTypeCountPost_LikesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PostsCountOutputType without action
+   */
+  export type PostsCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PostsCountOutputType
+     */
+    select?: PostsCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PostsCountOutputType without action
+   */
+  export type PostsCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CommentsWhereInput
+  }
+
+  /**
+   * PostsCountOutputType without action
+   */
+  export type PostsCountOutputTypeCountPost_LikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Post_LikesWhereInput
   }
 
 
@@ -1392,19 +1392,19 @@ export namespace Prisma {
 
   export type CommentsAvgAggregateOutputType = {
     id: number | null
-    photo_id: number | null
+    post_id: number | null
     user_id: number | null
   }
 
   export type CommentsSumAggregateOutputType = {
     id: number | null
-    photo_id: number | null
+    post_id: number | null
     user_id: number | null
   }
 
   export type CommentsMinAggregateOutputType = {
     id: number | null
-    photo_id: number | null
+    post_id: number | null
     user_id: number | null
     content: string | null
     created_at: Date | null
@@ -1412,7 +1412,7 @@ export namespace Prisma {
 
   export type CommentsMaxAggregateOutputType = {
     id: number | null
-    photo_id: number | null
+    post_id: number | null
     user_id: number | null
     content: string | null
     created_at: Date | null
@@ -1420,7 +1420,7 @@ export namespace Prisma {
 
   export type CommentsCountAggregateOutputType = {
     id: number
-    photo_id: number
+    post_id: number
     user_id: number
     content: number
     created_at: number
@@ -1430,19 +1430,19 @@ export namespace Prisma {
 
   export type CommentsAvgAggregateInputType = {
     id?: true
-    photo_id?: true
+    post_id?: true
     user_id?: true
   }
 
   export type CommentsSumAggregateInputType = {
     id?: true
-    photo_id?: true
+    post_id?: true
     user_id?: true
   }
 
   export type CommentsMinAggregateInputType = {
     id?: true
-    photo_id?: true
+    post_id?: true
     user_id?: true
     content?: true
     created_at?: true
@@ -1450,7 +1450,7 @@ export namespace Prisma {
 
   export type CommentsMaxAggregateInputType = {
     id?: true
-    photo_id?: true
+    post_id?: true
     user_id?: true
     content?: true
     created_at?: true
@@ -1458,7 +1458,7 @@ export namespace Prisma {
 
   export type CommentsCountAggregateInputType = {
     id?: true
-    photo_id?: true
+    post_id?: true
     user_id?: true
     content?: true
     created_at?: true
@@ -1553,7 +1553,7 @@ export namespace Prisma {
 
   export type CommentsGroupByOutputType = {
     id: number
-    photo_id: number
+    post_id: number
     user_id: number
     content: string
     created_at: Date | null
@@ -1580,39 +1580,39 @@ export namespace Prisma {
 
   export type CommentsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    photo_id?: boolean
+    post_id?: boolean
     user_id?: boolean
     content?: boolean
     created_at?: boolean
-    Photos?: boolean | PhotosDefaultArgs<ExtArgs>
     Users?: boolean | UsersDefaultArgs<ExtArgs>
+    Posts?: boolean | PostsDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comments"]>
 
 
 
   export type CommentsSelectScalar = {
     id?: boolean
-    photo_id?: boolean
+    post_id?: boolean
     user_id?: boolean
     content?: boolean
     created_at?: boolean
   }
 
-  export type CommentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "photo_id" | "user_id" | "content" | "created_at", ExtArgs["result"]["comments"]>
+  export type CommentsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "post_id" | "user_id" | "content" | "created_at", ExtArgs["result"]["comments"]>
   export type CommentsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Photos?: boolean | PhotosDefaultArgs<ExtArgs>
     Users?: boolean | UsersDefaultArgs<ExtArgs>
+    Posts?: boolean | PostsDefaultArgs<ExtArgs>
   }
 
   export type $CommentsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Comments"
     objects: {
-      Photos: Prisma.$PhotosPayload<ExtArgs>
       Users: Prisma.$UsersPayload<ExtArgs>
+      Posts: Prisma.$PostsPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
-      photo_id: number
+      post_id: number
       user_id: number
       content: string
       created_at: Date | null
@@ -1956,8 +1956,8 @@ export namespace Prisma {
    */
   export interface Prisma__CommentsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Photos<T extends PhotosDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PhotosDefaultArgs<ExtArgs>>): Prisma__PhotosClient<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Users<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Posts<T extends PostsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PostsDefaultArgs<ExtArgs>>): Prisma__PostsClient<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1988,7 +1988,7 @@ export namespace Prisma {
    */
   interface CommentsFieldRefs {
     readonly id: FieldRef<"Comments", 'Int'>
-    readonly photo_id: FieldRef<"Comments", 'Int'>
+    readonly post_id: FieldRef<"Comments", 'Int'>
     readonly user_id: FieldRef<"Comments", 'Int'>
     readonly content: FieldRef<"Comments", 'String'>
     readonly created_at: FieldRef<"Comments", 'DateTime'>
@@ -3318,2047 +3318,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Photo_Likes
-   */
-
-  export type AggregatePhoto_Likes = {
-    _count: Photo_LikesCountAggregateOutputType | null
-    _avg: Photo_LikesAvgAggregateOutputType | null
-    _sum: Photo_LikesSumAggregateOutputType | null
-    _min: Photo_LikesMinAggregateOutputType | null
-    _max: Photo_LikesMaxAggregateOutputType | null
-  }
-
-  export type Photo_LikesAvgAggregateOutputType = {
-    id: number | null
-    photo_id: number | null
-    user_id: number | null
-  }
-
-  export type Photo_LikesSumAggregateOutputType = {
-    id: number | null
-    photo_id: number | null
-    user_id: number | null
-  }
-
-  export type Photo_LikesMinAggregateOutputType = {
-    id: number | null
-    photo_id: number | null
-    user_id: number | null
-    created_at: Date | null
-  }
-
-  export type Photo_LikesMaxAggregateOutputType = {
-    id: number | null
-    photo_id: number | null
-    user_id: number | null
-    created_at: Date | null
-  }
-
-  export type Photo_LikesCountAggregateOutputType = {
-    id: number
-    photo_id: number
-    user_id: number
-    created_at: number
-    _all: number
-  }
-
-
-  export type Photo_LikesAvgAggregateInputType = {
-    id?: true
-    photo_id?: true
-    user_id?: true
-  }
-
-  export type Photo_LikesSumAggregateInputType = {
-    id?: true
-    photo_id?: true
-    user_id?: true
-  }
-
-  export type Photo_LikesMinAggregateInputType = {
-    id?: true
-    photo_id?: true
-    user_id?: true
-    created_at?: true
-  }
-
-  export type Photo_LikesMaxAggregateInputType = {
-    id?: true
-    photo_id?: true
-    user_id?: true
-    created_at?: true
-  }
-
-  export type Photo_LikesCountAggregateInputType = {
-    id?: true
-    photo_id?: true
-    user_id?: true
-    created_at?: true
-    _all?: true
-  }
-
-  export type Photo_LikesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Photo_Likes to aggregate.
-     */
-    where?: Photo_LikesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Photo_Likes to fetch.
-     */
-    orderBy?: Photo_LikesOrderByWithRelationInput | Photo_LikesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: Photo_LikesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Photo_Likes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Photo_Likes.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Photo_Likes
-    **/
-    _count?: true | Photo_LikesCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: Photo_LikesAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: Photo_LikesSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: Photo_LikesMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: Photo_LikesMaxAggregateInputType
-  }
-
-  export type GetPhoto_LikesAggregateType<T extends Photo_LikesAggregateArgs> = {
-        [P in keyof T & keyof AggregatePhoto_Likes]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePhoto_Likes[P]>
-      : GetScalarType<T[P], AggregatePhoto_Likes[P]>
-  }
-
-
-
-
-  export type Photo_LikesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: Photo_LikesWhereInput
-    orderBy?: Photo_LikesOrderByWithAggregationInput | Photo_LikesOrderByWithAggregationInput[]
-    by: Photo_LikesScalarFieldEnum[] | Photo_LikesScalarFieldEnum
-    having?: Photo_LikesScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: Photo_LikesCountAggregateInputType | true
-    _avg?: Photo_LikesAvgAggregateInputType
-    _sum?: Photo_LikesSumAggregateInputType
-    _min?: Photo_LikesMinAggregateInputType
-    _max?: Photo_LikesMaxAggregateInputType
-  }
-
-  export type Photo_LikesGroupByOutputType = {
-    id: number
-    photo_id: number
-    user_id: number
-    created_at: Date | null
-    _count: Photo_LikesCountAggregateOutputType | null
-    _avg: Photo_LikesAvgAggregateOutputType | null
-    _sum: Photo_LikesSumAggregateOutputType | null
-    _min: Photo_LikesMinAggregateOutputType | null
-    _max: Photo_LikesMaxAggregateOutputType | null
-  }
-
-  type GetPhoto_LikesGroupByPayload<T extends Photo_LikesGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<Photo_LikesGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof Photo_LikesGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], Photo_LikesGroupByOutputType[P]>
-            : GetScalarType<T[P], Photo_LikesGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type Photo_LikesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    photo_id?: boolean
-    user_id?: boolean
-    created_at?: boolean
-    Photos?: boolean | PhotosDefaultArgs<ExtArgs>
-    Users?: boolean | UsersDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["photo_Likes"]>
-
-
-
-  export type Photo_LikesSelectScalar = {
-    id?: boolean
-    photo_id?: boolean
-    user_id?: boolean
-    created_at?: boolean
-  }
-
-  export type Photo_LikesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "photo_id" | "user_id" | "created_at", ExtArgs["result"]["photo_Likes"]>
-  export type Photo_LikesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Photos?: boolean | PhotosDefaultArgs<ExtArgs>
-    Users?: boolean | UsersDefaultArgs<ExtArgs>
-  }
-
-  export type $Photo_LikesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Photo_Likes"
-    objects: {
-      Photos: Prisma.$PhotosPayload<ExtArgs>
-      Users: Prisma.$UsersPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      photo_id: number
-      user_id: number
-      created_at: Date | null
-    }, ExtArgs["result"]["photo_Likes"]>
-    composites: {}
-  }
-
-  type Photo_LikesGetPayload<S extends boolean | null | undefined | Photo_LikesDefaultArgs> = $Result.GetResult<Prisma.$Photo_LikesPayload, S>
-
-  type Photo_LikesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<Photo_LikesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: Photo_LikesCountAggregateInputType | true
-    }
-
-  export interface Photo_LikesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Photo_Likes'], meta: { name: 'Photo_Likes' } }
-    /**
-     * Find zero or one Photo_Likes that matches the filter.
-     * @param {Photo_LikesFindUniqueArgs} args - Arguments to find a Photo_Likes
-     * @example
-     * // Get one Photo_Likes
-     * const photo_Likes = await prisma.photo_Likes.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends Photo_LikesFindUniqueArgs>(args: SelectSubset<T, Photo_LikesFindUniqueArgs<ExtArgs>>): Prisma__Photo_LikesClient<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Photo_Likes that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {Photo_LikesFindUniqueOrThrowArgs} args - Arguments to find a Photo_Likes
-     * @example
-     * // Get one Photo_Likes
-     * const photo_Likes = await prisma.photo_Likes.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends Photo_LikesFindUniqueOrThrowArgs>(args: SelectSubset<T, Photo_LikesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Photo_LikesClient<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Photo_Likes that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Photo_LikesFindFirstArgs} args - Arguments to find a Photo_Likes
-     * @example
-     * // Get one Photo_Likes
-     * const photo_Likes = await prisma.photo_Likes.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends Photo_LikesFindFirstArgs>(args?: SelectSubset<T, Photo_LikesFindFirstArgs<ExtArgs>>): Prisma__Photo_LikesClient<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Photo_Likes that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Photo_LikesFindFirstOrThrowArgs} args - Arguments to find a Photo_Likes
-     * @example
-     * // Get one Photo_Likes
-     * const photo_Likes = await prisma.photo_Likes.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends Photo_LikesFindFirstOrThrowArgs>(args?: SelectSubset<T, Photo_LikesFindFirstOrThrowArgs<ExtArgs>>): Prisma__Photo_LikesClient<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Photo_Likes that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Photo_LikesFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Photo_Likes
-     * const photo_Likes = await prisma.photo_Likes.findMany()
-     * 
-     * // Get first 10 Photo_Likes
-     * const photo_Likes = await prisma.photo_Likes.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const photo_LikesWithIdOnly = await prisma.photo_Likes.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends Photo_LikesFindManyArgs>(args?: SelectSubset<T, Photo_LikesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Photo_Likes.
-     * @param {Photo_LikesCreateArgs} args - Arguments to create a Photo_Likes.
-     * @example
-     * // Create one Photo_Likes
-     * const Photo_Likes = await prisma.photo_Likes.create({
-     *   data: {
-     *     // ... data to create a Photo_Likes
-     *   }
-     * })
-     * 
-     */
-    create<T extends Photo_LikesCreateArgs>(args: SelectSubset<T, Photo_LikesCreateArgs<ExtArgs>>): Prisma__Photo_LikesClient<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Photo_Likes.
-     * @param {Photo_LikesCreateManyArgs} args - Arguments to create many Photo_Likes.
-     * @example
-     * // Create many Photo_Likes
-     * const photo_Likes = await prisma.photo_Likes.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends Photo_LikesCreateManyArgs>(args?: SelectSubset<T, Photo_LikesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Photo_Likes.
-     * @param {Photo_LikesDeleteArgs} args - Arguments to delete one Photo_Likes.
-     * @example
-     * // Delete one Photo_Likes
-     * const Photo_Likes = await prisma.photo_Likes.delete({
-     *   where: {
-     *     // ... filter to delete one Photo_Likes
-     *   }
-     * })
-     * 
-     */
-    delete<T extends Photo_LikesDeleteArgs>(args: SelectSubset<T, Photo_LikesDeleteArgs<ExtArgs>>): Prisma__Photo_LikesClient<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Photo_Likes.
-     * @param {Photo_LikesUpdateArgs} args - Arguments to update one Photo_Likes.
-     * @example
-     * // Update one Photo_Likes
-     * const photo_Likes = await prisma.photo_Likes.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends Photo_LikesUpdateArgs>(args: SelectSubset<T, Photo_LikesUpdateArgs<ExtArgs>>): Prisma__Photo_LikesClient<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Photo_Likes.
-     * @param {Photo_LikesDeleteManyArgs} args - Arguments to filter Photo_Likes to delete.
-     * @example
-     * // Delete a few Photo_Likes
-     * const { count } = await prisma.photo_Likes.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends Photo_LikesDeleteManyArgs>(args?: SelectSubset<T, Photo_LikesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Photo_Likes.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Photo_LikesUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Photo_Likes
-     * const photo_Likes = await prisma.photo_Likes.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends Photo_LikesUpdateManyArgs>(args: SelectSubset<T, Photo_LikesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Photo_Likes.
-     * @param {Photo_LikesUpsertArgs} args - Arguments to update or create a Photo_Likes.
-     * @example
-     * // Update or create a Photo_Likes
-     * const photo_Likes = await prisma.photo_Likes.upsert({
-     *   create: {
-     *     // ... data to create a Photo_Likes
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Photo_Likes we want to update
-     *   }
-     * })
-     */
-    upsert<T extends Photo_LikesUpsertArgs>(args: SelectSubset<T, Photo_LikesUpsertArgs<ExtArgs>>): Prisma__Photo_LikesClient<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Photo_Likes.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Photo_LikesCountArgs} args - Arguments to filter Photo_Likes to count.
-     * @example
-     * // Count the number of Photo_Likes
-     * const count = await prisma.photo_Likes.count({
-     *   where: {
-     *     // ... the filter for the Photo_Likes we want to count
-     *   }
-     * })
-    **/
-    count<T extends Photo_LikesCountArgs>(
-      args?: Subset<T, Photo_LikesCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], Photo_LikesCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Photo_Likes.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Photo_LikesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends Photo_LikesAggregateArgs>(args: Subset<T, Photo_LikesAggregateArgs>): Prisma.PrismaPromise<GetPhoto_LikesAggregateType<T>>
-
-    /**
-     * Group by Photo_Likes.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {Photo_LikesGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends Photo_LikesGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: Photo_LikesGroupByArgs['orderBy'] }
-        : { orderBy?: Photo_LikesGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, Photo_LikesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPhoto_LikesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Photo_Likes model
-   */
-  readonly fields: Photo_LikesFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Photo_Likes.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__Photo_LikesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Photos<T extends PhotosDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PhotosDefaultArgs<ExtArgs>>): Prisma__PhotosClient<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    Users<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Photo_Likes model
-   */
-  interface Photo_LikesFieldRefs {
-    readonly id: FieldRef<"Photo_Likes", 'Int'>
-    readonly photo_id: FieldRef<"Photo_Likes", 'Int'>
-    readonly user_id: FieldRef<"Photo_Likes", 'Int'>
-    readonly created_at: FieldRef<"Photo_Likes", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Photo_Likes findUnique
-   */
-  export type Photo_LikesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    /**
-     * Filter, which Photo_Likes to fetch.
-     */
-    where: Photo_LikesWhereUniqueInput
-  }
-
-  /**
-   * Photo_Likes findUniqueOrThrow
-   */
-  export type Photo_LikesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    /**
-     * Filter, which Photo_Likes to fetch.
-     */
-    where: Photo_LikesWhereUniqueInput
-  }
-
-  /**
-   * Photo_Likes findFirst
-   */
-  export type Photo_LikesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    /**
-     * Filter, which Photo_Likes to fetch.
-     */
-    where?: Photo_LikesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Photo_Likes to fetch.
-     */
-    orderBy?: Photo_LikesOrderByWithRelationInput | Photo_LikesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Photo_Likes.
-     */
-    cursor?: Photo_LikesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Photo_Likes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Photo_Likes.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Photo_Likes.
-     */
-    distinct?: Photo_LikesScalarFieldEnum | Photo_LikesScalarFieldEnum[]
-  }
-
-  /**
-   * Photo_Likes findFirstOrThrow
-   */
-  export type Photo_LikesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    /**
-     * Filter, which Photo_Likes to fetch.
-     */
-    where?: Photo_LikesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Photo_Likes to fetch.
-     */
-    orderBy?: Photo_LikesOrderByWithRelationInput | Photo_LikesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Photo_Likes.
-     */
-    cursor?: Photo_LikesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Photo_Likes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Photo_Likes.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Photo_Likes.
-     */
-    distinct?: Photo_LikesScalarFieldEnum | Photo_LikesScalarFieldEnum[]
-  }
-
-  /**
-   * Photo_Likes findMany
-   */
-  export type Photo_LikesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    /**
-     * Filter, which Photo_Likes to fetch.
-     */
-    where?: Photo_LikesWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Photo_Likes to fetch.
-     */
-    orderBy?: Photo_LikesOrderByWithRelationInput | Photo_LikesOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Photo_Likes.
-     */
-    cursor?: Photo_LikesWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Photo_Likes from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Photo_Likes.
-     */
-    skip?: number
-    distinct?: Photo_LikesScalarFieldEnum | Photo_LikesScalarFieldEnum[]
-  }
-
-  /**
-   * Photo_Likes create
-   */
-  export type Photo_LikesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Photo_Likes.
-     */
-    data: XOR<Photo_LikesCreateInput, Photo_LikesUncheckedCreateInput>
-  }
-
-  /**
-   * Photo_Likes createMany
-   */
-  export type Photo_LikesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Photo_Likes.
-     */
-    data: Photo_LikesCreateManyInput | Photo_LikesCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Photo_Likes update
-   */
-  export type Photo_LikesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Photo_Likes.
-     */
-    data: XOR<Photo_LikesUpdateInput, Photo_LikesUncheckedUpdateInput>
-    /**
-     * Choose, which Photo_Likes to update.
-     */
-    where: Photo_LikesWhereUniqueInput
-  }
-
-  /**
-   * Photo_Likes updateMany
-   */
-  export type Photo_LikesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Photo_Likes.
-     */
-    data: XOR<Photo_LikesUpdateManyMutationInput, Photo_LikesUncheckedUpdateManyInput>
-    /**
-     * Filter which Photo_Likes to update
-     */
-    where?: Photo_LikesWhereInput
-    /**
-     * Limit how many Photo_Likes to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Photo_Likes upsert
-   */
-  export type Photo_LikesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Photo_Likes to update in case it exists.
-     */
-    where: Photo_LikesWhereUniqueInput
-    /**
-     * In case the Photo_Likes found by the `where` argument doesn't exist, create a new Photo_Likes with this data.
-     */
-    create: XOR<Photo_LikesCreateInput, Photo_LikesUncheckedCreateInput>
-    /**
-     * In case the Photo_Likes was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<Photo_LikesUpdateInput, Photo_LikesUncheckedUpdateInput>
-  }
-
-  /**
-   * Photo_Likes delete
-   */
-  export type Photo_LikesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    /**
-     * Filter which Photo_Likes to delete.
-     */
-    where: Photo_LikesWhereUniqueInput
-  }
-
-  /**
-   * Photo_Likes deleteMany
-   */
-  export type Photo_LikesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Photo_Likes to delete
-     */
-    where?: Photo_LikesWhereInput
-    /**
-     * Limit how many Photo_Likes to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Photo_Likes without action
-   */
-  export type Photo_LikesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Photos
-   */
-
-  export type AggregatePhotos = {
-    _count: PhotosCountAggregateOutputType | null
-    _avg: PhotosAvgAggregateOutputType | null
-    _sum: PhotosSumAggregateOutputType | null
-    _min: PhotosMinAggregateOutputType | null
-    _max: PhotosMaxAggregateOutputType | null
-  }
-
-  export type PhotosAvgAggregateOutputType = {
-    id: number | null
-    user_id: number | null
-    likes_count: number | null
-    comments_count: number | null
-  }
-
-  export type PhotosSumAggregateOutputType = {
-    id: number | null
-    user_id: number | null
-    likes_count: number | null
-    comments_count: number | null
-  }
-
-  export type PhotosMinAggregateOutputType = {
-    id: number | null
-    user_id: number | null
-    title: string | null
-    description: string | null
-    image_url: string | null
-    likes_count: number | null
-    comments_count: number | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type PhotosMaxAggregateOutputType = {
-    id: number | null
-    user_id: number | null
-    title: string | null
-    description: string | null
-    image_url: string | null
-    likes_count: number | null
-    comments_count: number | null
-    created_at: Date | null
-    updated_at: Date | null
-  }
-
-  export type PhotosCountAggregateOutputType = {
-    id: number
-    user_id: number
-    title: number
-    description: number
-    image_url: number
-    likes_count: number
-    comments_count: number
-    created_at: number
-    updated_at: number
-    _all: number
-  }
-
-
-  export type PhotosAvgAggregateInputType = {
-    id?: true
-    user_id?: true
-    likes_count?: true
-    comments_count?: true
-  }
-
-  export type PhotosSumAggregateInputType = {
-    id?: true
-    user_id?: true
-    likes_count?: true
-    comments_count?: true
-  }
-
-  export type PhotosMinAggregateInputType = {
-    id?: true
-    user_id?: true
-    title?: true
-    description?: true
-    image_url?: true
-    likes_count?: true
-    comments_count?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type PhotosMaxAggregateInputType = {
-    id?: true
-    user_id?: true
-    title?: true
-    description?: true
-    image_url?: true
-    likes_count?: true
-    comments_count?: true
-    created_at?: true
-    updated_at?: true
-  }
-
-  export type PhotosCountAggregateInputType = {
-    id?: true
-    user_id?: true
-    title?: true
-    description?: true
-    image_url?: true
-    likes_count?: true
-    comments_count?: true
-    created_at?: true
-    updated_at?: true
-    _all?: true
-  }
-
-  export type PhotosAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Photos to aggregate.
-     */
-    where?: PhotosWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Photos to fetch.
-     */
-    orderBy?: PhotosOrderByWithRelationInput | PhotosOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: PhotosWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Photos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Photos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Photos
-    **/
-    _count?: true | PhotosCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: PhotosAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: PhotosSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: PhotosMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: PhotosMaxAggregateInputType
-  }
-
-  export type GetPhotosAggregateType<T extends PhotosAggregateArgs> = {
-        [P in keyof T & keyof AggregatePhotos]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregatePhotos[P]>
-      : GetScalarType<T[P], AggregatePhotos[P]>
-  }
-
-
-
-
-  export type PhotosGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: PhotosWhereInput
-    orderBy?: PhotosOrderByWithAggregationInput | PhotosOrderByWithAggregationInput[]
-    by: PhotosScalarFieldEnum[] | PhotosScalarFieldEnum
-    having?: PhotosScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: PhotosCountAggregateInputType | true
-    _avg?: PhotosAvgAggregateInputType
-    _sum?: PhotosSumAggregateInputType
-    _min?: PhotosMinAggregateInputType
-    _max?: PhotosMaxAggregateInputType
-  }
-
-  export type PhotosGroupByOutputType = {
-    id: number
-    user_id: number
-    title: string | null
-    description: string | null
-    image_url: string
-    likes_count: number | null
-    comments_count: number | null
-    created_at: Date | null
-    updated_at: Date | null
-    _count: PhotosCountAggregateOutputType | null
-    _avg: PhotosAvgAggregateOutputType | null
-    _sum: PhotosSumAggregateOutputType | null
-    _min: PhotosMinAggregateOutputType | null
-    _max: PhotosMaxAggregateOutputType | null
-  }
-
-  type GetPhotosGroupByPayload<T extends PhotosGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PhotosGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PhotosGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], PhotosGroupByOutputType[P]>
-            : GetScalarType<T[P], PhotosGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type PhotosSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    user_id?: boolean
-    title?: boolean
-    description?: boolean
-    image_url?: boolean
-    likes_count?: boolean
-    comments_count?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    Comments?: boolean | Photos$CommentsArgs<ExtArgs>
-    Photo_Likes?: boolean | Photos$Photo_LikesArgs<ExtArgs>
-    Users?: boolean | UsersDefaultArgs<ExtArgs>
-    _count?: boolean | PhotosCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["photos"]>
-
-
-
-  export type PhotosSelectScalar = {
-    id?: boolean
-    user_id?: boolean
-    title?: boolean
-    description?: boolean
-    image_url?: boolean
-    likes_count?: boolean
-    comments_count?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-  }
-
-  export type PhotosOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "title" | "description" | "image_url" | "likes_count" | "comments_count" | "created_at" | "updated_at", ExtArgs["result"]["photos"]>
-  export type PhotosInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Comments?: boolean | Photos$CommentsArgs<ExtArgs>
-    Photo_Likes?: boolean | Photos$Photo_LikesArgs<ExtArgs>
-    Users?: boolean | UsersDefaultArgs<ExtArgs>
-    _count?: boolean | PhotosCountOutputTypeDefaultArgs<ExtArgs>
-  }
-
-  export type $PhotosPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Photos"
-    objects: {
-      Comments: Prisma.$CommentsPayload<ExtArgs>[]
-      Photo_Likes: Prisma.$Photo_LikesPayload<ExtArgs>[]
-      Users: Prisma.$UsersPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: number
-      user_id: number
-      title: string | null
-      description: string | null
-      image_url: string
-      likes_count: number | null
-      comments_count: number | null
-      created_at: Date | null
-      updated_at: Date | null
-    }, ExtArgs["result"]["photos"]>
-    composites: {}
-  }
-
-  type PhotosGetPayload<S extends boolean | null | undefined | PhotosDefaultArgs> = $Result.GetResult<Prisma.$PhotosPayload, S>
-
-  type PhotosCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PhotosFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PhotosCountAggregateInputType | true
-    }
-
-  export interface PhotosDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Photos'], meta: { name: 'Photos' } }
-    /**
-     * Find zero or one Photos that matches the filter.
-     * @param {PhotosFindUniqueArgs} args - Arguments to find a Photos
-     * @example
-     * // Get one Photos
-     * const photos = await prisma.photos.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends PhotosFindUniqueArgs>(args: SelectSubset<T, PhotosFindUniqueArgs<ExtArgs>>): Prisma__PhotosClient<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Photos that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {PhotosFindUniqueOrThrowArgs} args - Arguments to find a Photos
-     * @example
-     * // Get one Photos
-     * const photos = await prisma.photos.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends PhotosFindUniqueOrThrowArgs>(args: SelectSubset<T, PhotosFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PhotosClient<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Photos that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PhotosFindFirstArgs} args - Arguments to find a Photos
-     * @example
-     * // Get one Photos
-     * const photos = await prisma.photos.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends PhotosFindFirstArgs>(args?: SelectSubset<T, PhotosFindFirstArgs<ExtArgs>>): Prisma__PhotosClient<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Photos that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PhotosFindFirstOrThrowArgs} args - Arguments to find a Photos
-     * @example
-     * // Get one Photos
-     * const photos = await prisma.photos.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends PhotosFindFirstOrThrowArgs>(args?: SelectSubset<T, PhotosFindFirstOrThrowArgs<ExtArgs>>): Prisma__PhotosClient<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Photos that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PhotosFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Photos
-     * const photos = await prisma.photos.findMany()
-     * 
-     * // Get first 10 Photos
-     * const photos = await prisma.photos.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const photosWithIdOnly = await prisma.photos.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends PhotosFindManyArgs>(args?: SelectSubset<T, PhotosFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Photos.
-     * @param {PhotosCreateArgs} args - Arguments to create a Photos.
-     * @example
-     * // Create one Photos
-     * const Photos = await prisma.photos.create({
-     *   data: {
-     *     // ... data to create a Photos
-     *   }
-     * })
-     * 
-     */
-    create<T extends PhotosCreateArgs>(args: SelectSubset<T, PhotosCreateArgs<ExtArgs>>): Prisma__PhotosClient<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Photos.
-     * @param {PhotosCreateManyArgs} args - Arguments to create many Photos.
-     * @example
-     * // Create many Photos
-     * const photos = await prisma.photos.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends PhotosCreateManyArgs>(args?: SelectSubset<T, PhotosCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Delete a Photos.
-     * @param {PhotosDeleteArgs} args - Arguments to delete one Photos.
-     * @example
-     * // Delete one Photos
-     * const Photos = await prisma.photos.delete({
-     *   where: {
-     *     // ... filter to delete one Photos
-     *   }
-     * })
-     * 
-     */
-    delete<T extends PhotosDeleteArgs>(args: SelectSubset<T, PhotosDeleteArgs<ExtArgs>>): Prisma__PhotosClient<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Photos.
-     * @param {PhotosUpdateArgs} args - Arguments to update one Photos.
-     * @example
-     * // Update one Photos
-     * const photos = await prisma.photos.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends PhotosUpdateArgs>(args: SelectSubset<T, PhotosUpdateArgs<ExtArgs>>): Prisma__PhotosClient<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Photos.
-     * @param {PhotosDeleteManyArgs} args - Arguments to filter Photos to delete.
-     * @example
-     * // Delete a few Photos
-     * const { count } = await prisma.photos.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends PhotosDeleteManyArgs>(args?: SelectSubset<T, PhotosDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Photos.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PhotosUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Photos
-     * const photos = await prisma.photos.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends PhotosUpdateManyArgs>(args: SelectSubset<T, PhotosUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create or update one Photos.
-     * @param {PhotosUpsertArgs} args - Arguments to update or create a Photos.
-     * @example
-     * // Update or create a Photos
-     * const photos = await prisma.photos.upsert({
-     *   create: {
-     *     // ... data to create a Photos
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Photos we want to update
-     *   }
-     * })
-     */
-    upsert<T extends PhotosUpsertArgs>(args: SelectSubset<T, PhotosUpsertArgs<ExtArgs>>): Prisma__PhotosClient<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Photos.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PhotosCountArgs} args - Arguments to filter Photos to count.
-     * @example
-     * // Count the number of Photos
-     * const count = await prisma.photos.count({
-     *   where: {
-     *     // ... the filter for the Photos we want to count
-     *   }
-     * })
-    **/
-    count<T extends PhotosCountArgs>(
-      args?: Subset<T, PhotosCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], PhotosCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Photos.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PhotosAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends PhotosAggregateArgs>(args: Subset<T, PhotosAggregateArgs>): Prisma.PrismaPromise<GetPhotosAggregateType<T>>
-
-    /**
-     * Group by Photos.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {PhotosGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends PhotosGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: PhotosGroupByArgs['orderBy'] }
-        : { orderBy?: PhotosGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PhotosGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPhotosGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Photos model
-   */
-  readonly fields: PhotosFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Photos.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__PhotosClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    Comments<T extends Photos$CommentsArgs<ExtArgs> = {}>(args?: Subset<T, Photos$CommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Photo_Likes<T extends Photos$Photo_LikesArgs<ExtArgs> = {}>(args?: Subset<T, Photos$Photo_LikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Users<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Photos model
-   */
-  interface PhotosFieldRefs {
-    readonly id: FieldRef<"Photos", 'Int'>
-    readonly user_id: FieldRef<"Photos", 'Int'>
-    readonly title: FieldRef<"Photos", 'String'>
-    readonly description: FieldRef<"Photos", 'String'>
-    readonly image_url: FieldRef<"Photos", 'String'>
-    readonly likes_count: FieldRef<"Photos", 'Int'>
-    readonly comments_count: FieldRef<"Photos", 'Int'>
-    readonly created_at: FieldRef<"Photos", 'DateTime'>
-    readonly updated_at: FieldRef<"Photos", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Photos findUnique
-   */
-  export type PhotosFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photos
-     */
-    select?: PhotosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photos
-     */
-    omit?: PhotosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PhotosInclude<ExtArgs> | null
-    /**
-     * Filter, which Photos to fetch.
-     */
-    where: PhotosWhereUniqueInput
-  }
-
-  /**
-   * Photos findUniqueOrThrow
-   */
-  export type PhotosFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photos
-     */
-    select?: PhotosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photos
-     */
-    omit?: PhotosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PhotosInclude<ExtArgs> | null
-    /**
-     * Filter, which Photos to fetch.
-     */
-    where: PhotosWhereUniqueInput
-  }
-
-  /**
-   * Photos findFirst
-   */
-  export type PhotosFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photos
-     */
-    select?: PhotosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photos
-     */
-    omit?: PhotosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PhotosInclude<ExtArgs> | null
-    /**
-     * Filter, which Photos to fetch.
-     */
-    where?: PhotosWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Photos to fetch.
-     */
-    orderBy?: PhotosOrderByWithRelationInput | PhotosOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Photos.
-     */
-    cursor?: PhotosWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Photos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Photos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Photos.
-     */
-    distinct?: PhotosScalarFieldEnum | PhotosScalarFieldEnum[]
-  }
-
-  /**
-   * Photos findFirstOrThrow
-   */
-  export type PhotosFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photos
-     */
-    select?: PhotosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photos
-     */
-    omit?: PhotosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PhotosInclude<ExtArgs> | null
-    /**
-     * Filter, which Photos to fetch.
-     */
-    where?: PhotosWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Photos to fetch.
-     */
-    orderBy?: PhotosOrderByWithRelationInput | PhotosOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Photos.
-     */
-    cursor?: PhotosWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Photos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Photos.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Photos.
-     */
-    distinct?: PhotosScalarFieldEnum | PhotosScalarFieldEnum[]
-  }
-
-  /**
-   * Photos findMany
-   */
-  export type PhotosFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photos
-     */
-    select?: PhotosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photos
-     */
-    omit?: PhotosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PhotosInclude<ExtArgs> | null
-    /**
-     * Filter, which Photos to fetch.
-     */
-    where?: PhotosWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Photos to fetch.
-     */
-    orderBy?: PhotosOrderByWithRelationInput | PhotosOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Photos.
-     */
-    cursor?: PhotosWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Photos from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Photos.
-     */
-    skip?: number
-    distinct?: PhotosScalarFieldEnum | PhotosScalarFieldEnum[]
-  }
-
-  /**
-   * Photos create
-   */
-  export type PhotosCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photos
-     */
-    select?: PhotosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photos
-     */
-    omit?: PhotosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PhotosInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Photos.
-     */
-    data: XOR<PhotosCreateInput, PhotosUncheckedCreateInput>
-  }
-
-  /**
-   * Photos createMany
-   */
-  export type PhotosCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Photos.
-     */
-    data: PhotosCreateManyInput | PhotosCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Photos update
-   */
-  export type PhotosUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photos
-     */
-    select?: PhotosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photos
-     */
-    omit?: PhotosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PhotosInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Photos.
-     */
-    data: XOR<PhotosUpdateInput, PhotosUncheckedUpdateInput>
-    /**
-     * Choose, which Photos to update.
-     */
-    where: PhotosWhereUniqueInput
-  }
-
-  /**
-   * Photos updateMany
-   */
-  export type PhotosUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Photos.
-     */
-    data: XOR<PhotosUpdateManyMutationInput, PhotosUncheckedUpdateManyInput>
-    /**
-     * Filter which Photos to update
-     */
-    where?: PhotosWhereInput
-    /**
-     * Limit how many Photos to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Photos upsert
-   */
-  export type PhotosUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photos
-     */
-    select?: PhotosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photos
-     */
-    omit?: PhotosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PhotosInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Photos to update in case it exists.
-     */
-    where: PhotosWhereUniqueInput
-    /**
-     * In case the Photos found by the `where` argument doesn't exist, create a new Photos with this data.
-     */
-    create: XOR<PhotosCreateInput, PhotosUncheckedCreateInput>
-    /**
-     * In case the Photos was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<PhotosUpdateInput, PhotosUncheckedUpdateInput>
-  }
-
-  /**
-   * Photos delete
-   */
-  export type PhotosDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photos
-     */
-    select?: PhotosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photos
-     */
-    omit?: PhotosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PhotosInclude<ExtArgs> | null
-    /**
-     * Filter which Photos to delete.
-     */
-    where: PhotosWhereUniqueInput
-  }
-
-  /**
-   * Photos deleteMany
-   */
-  export type PhotosDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Photos to delete
-     */
-    where?: PhotosWhereInput
-    /**
-     * Limit how many Photos to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Photos.Comments
-   */
-  export type Photos$CommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Comments
-     */
-    select?: CommentsSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Comments
-     */
-    omit?: CommentsOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CommentsInclude<ExtArgs> | null
-    where?: CommentsWhereInput
-    orderBy?: CommentsOrderByWithRelationInput | CommentsOrderByWithRelationInput[]
-    cursor?: CommentsWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: CommentsScalarFieldEnum | CommentsScalarFieldEnum[]
-  }
-
-  /**
-   * Photos.Photo_Likes
-   */
-  export type Photos$Photo_LikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photo_Likes
-     */
-    select?: Photo_LikesSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photo_Likes
-     */
-    omit?: Photo_LikesOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    where?: Photo_LikesWhereInput
-    orderBy?: Photo_LikesOrderByWithRelationInput | Photo_LikesOrderByWithRelationInput[]
-    cursor?: Photo_LikesWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: Photo_LikesScalarFieldEnum | Photo_LikesScalarFieldEnum[]
-  }
-
-  /**
-   * Photos without action
-   */
-  export type PhotosDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Photos
-     */
-    select?: PhotosSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Photos
-     */
-    omit?: PhotosOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: PhotosInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model User_Sessions
    */
 
@@ -6590,8 +4549,8 @@ export namespace Prisma {
     Comments?: boolean | Users$CommentsArgs<ExtArgs>
     Follows_Follows_follower_idToUsers?: boolean | Users$Follows_Follows_follower_idToUsersArgs<ExtArgs>
     Follows_Follows_following_idToUsers?: boolean | Users$Follows_Follows_following_idToUsersArgs<ExtArgs>
-    Photo_Likes?: boolean | Users$Photo_LikesArgs<ExtArgs>
-    Photos?: boolean | Users$PhotosArgs<ExtArgs>
+    Post_Likes?: boolean | Users$Post_LikesArgs<ExtArgs>
+    Posts?: boolean | Users$PostsArgs<ExtArgs>
     User_Sessions?: boolean | Users$User_SessionsArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["users"]>
@@ -6618,8 +4577,8 @@ export namespace Prisma {
     Comments?: boolean | Users$CommentsArgs<ExtArgs>
     Follows_Follows_follower_idToUsers?: boolean | Users$Follows_Follows_follower_idToUsersArgs<ExtArgs>
     Follows_Follows_following_idToUsers?: boolean | Users$Follows_Follows_following_idToUsersArgs<ExtArgs>
-    Photo_Likes?: boolean | Users$Photo_LikesArgs<ExtArgs>
-    Photos?: boolean | Users$PhotosArgs<ExtArgs>
+    Post_Likes?: boolean | Users$Post_LikesArgs<ExtArgs>
+    Posts?: boolean | Users$PostsArgs<ExtArgs>
     User_Sessions?: boolean | Users$User_SessionsArgs<ExtArgs>
     _count?: boolean | UsersCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -6630,8 +4589,8 @@ export namespace Prisma {
       Comments: Prisma.$CommentsPayload<ExtArgs>[]
       Follows_Follows_follower_idToUsers: Prisma.$FollowsPayload<ExtArgs>[]
       Follows_Follows_following_idToUsers: Prisma.$FollowsPayload<ExtArgs>[]
-      Photo_Likes: Prisma.$Photo_LikesPayload<ExtArgs>[]
-      Photos: Prisma.$PhotosPayload<ExtArgs>[]
+      Post_Likes: Prisma.$Post_LikesPayload<ExtArgs>[]
+      Posts: Prisma.$PostsPayload<ExtArgs>[]
       User_Sessions: Prisma.$User_SessionsPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -6990,8 +4949,8 @@ export namespace Prisma {
     Comments<T extends Users$CommentsArgs<ExtArgs> = {}>(args?: Subset<T, Users$CommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Follows_Follows_follower_idToUsers<T extends Users$Follows_Follows_follower_idToUsersArgs<ExtArgs> = {}>(args?: Subset<T, Users$Follows_Follows_follower_idToUsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Follows_Follows_following_idToUsers<T extends Users$Follows_Follows_following_idToUsersArgs<ExtArgs> = {}>(args?: Subset<T, Users$Follows_Follows_following_idToUsersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FollowsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Photo_Likes<T extends Users$Photo_LikesArgs<ExtArgs> = {}>(args?: Subset<T, Users$Photo_LikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Photo_LikesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    Photos<T extends Users$PhotosArgs<ExtArgs> = {}>(args?: Subset<T, Users$PhotosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PhotosPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Post_Likes<T extends Users$Post_LikesArgs<ExtArgs> = {}>(args?: Subset<T, Users$Post_LikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Posts<T extends Users$PostsArgs<ExtArgs> = {}>(args?: Subset<T, Users$PostsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     User_Sessions<T extends Users$User_SessionsArgs<ExtArgs> = {}>(args?: Subset<T, Users$User_SessionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$User_SessionsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -7449,51 +5408,51 @@ export namespace Prisma {
   }
 
   /**
-   * Users.Photo_Likes
+   * Users.Post_Likes
    */
-  export type Users$Photo_LikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Users$Post_LikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Photo_Likes
+     * Select specific fields to fetch from the Post_Likes
      */
-    select?: Photo_LikesSelect<ExtArgs> | null
+    select?: Post_LikesSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Photo_Likes
+     * Omit specific fields from the Post_Likes
      */
-    omit?: Photo_LikesOmit<ExtArgs> | null
+    omit?: Post_LikesOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: Photo_LikesInclude<ExtArgs> | null
-    where?: Photo_LikesWhereInput
-    orderBy?: Photo_LikesOrderByWithRelationInput | Photo_LikesOrderByWithRelationInput[]
-    cursor?: Photo_LikesWhereUniqueInput
+    include?: Post_LikesInclude<ExtArgs> | null
+    where?: Post_LikesWhereInput
+    orderBy?: Post_LikesOrderByWithRelationInput | Post_LikesOrderByWithRelationInput[]
+    cursor?: Post_LikesWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: Photo_LikesScalarFieldEnum | Photo_LikesScalarFieldEnum[]
+    distinct?: Post_LikesScalarFieldEnum | Post_LikesScalarFieldEnum[]
   }
 
   /**
-   * Users.Photos
+   * Users.Posts
    */
-  export type Users$PhotosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Users$PostsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the Photos
+     * Select specific fields to fetch from the Posts
      */
-    select?: PhotosSelect<ExtArgs> | null
+    select?: PostsSelect<ExtArgs> | null
     /**
-     * Omit specific fields from the Photos
+     * Omit specific fields from the Posts
      */
-    omit?: PhotosOmit<ExtArgs> | null
+    omit?: PostsOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: PhotosInclude<ExtArgs> | null
-    where?: PhotosWhereInput
-    orderBy?: PhotosOrderByWithRelationInput | PhotosOrderByWithRelationInput[]
-    cursor?: PhotosWhereUniqueInput
+    include?: PostsInclude<ExtArgs> | null
+    where?: PostsWhereInput
+    orderBy?: PostsOrderByWithRelationInput | PostsOrderByWithRelationInput[]
+    cursor?: PostsWhereUniqueInput
     take?: number
     skip?: number
-    distinct?: PhotosScalarFieldEnum | PhotosScalarFieldEnum[]
+    distinct?: PostsScalarFieldEnum | PostsScalarFieldEnum[]
   }
 
   /**
@@ -7540,6 +5499,2047 @@ export namespace Prisma {
 
 
   /**
+   * Model Post_Likes
+   */
+
+  export type AggregatePost_Likes = {
+    _count: Post_LikesCountAggregateOutputType | null
+    _avg: Post_LikesAvgAggregateOutputType | null
+    _sum: Post_LikesSumAggregateOutputType | null
+    _min: Post_LikesMinAggregateOutputType | null
+    _max: Post_LikesMaxAggregateOutputType | null
+  }
+
+  export type Post_LikesAvgAggregateOutputType = {
+    id: number | null
+    post_id: number | null
+    user_id: number | null
+  }
+
+  export type Post_LikesSumAggregateOutputType = {
+    id: number | null
+    post_id: number | null
+    user_id: number | null
+  }
+
+  export type Post_LikesMinAggregateOutputType = {
+    id: number | null
+    post_id: number | null
+    user_id: number | null
+    created_at: Date | null
+  }
+
+  export type Post_LikesMaxAggregateOutputType = {
+    id: number | null
+    post_id: number | null
+    user_id: number | null
+    created_at: Date | null
+  }
+
+  export type Post_LikesCountAggregateOutputType = {
+    id: number
+    post_id: number
+    user_id: number
+    created_at: number
+    _all: number
+  }
+
+
+  export type Post_LikesAvgAggregateInputType = {
+    id?: true
+    post_id?: true
+    user_id?: true
+  }
+
+  export type Post_LikesSumAggregateInputType = {
+    id?: true
+    post_id?: true
+    user_id?: true
+  }
+
+  export type Post_LikesMinAggregateInputType = {
+    id?: true
+    post_id?: true
+    user_id?: true
+    created_at?: true
+  }
+
+  export type Post_LikesMaxAggregateInputType = {
+    id?: true
+    post_id?: true
+    user_id?: true
+    created_at?: true
+  }
+
+  export type Post_LikesCountAggregateInputType = {
+    id?: true
+    post_id?: true
+    user_id?: true
+    created_at?: true
+    _all?: true
+  }
+
+  export type Post_LikesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Post_Likes to aggregate.
+     */
+    where?: Post_LikesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Post_Likes to fetch.
+     */
+    orderBy?: Post_LikesOrderByWithRelationInput | Post_LikesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: Post_LikesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Post_Likes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Post_Likes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Post_Likes
+    **/
+    _count?: true | Post_LikesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Post_LikesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Post_LikesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Post_LikesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Post_LikesMaxAggregateInputType
+  }
+
+  export type GetPost_LikesAggregateType<T extends Post_LikesAggregateArgs> = {
+        [P in keyof T & keyof AggregatePost_Likes]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePost_Likes[P]>
+      : GetScalarType<T[P], AggregatePost_Likes[P]>
+  }
+
+
+
+
+  export type Post_LikesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: Post_LikesWhereInput
+    orderBy?: Post_LikesOrderByWithAggregationInput | Post_LikesOrderByWithAggregationInput[]
+    by: Post_LikesScalarFieldEnum[] | Post_LikesScalarFieldEnum
+    having?: Post_LikesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Post_LikesCountAggregateInputType | true
+    _avg?: Post_LikesAvgAggregateInputType
+    _sum?: Post_LikesSumAggregateInputType
+    _min?: Post_LikesMinAggregateInputType
+    _max?: Post_LikesMaxAggregateInputType
+  }
+
+  export type Post_LikesGroupByOutputType = {
+    id: number
+    post_id: number
+    user_id: number
+    created_at: Date | null
+    _count: Post_LikesCountAggregateOutputType | null
+    _avg: Post_LikesAvgAggregateOutputType | null
+    _sum: Post_LikesSumAggregateOutputType | null
+    _min: Post_LikesMinAggregateOutputType | null
+    _max: Post_LikesMaxAggregateOutputType | null
+  }
+
+  type GetPost_LikesGroupByPayload<T extends Post_LikesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Post_LikesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Post_LikesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Post_LikesGroupByOutputType[P]>
+            : GetScalarType<T[P], Post_LikesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type Post_LikesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    post_id?: boolean
+    user_id?: boolean
+    created_at?: boolean
+    Posts?: boolean | PostsDefaultArgs<ExtArgs>
+    Users?: boolean | UsersDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["post_Likes"]>
+
+
+
+  export type Post_LikesSelectScalar = {
+    id?: boolean
+    post_id?: boolean
+    user_id?: boolean
+    created_at?: boolean
+  }
+
+  export type Post_LikesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "post_id" | "user_id" | "created_at", ExtArgs["result"]["post_Likes"]>
+  export type Post_LikesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Posts?: boolean | PostsDefaultArgs<ExtArgs>
+    Users?: boolean | UsersDefaultArgs<ExtArgs>
+  }
+
+  export type $Post_LikesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Post_Likes"
+    objects: {
+      Posts: Prisma.$PostsPayload<ExtArgs>
+      Users: Prisma.$UsersPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      post_id: number
+      user_id: number
+      created_at: Date | null
+    }, ExtArgs["result"]["post_Likes"]>
+    composites: {}
+  }
+
+  type Post_LikesGetPayload<S extends boolean | null | undefined | Post_LikesDefaultArgs> = $Result.GetResult<Prisma.$Post_LikesPayload, S>
+
+  type Post_LikesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<Post_LikesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Post_LikesCountAggregateInputType | true
+    }
+
+  export interface Post_LikesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Post_Likes'], meta: { name: 'Post_Likes' } }
+    /**
+     * Find zero or one Post_Likes that matches the filter.
+     * @param {Post_LikesFindUniqueArgs} args - Arguments to find a Post_Likes
+     * @example
+     * // Get one Post_Likes
+     * const post_Likes = await prisma.post_Likes.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends Post_LikesFindUniqueArgs>(args: SelectSubset<T, Post_LikesFindUniqueArgs<ExtArgs>>): Prisma__Post_LikesClient<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Post_Likes that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {Post_LikesFindUniqueOrThrowArgs} args - Arguments to find a Post_Likes
+     * @example
+     * // Get one Post_Likes
+     * const post_Likes = await prisma.post_Likes.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends Post_LikesFindUniqueOrThrowArgs>(args: SelectSubset<T, Post_LikesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__Post_LikesClient<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Post_Likes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Post_LikesFindFirstArgs} args - Arguments to find a Post_Likes
+     * @example
+     * // Get one Post_Likes
+     * const post_Likes = await prisma.post_Likes.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends Post_LikesFindFirstArgs>(args?: SelectSubset<T, Post_LikesFindFirstArgs<ExtArgs>>): Prisma__Post_LikesClient<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Post_Likes that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Post_LikesFindFirstOrThrowArgs} args - Arguments to find a Post_Likes
+     * @example
+     * // Get one Post_Likes
+     * const post_Likes = await prisma.post_Likes.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends Post_LikesFindFirstOrThrowArgs>(args?: SelectSubset<T, Post_LikesFindFirstOrThrowArgs<ExtArgs>>): Prisma__Post_LikesClient<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Post_Likes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Post_LikesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Post_Likes
+     * const post_Likes = await prisma.post_Likes.findMany()
+     * 
+     * // Get first 10 Post_Likes
+     * const post_Likes = await prisma.post_Likes.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const post_LikesWithIdOnly = await prisma.post_Likes.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends Post_LikesFindManyArgs>(args?: SelectSubset<T, Post_LikesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Post_Likes.
+     * @param {Post_LikesCreateArgs} args - Arguments to create a Post_Likes.
+     * @example
+     * // Create one Post_Likes
+     * const Post_Likes = await prisma.post_Likes.create({
+     *   data: {
+     *     // ... data to create a Post_Likes
+     *   }
+     * })
+     * 
+     */
+    create<T extends Post_LikesCreateArgs>(args: SelectSubset<T, Post_LikesCreateArgs<ExtArgs>>): Prisma__Post_LikesClient<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Post_Likes.
+     * @param {Post_LikesCreateManyArgs} args - Arguments to create many Post_Likes.
+     * @example
+     * // Create many Post_Likes
+     * const post_Likes = await prisma.post_Likes.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends Post_LikesCreateManyArgs>(args?: SelectSubset<T, Post_LikesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Post_Likes.
+     * @param {Post_LikesDeleteArgs} args - Arguments to delete one Post_Likes.
+     * @example
+     * // Delete one Post_Likes
+     * const Post_Likes = await prisma.post_Likes.delete({
+     *   where: {
+     *     // ... filter to delete one Post_Likes
+     *   }
+     * })
+     * 
+     */
+    delete<T extends Post_LikesDeleteArgs>(args: SelectSubset<T, Post_LikesDeleteArgs<ExtArgs>>): Prisma__Post_LikesClient<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Post_Likes.
+     * @param {Post_LikesUpdateArgs} args - Arguments to update one Post_Likes.
+     * @example
+     * // Update one Post_Likes
+     * const post_Likes = await prisma.post_Likes.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends Post_LikesUpdateArgs>(args: SelectSubset<T, Post_LikesUpdateArgs<ExtArgs>>): Prisma__Post_LikesClient<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Post_Likes.
+     * @param {Post_LikesDeleteManyArgs} args - Arguments to filter Post_Likes to delete.
+     * @example
+     * // Delete a few Post_Likes
+     * const { count } = await prisma.post_Likes.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends Post_LikesDeleteManyArgs>(args?: SelectSubset<T, Post_LikesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Post_Likes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Post_LikesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Post_Likes
+     * const post_Likes = await prisma.post_Likes.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends Post_LikesUpdateManyArgs>(args: SelectSubset<T, Post_LikesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Post_Likes.
+     * @param {Post_LikesUpsertArgs} args - Arguments to update or create a Post_Likes.
+     * @example
+     * // Update or create a Post_Likes
+     * const post_Likes = await prisma.post_Likes.upsert({
+     *   create: {
+     *     // ... data to create a Post_Likes
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Post_Likes we want to update
+     *   }
+     * })
+     */
+    upsert<T extends Post_LikesUpsertArgs>(args: SelectSubset<T, Post_LikesUpsertArgs<ExtArgs>>): Prisma__Post_LikesClient<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Post_Likes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Post_LikesCountArgs} args - Arguments to filter Post_Likes to count.
+     * @example
+     * // Count the number of Post_Likes
+     * const count = await prisma.post_Likes.count({
+     *   where: {
+     *     // ... the filter for the Post_Likes we want to count
+     *   }
+     * })
+    **/
+    count<T extends Post_LikesCountArgs>(
+      args?: Subset<T, Post_LikesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Post_LikesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Post_Likes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Post_LikesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Post_LikesAggregateArgs>(args: Subset<T, Post_LikesAggregateArgs>): Prisma.PrismaPromise<GetPost_LikesAggregateType<T>>
+
+    /**
+     * Group by Post_Likes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Post_LikesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends Post_LikesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: Post_LikesGroupByArgs['orderBy'] }
+        : { orderBy?: Post_LikesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, Post_LikesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPost_LikesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Post_Likes model
+   */
+  readonly fields: Post_LikesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Post_Likes.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__Post_LikesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Posts<T extends PostsDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PostsDefaultArgs<ExtArgs>>): Prisma__PostsClient<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    Users<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Post_Likes model
+   */
+  interface Post_LikesFieldRefs {
+    readonly id: FieldRef<"Post_Likes", 'Int'>
+    readonly post_id: FieldRef<"Post_Likes", 'Int'>
+    readonly user_id: FieldRef<"Post_Likes", 'Int'>
+    readonly created_at: FieldRef<"Post_Likes", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Post_Likes findUnique
+   */
+  export type Post_LikesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+    /**
+     * Filter, which Post_Likes to fetch.
+     */
+    where: Post_LikesWhereUniqueInput
+  }
+
+  /**
+   * Post_Likes findUniqueOrThrow
+   */
+  export type Post_LikesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+    /**
+     * Filter, which Post_Likes to fetch.
+     */
+    where: Post_LikesWhereUniqueInput
+  }
+
+  /**
+   * Post_Likes findFirst
+   */
+  export type Post_LikesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+    /**
+     * Filter, which Post_Likes to fetch.
+     */
+    where?: Post_LikesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Post_Likes to fetch.
+     */
+    orderBy?: Post_LikesOrderByWithRelationInput | Post_LikesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Post_Likes.
+     */
+    cursor?: Post_LikesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Post_Likes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Post_Likes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Post_Likes.
+     */
+    distinct?: Post_LikesScalarFieldEnum | Post_LikesScalarFieldEnum[]
+  }
+
+  /**
+   * Post_Likes findFirstOrThrow
+   */
+  export type Post_LikesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+    /**
+     * Filter, which Post_Likes to fetch.
+     */
+    where?: Post_LikesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Post_Likes to fetch.
+     */
+    orderBy?: Post_LikesOrderByWithRelationInput | Post_LikesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Post_Likes.
+     */
+    cursor?: Post_LikesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Post_Likes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Post_Likes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Post_Likes.
+     */
+    distinct?: Post_LikesScalarFieldEnum | Post_LikesScalarFieldEnum[]
+  }
+
+  /**
+   * Post_Likes findMany
+   */
+  export type Post_LikesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+    /**
+     * Filter, which Post_Likes to fetch.
+     */
+    where?: Post_LikesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Post_Likes to fetch.
+     */
+    orderBy?: Post_LikesOrderByWithRelationInput | Post_LikesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Post_Likes.
+     */
+    cursor?: Post_LikesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Post_Likes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Post_Likes.
+     */
+    skip?: number
+    distinct?: Post_LikesScalarFieldEnum | Post_LikesScalarFieldEnum[]
+  }
+
+  /**
+   * Post_Likes create
+   */
+  export type Post_LikesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Post_Likes.
+     */
+    data: XOR<Post_LikesCreateInput, Post_LikesUncheckedCreateInput>
+  }
+
+  /**
+   * Post_Likes createMany
+   */
+  export type Post_LikesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Post_Likes.
+     */
+    data: Post_LikesCreateManyInput | Post_LikesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Post_Likes update
+   */
+  export type Post_LikesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Post_Likes.
+     */
+    data: XOR<Post_LikesUpdateInput, Post_LikesUncheckedUpdateInput>
+    /**
+     * Choose, which Post_Likes to update.
+     */
+    where: Post_LikesWhereUniqueInput
+  }
+
+  /**
+   * Post_Likes updateMany
+   */
+  export type Post_LikesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Post_Likes.
+     */
+    data: XOR<Post_LikesUpdateManyMutationInput, Post_LikesUncheckedUpdateManyInput>
+    /**
+     * Filter which Post_Likes to update
+     */
+    where?: Post_LikesWhereInput
+    /**
+     * Limit how many Post_Likes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Post_Likes upsert
+   */
+  export type Post_LikesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Post_Likes to update in case it exists.
+     */
+    where: Post_LikesWhereUniqueInput
+    /**
+     * In case the Post_Likes found by the `where` argument doesn't exist, create a new Post_Likes with this data.
+     */
+    create: XOR<Post_LikesCreateInput, Post_LikesUncheckedCreateInput>
+    /**
+     * In case the Post_Likes was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<Post_LikesUpdateInput, Post_LikesUncheckedUpdateInput>
+  }
+
+  /**
+   * Post_Likes delete
+   */
+  export type Post_LikesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+    /**
+     * Filter which Post_Likes to delete.
+     */
+    where: Post_LikesWhereUniqueInput
+  }
+
+  /**
+   * Post_Likes deleteMany
+   */
+  export type Post_LikesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Post_Likes to delete
+     */
+    where?: Post_LikesWhereInput
+    /**
+     * Limit how many Post_Likes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Post_Likes without action
+   */
+  export type Post_LikesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Posts
+   */
+
+  export type AggregatePosts = {
+    _count: PostsCountAggregateOutputType | null
+    _avg: PostsAvgAggregateOutputType | null
+    _sum: PostsSumAggregateOutputType | null
+    _min: PostsMinAggregateOutputType | null
+    _max: PostsMaxAggregateOutputType | null
+  }
+
+  export type PostsAvgAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+    likes_count: number | null
+    comments_count: number | null
+  }
+
+  export type PostsSumAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+    likes_count: number | null
+    comments_count: number | null
+  }
+
+  export type PostsMinAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+    title: string | null
+    description: string | null
+    image_url: string | null
+    likes_count: number | null
+    comments_count: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type PostsMaxAggregateOutputType = {
+    id: number | null
+    user_id: number | null
+    title: string | null
+    description: string | null
+    image_url: string | null
+    likes_count: number | null
+    comments_count: number | null
+    created_at: Date | null
+    updated_at: Date | null
+  }
+
+  export type PostsCountAggregateOutputType = {
+    id: number
+    user_id: number
+    title: number
+    description: number
+    image_url: number
+    likes_count: number
+    comments_count: number
+    created_at: number
+    updated_at: number
+    _all: number
+  }
+
+
+  export type PostsAvgAggregateInputType = {
+    id?: true
+    user_id?: true
+    likes_count?: true
+    comments_count?: true
+  }
+
+  export type PostsSumAggregateInputType = {
+    id?: true
+    user_id?: true
+    likes_count?: true
+    comments_count?: true
+  }
+
+  export type PostsMinAggregateInputType = {
+    id?: true
+    user_id?: true
+    title?: true
+    description?: true
+    image_url?: true
+    likes_count?: true
+    comments_count?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type PostsMaxAggregateInputType = {
+    id?: true
+    user_id?: true
+    title?: true
+    description?: true
+    image_url?: true
+    likes_count?: true
+    comments_count?: true
+    created_at?: true
+    updated_at?: true
+  }
+
+  export type PostsCountAggregateInputType = {
+    id?: true
+    user_id?: true
+    title?: true
+    description?: true
+    image_url?: true
+    likes_count?: true
+    comments_count?: true
+    created_at?: true
+    updated_at?: true
+    _all?: true
+  }
+
+  export type PostsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Posts to aggregate.
+     */
+    where?: PostsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostsOrderByWithRelationInput | PostsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PostsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Posts
+    **/
+    _count?: true | PostsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PostsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PostsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PostsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PostsMaxAggregateInputType
+  }
+
+  export type GetPostsAggregateType<T extends PostsAggregateArgs> = {
+        [P in keyof T & keyof AggregatePosts]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePosts[P]>
+      : GetScalarType<T[P], AggregatePosts[P]>
+  }
+
+
+
+
+  export type PostsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PostsWhereInput
+    orderBy?: PostsOrderByWithAggregationInput | PostsOrderByWithAggregationInput[]
+    by: PostsScalarFieldEnum[] | PostsScalarFieldEnum
+    having?: PostsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PostsCountAggregateInputType | true
+    _avg?: PostsAvgAggregateInputType
+    _sum?: PostsSumAggregateInputType
+    _min?: PostsMinAggregateInputType
+    _max?: PostsMaxAggregateInputType
+  }
+
+  export type PostsGroupByOutputType = {
+    id: number
+    user_id: number
+    title: string | null
+    description: string | null
+    image_url: string
+    likes_count: number | null
+    comments_count: number | null
+    created_at: Date | null
+    updated_at: Date | null
+    _count: PostsCountAggregateOutputType | null
+    _avg: PostsAvgAggregateOutputType | null
+    _sum: PostsSumAggregateOutputType | null
+    _min: PostsMinAggregateOutputType | null
+    _max: PostsMaxAggregateOutputType | null
+  }
+
+  type GetPostsGroupByPayload<T extends PostsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PostsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PostsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PostsGroupByOutputType[P]>
+            : GetScalarType<T[P], PostsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PostsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    user_id?: boolean
+    title?: boolean
+    description?: boolean
+    image_url?: boolean
+    likes_count?: boolean
+    comments_count?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+    Comments?: boolean | Posts$CommentsArgs<ExtArgs>
+    Post_Likes?: boolean | Posts$Post_LikesArgs<ExtArgs>
+    Users?: boolean | UsersDefaultArgs<ExtArgs>
+    _count?: boolean | PostsCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["posts"]>
+
+
+
+  export type PostsSelectScalar = {
+    id?: boolean
+    user_id?: boolean
+    title?: boolean
+    description?: boolean
+    image_url?: boolean
+    likes_count?: boolean
+    comments_count?: boolean
+    created_at?: boolean
+    updated_at?: boolean
+  }
+
+  export type PostsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "title" | "description" | "image_url" | "likes_count" | "comments_count" | "created_at" | "updated_at", ExtArgs["result"]["posts"]>
+  export type PostsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Comments?: boolean | Posts$CommentsArgs<ExtArgs>
+    Post_Likes?: boolean | Posts$Post_LikesArgs<ExtArgs>
+    Users?: boolean | UsersDefaultArgs<ExtArgs>
+    _count?: boolean | PostsCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $PostsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Posts"
+    objects: {
+      Comments: Prisma.$CommentsPayload<ExtArgs>[]
+      Post_Likes: Prisma.$Post_LikesPayload<ExtArgs>[]
+      Users: Prisma.$UsersPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      user_id: number
+      title: string | null
+      description: string | null
+      image_url: string
+      likes_count: number | null
+      comments_count: number | null
+      created_at: Date | null
+      updated_at: Date | null
+    }, ExtArgs["result"]["posts"]>
+    composites: {}
+  }
+
+  type PostsGetPayload<S extends boolean | null | undefined | PostsDefaultArgs> = $Result.GetResult<Prisma.$PostsPayload, S>
+
+  type PostsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PostsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PostsCountAggregateInputType | true
+    }
+
+  export interface PostsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Posts'], meta: { name: 'Posts' } }
+    /**
+     * Find zero or one Posts that matches the filter.
+     * @param {PostsFindUniqueArgs} args - Arguments to find a Posts
+     * @example
+     * // Get one Posts
+     * const posts = await prisma.posts.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PostsFindUniqueArgs>(args: SelectSubset<T, PostsFindUniqueArgs<ExtArgs>>): Prisma__PostsClient<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Posts that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PostsFindUniqueOrThrowArgs} args - Arguments to find a Posts
+     * @example
+     * // Get one Posts
+     * const posts = await prisma.posts.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PostsFindUniqueOrThrowArgs>(args: SelectSubset<T, PostsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PostsClient<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Posts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostsFindFirstArgs} args - Arguments to find a Posts
+     * @example
+     * // Get one Posts
+     * const posts = await prisma.posts.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PostsFindFirstArgs>(args?: SelectSubset<T, PostsFindFirstArgs<ExtArgs>>): Prisma__PostsClient<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Posts that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostsFindFirstOrThrowArgs} args - Arguments to find a Posts
+     * @example
+     * // Get one Posts
+     * const posts = await prisma.posts.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PostsFindFirstOrThrowArgs>(args?: SelectSubset<T, PostsFindFirstOrThrowArgs<ExtArgs>>): Prisma__PostsClient<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Posts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Posts
+     * const posts = await prisma.posts.findMany()
+     * 
+     * // Get first 10 Posts
+     * const posts = await prisma.posts.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const postsWithIdOnly = await prisma.posts.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PostsFindManyArgs>(args?: SelectSubset<T, PostsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Posts.
+     * @param {PostsCreateArgs} args - Arguments to create a Posts.
+     * @example
+     * // Create one Posts
+     * const Posts = await prisma.posts.create({
+     *   data: {
+     *     // ... data to create a Posts
+     *   }
+     * })
+     * 
+     */
+    create<T extends PostsCreateArgs>(args: SelectSubset<T, PostsCreateArgs<ExtArgs>>): Prisma__PostsClient<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Posts.
+     * @param {PostsCreateManyArgs} args - Arguments to create many Posts.
+     * @example
+     * // Create many Posts
+     * const posts = await prisma.posts.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends PostsCreateManyArgs>(args?: SelectSubset<T, PostsCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Posts.
+     * @param {PostsDeleteArgs} args - Arguments to delete one Posts.
+     * @example
+     * // Delete one Posts
+     * const Posts = await prisma.posts.delete({
+     *   where: {
+     *     // ... filter to delete one Posts
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PostsDeleteArgs>(args: SelectSubset<T, PostsDeleteArgs<ExtArgs>>): Prisma__PostsClient<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Posts.
+     * @param {PostsUpdateArgs} args - Arguments to update one Posts.
+     * @example
+     * // Update one Posts
+     * const posts = await prisma.posts.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PostsUpdateArgs>(args: SelectSubset<T, PostsUpdateArgs<ExtArgs>>): Prisma__PostsClient<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Posts.
+     * @param {PostsDeleteManyArgs} args - Arguments to filter Posts to delete.
+     * @example
+     * // Delete a few Posts
+     * const { count } = await prisma.posts.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PostsDeleteManyArgs>(args?: SelectSubset<T, PostsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Posts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Posts
+     * const posts = await prisma.posts.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PostsUpdateManyArgs>(args: SelectSubset<T, PostsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Posts.
+     * @param {PostsUpsertArgs} args - Arguments to update or create a Posts.
+     * @example
+     * // Update or create a Posts
+     * const posts = await prisma.posts.upsert({
+     *   create: {
+     *     // ... data to create a Posts
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Posts we want to update
+     *   }
+     * })
+     */
+    upsert<T extends PostsUpsertArgs>(args: SelectSubset<T, PostsUpsertArgs<ExtArgs>>): Prisma__PostsClient<$Result.GetResult<Prisma.$PostsPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Posts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostsCountArgs} args - Arguments to filter Posts to count.
+     * @example
+     * // Count the number of Posts
+     * const count = await prisma.posts.count({
+     *   where: {
+     *     // ... the filter for the Posts we want to count
+     *   }
+     * })
+    **/
+    count<T extends PostsCountArgs>(
+      args?: Subset<T, PostsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PostsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Posts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PostsAggregateArgs>(args: Subset<T, PostsAggregateArgs>): Prisma.PrismaPromise<GetPostsAggregateType<T>>
+
+    /**
+     * Group by Posts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PostsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PostsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PostsGroupByArgs['orderBy'] }
+        : { orderBy?: PostsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PostsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPostsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Posts model
+   */
+  readonly fields: PostsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Posts.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PostsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Comments<T extends Posts$CommentsArgs<ExtArgs> = {}>(args?: Subset<T, Posts$CommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CommentsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Post_Likes<T extends Posts$Post_LikesArgs<ExtArgs> = {}>(args?: Subset<T, Posts$Post_LikesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$Post_LikesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    Users<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Posts model
+   */
+  interface PostsFieldRefs {
+    readonly id: FieldRef<"Posts", 'Int'>
+    readonly user_id: FieldRef<"Posts", 'Int'>
+    readonly title: FieldRef<"Posts", 'String'>
+    readonly description: FieldRef<"Posts", 'String'>
+    readonly image_url: FieldRef<"Posts", 'String'>
+    readonly likes_count: FieldRef<"Posts", 'Int'>
+    readonly comments_count: FieldRef<"Posts", 'Int'>
+    readonly created_at: FieldRef<"Posts", 'DateTime'>
+    readonly updated_at: FieldRef<"Posts", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Posts findUnique
+   */
+  export type PostsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Posts
+     */
+    select?: PostsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Posts
+     */
+    omit?: PostsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostsInclude<ExtArgs> | null
+    /**
+     * Filter, which Posts to fetch.
+     */
+    where: PostsWhereUniqueInput
+  }
+
+  /**
+   * Posts findUniqueOrThrow
+   */
+  export type PostsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Posts
+     */
+    select?: PostsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Posts
+     */
+    omit?: PostsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostsInclude<ExtArgs> | null
+    /**
+     * Filter, which Posts to fetch.
+     */
+    where: PostsWhereUniqueInput
+  }
+
+  /**
+   * Posts findFirst
+   */
+  export type PostsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Posts
+     */
+    select?: PostsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Posts
+     */
+    omit?: PostsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostsInclude<ExtArgs> | null
+    /**
+     * Filter, which Posts to fetch.
+     */
+    where?: PostsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostsOrderByWithRelationInput | PostsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Posts.
+     */
+    cursor?: PostsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Posts.
+     */
+    distinct?: PostsScalarFieldEnum | PostsScalarFieldEnum[]
+  }
+
+  /**
+   * Posts findFirstOrThrow
+   */
+  export type PostsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Posts
+     */
+    select?: PostsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Posts
+     */
+    omit?: PostsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostsInclude<ExtArgs> | null
+    /**
+     * Filter, which Posts to fetch.
+     */
+    where?: PostsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostsOrderByWithRelationInput | PostsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Posts.
+     */
+    cursor?: PostsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Posts.
+     */
+    distinct?: PostsScalarFieldEnum | PostsScalarFieldEnum[]
+  }
+
+  /**
+   * Posts findMany
+   */
+  export type PostsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Posts
+     */
+    select?: PostsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Posts
+     */
+    omit?: PostsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostsInclude<ExtArgs> | null
+    /**
+     * Filter, which Posts to fetch.
+     */
+    where?: PostsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Posts to fetch.
+     */
+    orderBy?: PostsOrderByWithRelationInput | PostsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Posts.
+     */
+    cursor?: PostsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Posts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Posts.
+     */
+    skip?: number
+    distinct?: PostsScalarFieldEnum | PostsScalarFieldEnum[]
+  }
+
+  /**
+   * Posts create
+   */
+  export type PostsCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Posts
+     */
+    select?: PostsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Posts
+     */
+    omit?: PostsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostsInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Posts.
+     */
+    data: XOR<PostsCreateInput, PostsUncheckedCreateInput>
+  }
+
+  /**
+   * Posts createMany
+   */
+  export type PostsCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Posts.
+     */
+    data: PostsCreateManyInput | PostsCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Posts update
+   */
+  export type PostsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Posts
+     */
+    select?: PostsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Posts
+     */
+    omit?: PostsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Posts.
+     */
+    data: XOR<PostsUpdateInput, PostsUncheckedUpdateInput>
+    /**
+     * Choose, which Posts to update.
+     */
+    where: PostsWhereUniqueInput
+  }
+
+  /**
+   * Posts updateMany
+   */
+  export type PostsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Posts.
+     */
+    data: XOR<PostsUpdateManyMutationInput, PostsUncheckedUpdateManyInput>
+    /**
+     * Filter which Posts to update
+     */
+    where?: PostsWhereInput
+    /**
+     * Limit how many Posts to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Posts upsert
+   */
+  export type PostsUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Posts
+     */
+    select?: PostsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Posts
+     */
+    omit?: PostsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostsInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Posts to update in case it exists.
+     */
+    where: PostsWhereUniqueInput
+    /**
+     * In case the Posts found by the `where` argument doesn't exist, create a new Posts with this data.
+     */
+    create: XOR<PostsCreateInput, PostsUncheckedCreateInput>
+    /**
+     * In case the Posts was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<PostsUpdateInput, PostsUncheckedUpdateInput>
+  }
+
+  /**
+   * Posts delete
+   */
+  export type PostsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Posts
+     */
+    select?: PostsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Posts
+     */
+    omit?: PostsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostsInclude<ExtArgs> | null
+    /**
+     * Filter which Posts to delete.
+     */
+    where: PostsWhereUniqueInput
+  }
+
+  /**
+   * Posts deleteMany
+   */
+  export type PostsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Posts to delete
+     */
+    where?: PostsWhereInput
+    /**
+     * Limit how many Posts to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Posts.Comments
+   */
+  export type Posts$CommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comments
+     */
+    select?: CommentsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comments
+     */
+    omit?: CommentsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CommentsInclude<ExtArgs> | null
+    where?: CommentsWhereInput
+    orderBy?: CommentsOrderByWithRelationInput | CommentsOrderByWithRelationInput[]
+    cursor?: CommentsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentsScalarFieldEnum | CommentsScalarFieldEnum[]
+  }
+
+  /**
+   * Posts.Post_Likes
+   */
+  export type Posts$Post_LikesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Post_Likes
+     */
+    select?: Post_LikesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Post_Likes
+     */
+    omit?: Post_LikesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: Post_LikesInclude<ExtArgs> | null
+    where?: Post_LikesWhereInput
+    orderBy?: Post_LikesOrderByWithRelationInput | Post_LikesOrderByWithRelationInput[]
+    cursor?: Post_LikesWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Post_LikesScalarFieldEnum | Post_LikesScalarFieldEnum[]
+  }
+
+  /**
+   * Posts without action
+   */
+  export type PostsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Posts
+     */
+    select?: PostsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Posts
+     */
+    omit?: PostsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PostsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7555,7 +7555,7 @@ export namespace Prisma {
 
   export const CommentsScalarFieldEnum: {
     id: 'id',
-    photo_id: 'photo_id',
+    post_id: 'post_id',
     user_id: 'user_id',
     content: 'content',
     created_at: 'created_at'
@@ -7572,31 +7572,6 @@ export namespace Prisma {
   };
 
   export type FollowsScalarFieldEnum = (typeof FollowsScalarFieldEnum)[keyof typeof FollowsScalarFieldEnum]
-
-
-  export const Photo_LikesScalarFieldEnum: {
-    id: 'id',
-    photo_id: 'photo_id',
-    user_id: 'user_id',
-    created_at: 'created_at'
-  };
-
-  export type Photo_LikesScalarFieldEnum = (typeof Photo_LikesScalarFieldEnum)[keyof typeof Photo_LikesScalarFieldEnum]
-
-
-  export const PhotosScalarFieldEnum: {
-    id: 'id',
-    user_id: 'user_id',
-    title: 'title',
-    description: 'description',
-    image_url: 'image_url',
-    likes_count: 'likes_count',
-    comments_count: 'comments_count',
-    created_at: 'created_at',
-    updated_at: 'updated_at'
-  };
-
-  export type PhotosScalarFieldEnum = (typeof PhotosScalarFieldEnum)[keyof typeof PhotosScalarFieldEnum]
 
 
   export const User_SessionsScalarFieldEnum: {
@@ -7628,6 +7603,31 @@ export namespace Prisma {
   export type UsersScalarFieldEnum = (typeof UsersScalarFieldEnum)[keyof typeof UsersScalarFieldEnum]
 
 
+  export const Post_LikesScalarFieldEnum: {
+    id: 'id',
+    post_id: 'post_id',
+    user_id: 'user_id',
+    created_at: 'created_at'
+  };
+
+  export type Post_LikesScalarFieldEnum = (typeof Post_LikesScalarFieldEnum)[keyof typeof Post_LikesScalarFieldEnum]
+
+
+  export const PostsScalarFieldEnum: {
+    id: 'id',
+    user_id: 'user_id',
+    title: 'title',
+    description: 'description',
+    image_url: 'image_url',
+    likes_count: 'likes_count',
+    comments_count: 'comments_count',
+    created_at: 'created_at',
+    updated_at: 'updated_at'
+  };
+
+  export type PostsScalarFieldEnum = (typeof PostsScalarFieldEnum)[keyof typeof PostsScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -7651,15 +7651,6 @@ export namespace Prisma {
   export type CommentsOrderByRelevanceFieldEnum = (typeof CommentsOrderByRelevanceFieldEnum)[keyof typeof CommentsOrderByRelevanceFieldEnum]
 
 
-  export const PhotosOrderByRelevanceFieldEnum: {
-    title: 'title',
-    description: 'description',
-    image_url: 'image_url'
-  };
-
-  export type PhotosOrderByRelevanceFieldEnum = (typeof PhotosOrderByRelevanceFieldEnum)[keyof typeof PhotosOrderByRelevanceFieldEnum]
-
-
   export const User_SessionsOrderByRelevanceFieldEnum: {
     refresh_token: 'refresh_token'
   };
@@ -7677,6 +7668,15 @@ export namespace Prisma {
   };
 
   export type UsersOrderByRelevanceFieldEnum = (typeof UsersOrderByRelevanceFieldEnum)[keyof typeof UsersOrderByRelevanceFieldEnum]
+
+
+  export const PostsOrderByRelevanceFieldEnum: {
+    title: 'title',
+    description: 'description',
+    image_url: 'image_url'
+  };
+
+  export type PostsOrderByRelevanceFieldEnum = (typeof PostsOrderByRelevanceFieldEnum)[keyof typeof PostsOrderByRelevanceFieldEnum]
 
 
   /**
@@ -7727,22 +7727,22 @@ export namespace Prisma {
     OR?: CommentsWhereInput[]
     NOT?: CommentsWhereInput | CommentsWhereInput[]
     id?: IntFilter<"Comments"> | number
-    photo_id?: IntFilter<"Comments"> | number
+    post_id?: IntFilter<"Comments"> | number
     user_id?: IntFilter<"Comments"> | number
     content?: StringFilter<"Comments"> | string
     created_at?: DateTimeNullableFilter<"Comments"> | Date | string | null
-    Photos?: XOR<PhotosScalarRelationFilter, PhotosWhereInput>
     Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+    Posts?: XOR<PostsScalarRelationFilter, PostsWhereInput>
   }
 
   export type CommentsOrderByWithRelationInput = {
     id?: SortOrder
-    photo_id?: SortOrder
+    post_id?: SortOrder
     user_id?: SortOrder
     content?: SortOrder
     created_at?: SortOrderInput | SortOrder
-    Photos?: PhotosOrderByWithRelationInput
     Users?: UsersOrderByWithRelationInput
+    Posts?: PostsOrderByWithRelationInput
     _relevance?: CommentsOrderByRelevanceInput
   }
 
@@ -7751,17 +7751,17 @@ export namespace Prisma {
     AND?: CommentsWhereInput | CommentsWhereInput[]
     OR?: CommentsWhereInput[]
     NOT?: CommentsWhereInput | CommentsWhereInput[]
-    photo_id?: IntFilter<"Comments"> | number
+    post_id?: IntFilter<"Comments"> | number
     user_id?: IntFilter<"Comments"> | number
     content?: StringFilter<"Comments"> | string
     created_at?: DateTimeNullableFilter<"Comments"> | Date | string | null
-    Photos?: XOR<PhotosScalarRelationFilter, PhotosWhereInput>
     Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+    Posts?: XOR<PostsScalarRelationFilter, PostsWhereInput>
   }, "id">
 
   export type CommentsOrderByWithAggregationInput = {
     id?: SortOrder
-    photo_id?: SortOrder
+    post_id?: SortOrder
     user_id?: SortOrder
     content?: SortOrder
     created_at?: SortOrderInput | SortOrder
@@ -7777,7 +7777,7 @@ export namespace Prisma {
     OR?: CommentsScalarWhereWithAggregatesInput[]
     NOT?: CommentsScalarWhereWithAggregatesInput | CommentsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Comments"> | number
-    photo_id?: IntWithAggregatesFilter<"Comments"> | number
+    post_id?: IntWithAggregatesFilter<"Comments"> | number
     user_id?: IntWithAggregatesFilter<"Comments"> | number
     content?: StringWithAggregatesFilter<"Comments"> | string
     created_at?: DateTimeNullableWithAggregatesFilter<"Comments"> | Date | string | null
@@ -7837,146 +7837,6 @@ export namespace Prisma {
     follower_id?: IntWithAggregatesFilter<"Follows"> | number
     following_id?: IntWithAggregatesFilter<"Follows"> | number
     created_at?: DateTimeNullableWithAggregatesFilter<"Follows"> | Date | string | null
-  }
-
-  export type Photo_LikesWhereInput = {
-    AND?: Photo_LikesWhereInput | Photo_LikesWhereInput[]
-    OR?: Photo_LikesWhereInput[]
-    NOT?: Photo_LikesWhereInput | Photo_LikesWhereInput[]
-    id?: IntFilter<"Photo_Likes"> | number
-    photo_id?: IntFilter<"Photo_Likes"> | number
-    user_id?: IntFilter<"Photo_Likes"> | number
-    created_at?: DateTimeNullableFilter<"Photo_Likes"> | Date | string | null
-    Photos?: XOR<PhotosScalarRelationFilter, PhotosWhereInput>
-    Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
-  }
-
-  export type Photo_LikesOrderByWithRelationInput = {
-    id?: SortOrder
-    photo_id?: SortOrder
-    user_id?: SortOrder
-    created_at?: SortOrderInput | SortOrder
-    Photos?: PhotosOrderByWithRelationInput
-    Users?: UsersOrderByWithRelationInput
-  }
-
-  export type Photo_LikesWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    photo_id_user_id?: Photo_LikesPhoto_idUser_idCompoundUniqueInput
-    AND?: Photo_LikesWhereInput | Photo_LikesWhereInput[]
-    OR?: Photo_LikesWhereInput[]
-    NOT?: Photo_LikesWhereInput | Photo_LikesWhereInput[]
-    photo_id?: IntFilter<"Photo_Likes"> | number
-    user_id?: IntFilter<"Photo_Likes"> | number
-    created_at?: DateTimeNullableFilter<"Photo_Likes"> | Date | string | null
-    Photos?: XOR<PhotosScalarRelationFilter, PhotosWhereInput>
-    Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
-  }, "id" | "photo_id_user_id">
-
-  export type Photo_LikesOrderByWithAggregationInput = {
-    id?: SortOrder
-    photo_id?: SortOrder
-    user_id?: SortOrder
-    created_at?: SortOrderInput | SortOrder
-    _count?: Photo_LikesCountOrderByAggregateInput
-    _avg?: Photo_LikesAvgOrderByAggregateInput
-    _max?: Photo_LikesMaxOrderByAggregateInput
-    _min?: Photo_LikesMinOrderByAggregateInput
-    _sum?: Photo_LikesSumOrderByAggregateInput
-  }
-
-  export type Photo_LikesScalarWhereWithAggregatesInput = {
-    AND?: Photo_LikesScalarWhereWithAggregatesInput | Photo_LikesScalarWhereWithAggregatesInput[]
-    OR?: Photo_LikesScalarWhereWithAggregatesInput[]
-    NOT?: Photo_LikesScalarWhereWithAggregatesInput | Photo_LikesScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Photo_Likes"> | number
-    photo_id?: IntWithAggregatesFilter<"Photo_Likes"> | number
-    user_id?: IntWithAggregatesFilter<"Photo_Likes"> | number
-    created_at?: DateTimeNullableWithAggregatesFilter<"Photo_Likes"> | Date | string | null
-  }
-
-  export type PhotosWhereInput = {
-    AND?: PhotosWhereInput | PhotosWhereInput[]
-    OR?: PhotosWhereInput[]
-    NOT?: PhotosWhereInput | PhotosWhereInput[]
-    id?: IntFilter<"Photos"> | number
-    user_id?: IntFilter<"Photos"> | number
-    title?: StringNullableFilter<"Photos"> | string | null
-    description?: StringNullableFilter<"Photos"> | string | null
-    image_url?: StringFilter<"Photos"> | string
-    likes_count?: IntNullableFilter<"Photos"> | number | null
-    comments_count?: IntNullableFilter<"Photos"> | number | null
-    created_at?: DateTimeNullableFilter<"Photos"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"Photos"> | Date | string | null
-    Comments?: CommentsListRelationFilter
-    Photo_Likes?: Photo_LikesListRelationFilter
-    Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
-  }
-
-  export type PhotosOrderByWithRelationInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    title?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    image_url?: SortOrder
-    likes_count?: SortOrderInput | SortOrder
-    comments_count?: SortOrderInput | SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    Comments?: CommentsOrderByRelationAggregateInput
-    Photo_Likes?: Photo_LikesOrderByRelationAggregateInput
-    Users?: UsersOrderByWithRelationInput
-    _relevance?: PhotosOrderByRelevanceInput
-  }
-
-  export type PhotosWhereUniqueInput = Prisma.AtLeast<{
-    id?: number
-    AND?: PhotosWhereInput | PhotosWhereInput[]
-    OR?: PhotosWhereInput[]
-    NOT?: PhotosWhereInput | PhotosWhereInput[]
-    user_id?: IntFilter<"Photos"> | number
-    title?: StringNullableFilter<"Photos"> | string | null
-    description?: StringNullableFilter<"Photos"> | string | null
-    image_url?: StringFilter<"Photos"> | string
-    likes_count?: IntNullableFilter<"Photos"> | number | null
-    comments_count?: IntNullableFilter<"Photos"> | number | null
-    created_at?: DateTimeNullableFilter<"Photos"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"Photos"> | Date | string | null
-    Comments?: CommentsListRelationFilter
-    Photo_Likes?: Photo_LikesListRelationFilter
-    Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
-  }, "id">
-
-  export type PhotosOrderByWithAggregationInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    title?: SortOrderInput | SortOrder
-    description?: SortOrderInput | SortOrder
-    image_url?: SortOrder
-    likes_count?: SortOrderInput | SortOrder
-    comments_count?: SortOrderInput | SortOrder
-    created_at?: SortOrderInput | SortOrder
-    updated_at?: SortOrderInput | SortOrder
-    _count?: PhotosCountOrderByAggregateInput
-    _avg?: PhotosAvgOrderByAggregateInput
-    _max?: PhotosMaxOrderByAggregateInput
-    _min?: PhotosMinOrderByAggregateInput
-    _sum?: PhotosSumOrderByAggregateInput
-  }
-
-  export type PhotosScalarWhereWithAggregatesInput = {
-    AND?: PhotosScalarWhereWithAggregatesInput | PhotosScalarWhereWithAggregatesInput[]
-    OR?: PhotosScalarWhereWithAggregatesInput[]
-    NOT?: PhotosScalarWhereWithAggregatesInput | PhotosScalarWhereWithAggregatesInput[]
-    id?: IntWithAggregatesFilter<"Photos"> | number
-    user_id?: IntWithAggregatesFilter<"Photos"> | number
-    title?: StringNullableWithAggregatesFilter<"Photos"> | string | null
-    description?: StringNullableWithAggregatesFilter<"Photos"> | string | null
-    image_url?: StringWithAggregatesFilter<"Photos"> | string
-    likes_count?: IntNullableWithAggregatesFilter<"Photos"> | number | null
-    comments_count?: IntNullableWithAggregatesFilter<"Photos"> | number | null
-    created_at?: DateTimeNullableWithAggregatesFilter<"Photos"> | Date | string | null
-    updated_at?: DateTimeNullableWithAggregatesFilter<"Photos"> | Date | string | null
   }
 
   export type User_SessionsWhereInput = {
@@ -8056,8 +7916,8 @@ export namespace Prisma {
     Comments?: CommentsListRelationFilter
     Follows_Follows_follower_idToUsers?: FollowsListRelationFilter
     Follows_Follows_following_idToUsers?: FollowsListRelationFilter
-    Photo_Likes?: Photo_LikesListRelationFilter
-    Photos?: PhotosListRelationFilter
+    Post_Likes?: Post_LikesListRelationFilter
+    Posts?: PostsListRelationFilter
     User_Sessions?: User_SessionsListRelationFilter
   }
 
@@ -8077,8 +7937,8 @@ export namespace Prisma {
     Comments?: CommentsOrderByRelationAggregateInput
     Follows_Follows_follower_idToUsers?: FollowsOrderByRelationAggregateInput
     Follows_Follows_following_idToUsers?: FollowsOrderByRelationAggregateInput
-    Photo_Likes?: Photo_LikesOrderByRelationAggregateInput
-    Photos?: PhotosOrderByRelationAggregateInput
+    Post_Likes?: Post_LikesOrderByRelationAggregateInput
+    Posts?: PostsOrderByRelationAggregateInput
     User_Sessions?: User_SessionsOrderByRelationAggregateInput
     _relevance?: UsersOrderByRelevanceInput
   }
@@ -8102,8 +7962,8 @@ export namespace Prisma {
     Comments?: CommentsListRelationFilter
     Follows_Follows_follower_idToUsers?: FollowsListRelationFilter
     Follows_Follows_following_idToUsers?: FollowsListRelationFilter
-    Photo_Likes?: Photo_LikesListRelationFilter
-    Photos?: PhotosListRelationFilter
+    Post_Likes?: Post_LikesListRelationFilter
+    Posts?: PostsListRelationFilter
     User_Sessions?: User_SessionsListRelationFilter
   }, "id" | "email" | "username">
 
@@ -8145,16 +8005,156 @@ export namespace Prisma {
     updated_at?: DateTimeNullableWithAggregatesFilter<"Users"> | Date | string | null
   }
 
+  export type Post_LikesWhereInput = {
+    AND?: Post_LikesWhereInput | Post_LikesWhereInput[]
+    OR?: Post_LikesWhereInput[]
+    NOT?: Post_LikesWhereInput | Post_LikesWhereInput[]
+    id?: IntFilter<"Post_Likes"> | number
+    post_id?: IntFilter<"Post_Likes"> | number
+    user_id?: IntFilter<"Post_Likes"> | number
+    created_at?: DateTimeNullableFilter<"Post_Likes"> | Date | string | null
+    Posts?: XOR<PostsScalarRelationFilter, PostsWhereInput>
+    Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+  }
+
+  export type Post_LikesOrderByWithRelationInput = {
+    id?: SortOrder
+    post_id?: SortOrder
+    user_id?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    Posts?: PostsOrderByWithRelationInput
+    Users?: UsersOrderByWithRelationInput
+  }
+
+  export type Post_LikesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    post_id_user_id?: Post_LikesPost_idUser_idCompoundUniqueInput
+    AND?: Post_LikesWhereInput | Post_LikesWhereInput[]
+    OR?: Post_LikesWhereInput[]
+    NOT?: Post_LikesWhereInput | Post_LikesWhereInput[]
+    post_id?: IntFilter<"Post_Likes"> | number
+    user_id?: IntFilter<"Post_Likes"> | number
+    created_at?: DateTimeNullableFilter<"Post_Likes"> | Date | string | null
+    Posts?: XOR<PostsScalarRelationFilter, PostsWhereInput>
+    Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+  }, "id" | "post_id_user_id">
+
+  export type Post_LikesOrderByWithAggregationInput = {
+    id?: SortOrder
+    post_id?: SortOrder
+    user_id?: SortOrder
+    created_at?: SortOrderInput | SortOrder
+    _count?: Post_LikesCountOrderByAggregateInput
+    _avg?: Post_LikesAvgOrderByAggregateInput
+    _max?: Post_LikesMaxOrderByAggregateInput
+    _min?: Post_LikesMinOrderByAggregateInput
+    _sum?: Post_LikesSumOrderByAggregateInput
+  }
+
+  export type Post_LikesScalarWhereWithAggregatesInput = {
+    AND?: Post_LikesScalarWhereWithAggregatesInput | Post_LikesScalarWhereWithAggregatesInput[]
+    OR?: Post_LikesScalarWhereWithAggregatesInput[]
+    NOT?: Post_LikesScalarWhereWithAggregatesInput | Post_LikesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Post_Likes"> | number
+    post_id?: IntWithAggregatesFilter<"Post_Likes"> | number
+    user_id?: IntWithAggregatesFilter<"Post_Likes"> | number
+    created_at?: DateTimeNullableWithAggregatesFilter<"Post_Likes"> | Date | string | null
+  }
+
+  export type PostsWhereInput = {
+    AND?: PostsWhereInput | PostsWhereInput[]
+    OR?: PostsWhereInput[]
+    NOT?: PostsWhereInput | PostsWhereInput[]
+    id?: IntFilter<"Posts"> | number
+    user_id?: IntFilter<"Posts"> | number
+    title?: StringNullableFilter<"Posts"> | string | null
+    description?: StringNullableFilter<"Posts"> | string | null
+    image_url?: StringFilter<"Posts"> | string
+    likes_count?: IntNullableFilter<"Posts"> | number | null
+    comments_count?: IntNullableFilter<"Posts"> | number | null
+    created_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
+    Comments?: CommentsListRelationFilter
+    Post_Likes?: Post_LikesListRelationFilter
+    Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+  }
+
+  export type PostsOrderByWithRelationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    image_url?: SortOrder
+    likes_count?: SortOrderInput | SortOrder
+    comments_count?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    Comments?: CommentsOrderByRelationAggregateInput
+    Post_Likes?: Post_LikesOrderByRelationAggregateInput
+    Users?: UsersOrderByWithRelationInput
+    _relevance?: PostsOrderByRelevanceInput
+  }
+
+  export type PostsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PostsWhereInput | PostsWhereInput[]
+    OR?: PostsWhereInput[]
+    NOT?: PostsWhereInput | PostsWhereInput[]
+    user_id?: IntFilter<"Posts"> | number
+    title?: StringNullableFilter<"Posts"> | string | null
+    description?: StringNullableFilter<"Posts"> | string | null
+    image_url?: StringFilter<"Posts"> | string
+    likes_count?: IntNullableFilter<"Posts"> | number | null
+    comments_count?: IntNullableFilter<"Posts"> | number | null
+    created_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
+    Comments?: CommentsListRelationFilter
+    Post_Likes?: Post_LikesListRelationFilter
+    Users?: XOR<UsersScalarRelationFilter, UsersWhereInput>
+  }, "id">
+
+  export type PostsOrderByWithAggregationInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrderInput | SortOrder
+    description?: SortOrderInput | SortOrder
+    image_url?: SortOrder
+    likes_count?: SortOrderInput | SortOrder
+    comments_count?: SortOrderInput | SortOrder
+    created_at?: SortOrderInput | SortOrder
+    updated_at?: SortOrderInput | SortOrder
+    _count?: PostsCountOrderByAggregateInput
+    _avg?: PostsAvgOrderByAggregateInput
+    _max?: PostsMaxOrderByAggregateInput
+    _min?: PostsMinOrderByAggregateInput
+    _sum?: PostsSumOrderByAggregateInput
+  }
+
+  export type PostsScalarWhereWithAggregatesInput = {
+    AND?: PostsScalarWhereWithAggregatesInput | PostsScalarWhereWithAggregatesInput[]
+    OR?: PostsScalarWhereWithAggregatesInput[]
+    NOT?: PostsScalarWhereWithAggregatesInput | PostsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Posts"> | number
+    user_id?: IntWithAggregatesFilter<"Posts"> | number
+    title?: StringNullableWithAggregatesFilter<"Posts"> | string | null
+    description?: StringNullableWithAggregatesFilter<"Posts"> | string | null
+    image_url?: StringWithAggregatesFilter<"Posts"> | string
+    likes_count?: IntNullableWithAggregatesFilter<"Posts"> | number | null
+    comments_count?: IntNullableWithAggregatesFilter<"Posts"> | number | null
+    created_at?: DateTimeNullableWithAggregatesFilter<"Posts"> | Date | string | null
+    updated_at?: DateTimeNullableWithAggregatesFilter<"Posts"> | Date | string | null
+  }
+
   export type CommentsCreateInput = {
     content: string
     created_at?: Date | string | null
-    Photos: PhotosCreateNestedOneWithoutCommentsInput
     Users: UsersCreateNestedOneWithoutCommentsInput
+    Posts: PostsCreateNestedOneWithoutCommentsInput
   }
 
   export type CommentsUncheckedCreateInput = {
     id?: number
-    photo_id: number
+    post_id: number
     user_id: number
     content: string
     created_at?: Date | string | null
@@ -8163,13 +8163,13 @@ export namespace Prisma {
   export type CommentsUpdateInput = {
     content?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Photos?: PhotosUpdateOneRequiredWithoutCommentsNestedInput
     Users?: UsersUpdateOneRequiredWithoutCommentsNestedInput
+    Posts?: PostsUpdateOneRequiredWithoutCommentsNestedInput
   }
 
   export type CommentsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
-    photo_id?: IntFieldUpdateOperationsInput | number
+    post_id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8177,7 +8177,7 @@ export namespace Prisma {
 
   export type CommentsCreateManyInput = {
     id?: number
-    photo_id: number
+    post_id: number
     user_id: number
     content: string
     created_at?: Date | string | null
@@ -8190,7 +8190,7 @@ export namespace Prisma {
 
   export type CommentsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
-    photo_id?: IntFieldUpdateOperationsInput | number
+    post_id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -8238,138 +8238,6 @@ export namespace Prisma {
     follower_id?: IntFieldUpdateOperationsInput | number
     following_id?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type Photo_LikesCreateInput = {
-    created_at?: Date | string | null
-    Photos: PhotosCreateNestedOneWithoutPhoto_LikesInput
-    Users: UsersCreateNestedOneWithoutPhoto_LikesInput
-  }
-
-  export type Photo_LikesUncheckedCreateInput = {
-    id?: number
-    photo_id: number
-    user_id: number
-    created_at?: Date | string | null
-  }
-
-  export type Photo_LikesUpdateInput = {
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Photos?: PhotosUpdateOneRequiredWithoutPhoto_LikesNestedInput
-    Users?: UsersUpdateOneRequiredWithoutPhoto_LikesNestedInput
-  }
-
-  export type Photo_LikesUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    photo_id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type Photo_LikesCreateManyInput = {
-    id?: number
-    photo_id: number
-    user_id: number
-    created_at?: Date | string | null
-  }
-
-  export type Photo_LikesUpdateManyMutationInput = {
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type Photo_LikesUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    photo_id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type PhotosCreateInput = {
-    title?: string | null
-    description?: string | null
-    image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    Comments?: CommentsCreateNestedManyWithoutPhotosInput
-    Photo_Likes?: Photo_LikesCreateNestedManyWithoutPhotosInput
-    Users: UsersCreateNestedOneWithoutPhotosInput
-  }
-
-  export type PhotosUncheckedCreateInput = {
-    id?: number
-    user_id: number
-    title?: string | null
-    description?: string | null
-    image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    Comments?: CommentsUncheckedCreateNestedManyWithoutPhotosInput
-    Photo_Likes?: Photo_LikesUncheckedCreateNestedManyWithoutPhotosInput
-  }
-
-  export type PhotosUpdateInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Comments?: CommentsUpdateManyWithoutPhotosNestedInput
-    Photo_Likes?: Photo_LikesUpdateManyWithoutPhotosNestedInput
-    Users?: UsersUpdateOneRequiredWithoutPhotosNestedInput
-  }
-
-  export type PhotosUncheckedUpdateInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Comments?: CommentsUncheckedUpdateManyWithoutPhotosNestedInput
-    Photo_Likes?: Photo_LikesUncheckedUpdateManyWithoutPhotosNestedInput
-  }
-
-  export type PhotosCreateManyInput = {
-    id?: number
-    user_id: number
-    title?: string | null
-    description?: string | null
-    image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-  }
-
-  export type PhotosUpdateManyMutationInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type PhotosUncheckedUpdateManyInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type User_SessionsCreateInput = {
@@ -8439,8 +8307,8 @@ export namespace Prisma {
     Comments?: CommentsCreateNestedManyWithoutUsersInput
     Follows_Follows_follower_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
     Follows_Follows_following_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photo_Likes?: Photo_LikesCreateNestedManyWithoutUsersInput
-    Photos?: PhotosCreateNestedManyWithoutUsersInput
+    Post_Likes?: Post_LikesCreateNestedManyWithoutUsersInput
+    Posts?: PostsCreateNestedManyWithoutUsersInput
     User_Sessions?: User_SessionsCreateNestedManyWithoutUsersInput
   }
 
@@ -8460,8 +8328,8 @@ export namespace Prisma {
     Comments?: CommentsUncheckedCreateNestedManyWithoutUsersInput
     Follows_Follows_follower_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
     Follows_Follows_following_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photo_Likes?: Photo_LikesUncheckedCreateNestedManyWithoutUsersInput
-    Photos?: PhotosUncheckedCreateNestedManyWithoutUsersInput
+    Post_Likes?: Post_LikesUncheckedCreateNestedManyWithoutUsersInput
+    Posts?: PostsUncheckedCreateNestedManyWithoutUsersInput
     User_Sessions?: User_SessionsUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -8480,8 +8348,8 @@ export namespace Prisma {
     Comments?: CommentsUpdateManyWithoutUsersNestedInput
     Follows_Follows_follower_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
     Follows_Follows_following_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUpdateManyWithoutUsersNestedInput
-    Photos?: PhotosUpdateManyWithoutUsersNestedInput
+    Post_Likes?: Post_LikesUpdateManyWithoutUsersNestedInput
+    Posts?: PostsUpdateManyWithoutUsersNestedInput
     User_Sessions?: User_SessionsUpdateManyWithoutUsersNestedInput
   }
 
@@ -8501,8 +8369,8 @@ export namespace Prisma {
     Comments?: CommentsUncheckedUpdateManyWithoutUsersNestedInput
     Follows_Follows_follower_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
     Follows_Follows_following_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUncheckedUpdateManyWithoutUsersNestedInput
-    Photos?: PhotosUncheckedUpdateManyWithoutUsersNestedInput
+    Post_Likes?: Post_LikesUncheckedUpdateManyWithoutUsersNestedInput
+    Posts?: PostsUncheckedUpdateManyWithoutUsersNestedInput
     User_Sessions?: User_SessionsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -8550,6 +8418,138 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type Post_LikesCreateInput = {
+    created_at?: Date | string | null
+    Posts: PostsCreateNestedOneWithoutPost_LikesInput
+    Users: UsersCreateNestedOneWithoutPost_LikesInput
+  }
+
+  export type Post_LikesUncheckedCreateInput = {
+    id?: number
+    post_id: number
+    user_id: number
+    created_at?: Date | string | null
+  }
+
+  export type Post_LikesUpdateInput = {
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Posts?: PostsUpdateOneRequiredWithoutPost_LikesNestedInput
+    Users?: UsersUpdateOneRequiredWithoutPost_LikesNestedInput
+  }
+
+  export type Post_LikesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    post_id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type Post_LikesCreateManyInput = {
+    id?: number
+    post_id: number
+    user_id: number
+    created_at?: Date | string | null
+  }
+
+  export type Post_LikesUpdateManyMutationInput = {
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type Post_LikesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    post_id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PostsCreateInput = {
+    title?: string | null
+    description?: string | null
+    image_url: string
+    likes_count?: number | null
+    comments_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    Comments?: CommentsCreateNestedManyWithoutPostsInput
+    Post_Likes?: Post_LikesCreateNestedManyWithoutPostsInput
+    Users: UsersCreateNestedOneWithoutPostsInput
+  }
+
+  export type PostsUncheckedCreateInput = {
+    id?: number
+    user_id: number
+    title?: string | null
+    description?: string | null
+    image_url: string
+    likes_count?: number | null
+    comments_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    Comments?: CommentsUncheckedCreateNestedManyWithoutPostsInput
+    Post_Likes?: Post_LikesUncheckedCreateNestedManyWithoutPostsInput
+  }
+
+  export type PostsUpdateInput = {
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
+    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Comments?: CommentsUpdateManyWithoutPostsNestedInput
+    Post_Likes?: Post_LikesUpdateManyWithoutPostsNestedInput
+    Users?: UsersUpdateOneRequiredWithoutPostsNestedInput
+  }
+
+  export type PostsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
+    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Comments?: CommentsUncheckedUpdateManyWithoutPostsNestedInput
+    Post_Likes?: Post_LikesUncheckedUpdateManyWithoutPostsNestedInput
+  }
+
+  export type PostsCreateManyInput = {
+    id?: number
+    user_id: number
+    title?: string | null
+    description?: string | null
+    image_url: string
+    likes_count?: number | null
+    comments_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+  }
+
+  export type PostsUpdateManyMutationInput = {
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
+    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PostsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
+    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -8587,14 +8587,14 @@ export namespace Prisma {
     not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
-  export type PhotosScalarRelationFilter = {
-    is?: PhotosWhereInput
-    isNot?: PhotosWhereInput
-  }
-
   export type UsersScalarRelationFilter = {
     is?: UsersWhereInput
     isNot?: UsersWhereInput
+  }
+
+  export type PostsScalarRelationFilter = {
+    is?: PostsWhereInput
+    isNot?: PostsWhereInput
   }
 
   export type SortOrderInput = {
@@ -8610,7 +8610,7 @@ export namespace Prisma {
 
   export type CommentsCountOrderByAggregateInput = {
     id?: SortOrder
-    photo_id?: SortOrder
+    post_id?: SortOrder
     user_id?: SortOrder
     content?: SortOrder
     created_at?: SortOrder
@@ -8618,13 +8618,13 @@ export namespace Prisma {
 
   export type CommentsAvgOrderByAggregateInput = {
     id?: SortOrder
-    photo_id?: SortOrder
+    post_id?: SortOrder
     user_id?: SortOrder
   }
 
   export type CommentsMaxOrderByAggregateInput = {
     id?: SortOrder
-    photo_id?: SortOrder
+    post_id?: SortOrder
     user_id?: SortOrder
     content?: SortOrder
     created_at?: SortOrder
@@ -8632,7 +8632,7 @@ export namespace Prisma {
 
   export type CommentsMinOrderByAggregateInput = {
     id?: SortOrder
-    photo_id?: SortOrder
+    post_id?: SortOrder
     user_id?: SortOrder
     content?: SortOrder
     created_at?: SortOrder
@@ -8640,7 +8640,7 @@ export namespace Prisma {
 
   export type CommentsSumOrderByAggregateInput = {
     id?: SortOrder
-    photo_id?: SortOrder
+    post_id?: SortOrder
     user_id?: SortOrder
   }
 
@@ -8730,180 +8730,6 @@ export namespace Prisma {
     following_id?: SortOrder
   }
 
-  export type Photo_LikesPhoto_idUser_idCompoundUniqueInput = {
-    photo_id: number
-    user_id: number
-  }
-
-  export type Photo_LikesCountOrderByAggregateInput = {
-    id?: SortOrder
-    photo_id?: SortOrder
-    user_id?: SortOrder
-    created_at?: SortOrder
-  }
-
-  export type Photo_LikesAvgOrderByAggregateInput = {
-    id?: SortOrder
-    photo_id?: SortOrder
-    user_id?: SortOrder
-  }
-
-  export type Photo_LikesMaxOrderByAggregateInput = {
-    id?: SortOrder
-    photo_id?: SortOrder
-    user_id?: SortOrder
-    created_at?: SortOrder
-  }
-
-  export type Photo_LikesMinOrderByAggregateInput = {
-    id?: SortOrder
-    photo_id?: SortOrder
-    user_id?: SortOrder
-    created_at?: SortOrder
-  }
-
-  export type Photo_LikesSumOrderByAggregateInput = {
-    id?: SortOrder
-    photo_id?: SortOrder
-    user_id?: SortOrder
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type CommentsListRelationFilter = {
-    every?: CommentsWhereInput
-    some?: CommentsWhereInput
-    none?: CommentsWhereInput
-  }
-
-  export type Photo_LikesListRelationFilter = {
-    every?: Photo_LikesWhereInput
-    some?: Photo_LikesWhereInput
-    none?: Photo_LikesWhereInput
-  }
-
-  export type CommentsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type Photo_LikesOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type PhotosOrderByRelevanceInput = {
-    fields: PhotosOrderByRelevanceFieldEnum | PhotosOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
-  export type PhotosCountOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    image_url?: SortOrder
-    likes_count?: SortOrder
-    comments_count?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type PhotosAvgOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    likes_count?: SortOrder
-    comments_count?: SortOrder
-  }
-
-  export type PhotosMaxOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    image_url?: SortOrder
-    likes_count?: SortOrder
-    comments_count?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type PhotosMinOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    title?: SortOrder
-    description?: SortOrder
-    image_url?: SortOrder
-    likes_count?: SortOrder
-    comments_count?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-  }
-
-  export type PhotosSumOrderByAggregateInput = {
-    id?: SortOrder
-    user_id?: SortOrder
-    likes_count?: SortOrder
-    comments_count?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -8969,9 +8795,41 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type BoolNullableFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
     not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type CommentsListRelationFilter = {
+    every?: CommentsWhereInput
+    some?: CommentsWhereInput
+    none?: CommentsWhereInput
   }
 
   export type FollowsListRelationFilter = {
@@ -8980,10 +8838,16 @@ export namespace Prisma {
     none?: FollowsWhereInput
   }
 
-  export type PhotosListRelationFilter = {
-    every?: PhotosWhereInput
-    some?: PhotosWhereInput
-    none?: PhotosWhereInput
+  export type Post_LikesListRelationFilter = {
+    every?: Post_LikesWhereInput
+    some?: Post_LikesWhereInput
+    none?: Post_LikesWhereInput
+  }
+
+  export type PostsListRelationFilter = {
+    every?: PostsWhereInput
+    some?: PostsWhereInput
+    none?: PostsWhereInput
   }
 
   export type User_SessionsListRelationFilter = {
@@ -8992,11 +8856,19 @@ export namespace Prisma {
     none?: User_SessionsWhereInput
   }
 
+  export type CommentsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type FollowsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
-  export type PhotosOrderByRelationAggregateInput = {
+  export type Post_LikesOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PostsOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9067,6 +8939,24 @@ export namespace Prisma {
     following_count?: SortOrder
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
   export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
     not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
@@ -9075,16 +8965,126 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
-  export type PhotosCreateNestedOneWithoutCommentsInput = {
-    create?: XOR<PhotosCreateWithoutCommentsInput, PhotosUncheckedCreateWithoutCommentsInput>
-    connectOrCreate?: PhotosCreateOrConnectWithoutCommentsInput
-    connect?: PhotosWhereUniqueInput
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type Post_LikesPost_idUser_idCompoundUniqueInput = {
+    post_id: number
+    user_id: number
+  }
+
+  export type Post_LikesCountOrderByAggregateInput = {
+    id?: SortOrder
+    post_id?: SortOrder
+    user_id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type Post_LikesAvgOrderByAggregateInput = {
+    id?: SortOrder
+    post_id?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type Post_LikesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    post_id?: SortOrder
+    user_id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type Post_LikesMinOrderByAggregateInput = {
+    id?: SortOrder
+    post_id?: SortOrder
+    user_id?: SortOrder
+    created_at?: SortOrder
+  }
+
+  export type Post_LikesSumOrderByAggregateInput = {
+    id?: SortOrder
+    post_id?: SortOrder
+    user_id?: SortOrder
+  }
+
+  export type PostsOrderByRelevanceInput = {
+    fields: PostsOrderByRelevanceFieldEnum | PostsOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type PostsCountOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image_url?: SortOrder
+    likes_count?: SortOrder
+    comments_count?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type PostsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    likes_count?: SortOrder
+    comments_count?: SortOrder
+  }
+
+  export type PostsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image_url?: SortOrder
+    likes_count?: SortOrder
+    comments_count?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type PostsMinOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    title?: SortOrder
+    description?: SortOrder
+    image_url?: SortOrder
+    likes_count?: SortOrder
+    comments_count?: SortOrder
+    created_at?: SortOrder
+    updated_at?: SortOrder
+  }
+
+  export type PostsSumOrderByAggregateInput = {
+    id?: SortOrder
+    user_id?: SortOrder
+    likes_count?: SortOrder
+    comments_count?: SortOrder
   }
 
   export type UsersCreateNestedOneWithoutCommentsInput = {
     create?: XOR<UsersCreateWithoutCommentsInput, UsersUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: UsersCreateOrConnectWithoutCommentsInput
     connect?: UsersWhereUniqueInput
+  }
+
+  export type PostsCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<PostsCreateWithoutCommentsInput, PostsUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: PostsCreateOrConnectWithoutCommentsInput
+    connect?: PostsWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -9095,20 +9095,20 @@ export namespace Prisma {
     set?: Date | string | null
   }
 
-  export type PhotosUpdateOneRequiredWithoutCommentsNestedInput = {
-    create?: XOR<PhotosCreateWithoutCommentsInput, PhotosUncheckedCreateWithoutCommentsInput>
-    connectOrCreate?: PhotosCreateOrConnectWithoutCommentsInput
-    upsert?: PhotosUpsertWithoutCommentsInput
-    connect?: PhotosWhereUniqueInput
-    update?: XOR<XOR<PhotosUpdateToOneWithWhereWithoutCommentsInput, PhotosUpdateWithoutCommentsInput>, PhotosUncheckedUpdateWithoutCommentsInput>
-  }
-
   export type UsersUpdateOneRequiredWithoutCommentsNestedInput = {
     create?: XOR<UsersCreateWithoutCommentsInput, UsersUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: UsersCreateOrConnectWithoutCommentsInput
     upsert?: UsersUpsertWithoutCommentsInput
     connect?: UsersWhereUniqueInput
     update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutCommentsInput, UsersUpdateWithoutCommentsInput>, UsersUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type PostsUpdateOneRequiredWithoutCommentsNestedInput = {
+    create?: XOR<PostsCreateWithoutCommentsInput, PostsUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: PostsCreateOrConnectWithoutCommentsInput
+    upsert?: PostsUpsertWithoutCommentsInput
+    connect?: PostsWhereUniqueInput
+    update?: XOR<XOR<PostsUpdateToOneWithWhereWithoutCommentsInput, PostsUpdateWithoutCommentsInput>, PostsUncheckedUpdateWithoutCommentsInput>
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -9145,144 +9145,6 @@ export namespace Prisma {
     upsert?: UsersUpsertWithoutFollows_Follows_following_idToUsersInput
     connect?: UsersWhereUniqueInput
     update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutFollows_Follows_following_idToUsersInput, UsersUpdateWithoutFollows_Follows_following_idToUsersInput>, UsersUncheckedUpdateWithoutFollows_Follows_following_idToUsersInput>
-  }
-
-  export type PhotosCreateNestedOneWithoutPhoto_LikesInput = {
-    create?: XOR<PhotosCreateWithoutPhoto_LikesInput, PhotosUncheckedCreateWithoutPhoto_LikesInput>
-    connectOrCreate?: PhotosCreateOrConnectWithoutPhoto_LikesInput
-    connect?: PhotosWhereUniqueInput
-  }
-
-  export type UsersCreateNestedOneWithoutPhoto_LikesInput = {
-    create?: XOR<UsersCreateWithoutPhoto_LikesInput, UsersUncheckedCreateWithoutPhoto_LikesInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutPhoto_LikesInput
-    connect?: UsersWhereUniqueInput
-  }
-
-  export type PhotosUpdateOneRequiredWithoutPhoto_LikesNestedInput = {
-    create?: XOR<PhotosCreateWithoutPhoto_LikesInput, PhotosUncheckedCreateWithoutPhoto_LikesInput>
-    connectOrCreate?: PhotosCreateOrConnectWithoutPhoto_LikesInput
-    upsert?: PhotosUpsertWithoutPhoto_LikesInput
-    connect?: PhotosWhereUniqueInput
-    update?: XOR<XOR<PhotosUpdateToOneWithWhereWithoutPhoto_LikesInput, PhotosUpdateWithoutPhoto_LikesInput>, PhotosUncheckedUpdateWithoutPhoto_LikesInput>
-  }
-
-  export type UsersUpdateOneRequiredWithoutPhoto_LikesNestedInput = {
-    create?: XOR<UsersCreateWithoutPhoto_LikesInput, UsersUncheckedCreateWithoutPhoto_LikesInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutPhoto_LikesInput
-    upsert?: UsersUpsertWithoutPhoto_LikesInput
-    connect?: UsersWhereUniqueInput
-    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutPhoto_LikesInput, UsersUpdateWithoutPhoto_LikesInput>, UsersUncheckedUpdateWithoutPhoto_LikesInput>
-  }
-
-  export type CommentsCreateNestedManyWithoutPhotosInput = {
-    create?: XOR<CommentsCreateWithoutPhotosInput, CommentsUncheckedCreateWithoutPhotosInput> | CommentsCreateWithoutPhotosInput[] | CommentsUncheckedCreateWithoutPhotosInput[]
-    connectOrCreate?: CommentsCreateOrConnectWithoutPhotosInput | CommentsCreateOrConnectWithoutPhotosInput[]
-    createMany?: CommentsCreateManyPhotosInputEnvelope
-    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
-  }
-
-  export type Photo_LikesCreateNestedManyWithoutPhotosInput = {
-    create?: XOR<Photo_LikesCreateWithoutPhotosInput, Photo_LikesUncheckedCreateWithoutPhotosInput> | Photo_LikesCreateWithoutPhotosInput[] | Photo_LikesUncheckedCreateWithoutPhotosInput[]
-    connectOrCreate?: Photo_LikesCreateOrConnectWithoutPhotosInput | Photo_LikesCreateOrConnectWithoutPhotosInput[]
-    createMany?: Photo_LikesCreateManyPhotosInputEnvelope
-    connect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-  }
-
-  export type UsersCreateNestedOneWithoutPhotosInput = {
-    create?: XOR<UsersCreateWithoutPhotosInput, UsersUncheckedCreateWithoutPhotosInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutPhotosInput
-    connect?: UsersWhereUniqueInput
-  }
-
-  export type CommentsUncheckedCreateNestedManyWithoutPhotosInput = {
-    create?: XOR<CommentsCreateWithoutPhotosInput, CommentsUncheckedCreateWithoutPhotosInput> | CommentsCreateWithoutPhotosInput[] | CommentsUncheckedCreateWithoutPhotosInput[]
-    connectOrCreate?: CommentsCreateOrConnectWithoutPhotosInput | CommentsCreateOrConnectWithoutPhotosInput[]
-    createMany?: CommentsCreateManyPhotosInputEnvelope
-    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
-  }
-
-  export type Photo_LikesUncheckedCreateNestedManyWithoutPhotosInput = {
-    create?: XOR<Photo_LikesCreateWithoutPhotosInput, Photo_LikesUncheckedCreateWithoutPhotosInput> | Photo_LikesCreateWithoutPhotosInput[] | Photo_LikesUncheckedCreateWithoutPhotosInput[]
-    connectOrCreate?: Photo_LikesCreateOrConnectWithoutPhotosInput | Photo_LikesCreateOrConnectWithoutPhotosInput[]
-    createMany?: Photo_LikesCreateManyPhotosInputEnvelope
-    connect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
-  export type CommentsUpdateManyWithoutPhotosNestedInput = {
-    create?: XOR<CommentsCreateWithoutPhotosInput, CommentsUncheckedCreateWithoutPhotosInput> | CommentsCreateWithoutPhotosInput[] | CommentsUncheckedCreateWithoutPhotosInput[]
-    connectOrCreate?: CommentsCreateOrConnectWithoutPhotosInput | CommentsCreateOrConnectWithoutPhotosInput[]
-    upsert?: CommentsUpsertWithWhereUniqueWithoutPhotosInput | CommentsUpsertWithWhereUniqueWithoutPhotosInput[]
-    createMany?: CommentsCreateManyPhotosInputEnvelope
-    set?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
-    disconnect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
-    delete?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
-    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
-    update?: CommentsUpdateWithWhereUniqueWithoutPhotosInput | CommentsUpdateWithWhereUniqueWithoutPhotosInput[]
-    updateMany?: CommentsUpdateManyWithWhereWithoutPhotosInput | CommentsUpdateManyWithWhereWithoutPhotosInput[]
-    deleteMany?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
-  }
-
-  export type Photo_LikesUpdateManyWithoutPhotosNestedInput = {
-    create?: XOR<Photo_LikesCreateWithoutPhotosInput, Photo_LikesUncheckedCreateWithoutPhotosInput> | Photo_LikesCreateWithoutPhotosInput[] | Photo_LikesUncheckedCreateWithoutPhotosInput[]
-    connectOrCreate?: Photo_LikesCreateOrConnectWithoutPhotosInput | Photo_LikesCreateOrConnectWithoutPhotosInput[]
-    upsert?: Photo_LikesUpsertWithWhereUniqueWithoutPhotosInput | Photo_LikesUpsertWithWhereUniqueWithoutPhotosInput[]
-    createMany?: Photo_LikesCreateManyPhotosInputEnvelope
-    set?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    disconnect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    delete?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    connect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    update?: Photo_LikesUpdateWithWhereUniqueWithoutPhotosInput | Photo_LikesUpdateWithWhereUniqueWithoutPhotosInput[]
-    updateMany?: Photo_LikesUpdateManyWithWhereWithoutPhotosInput | Photo_LikesUpdateManyWithWhereWithoutPhotosInput[]
-    deleteMany?: Photo_LikesScalarWhereInput | Photo_LikesScalarWhereInput[]
-  }
-
-  export type UsersUpdateOneRequiredWithoutPhotosNestedInput = {
-    create?: XOR<UsersCreateWithoutPhotosInput, UsersUncheckedCreateWithoutPhotosInput>
-    connectOrCreate?: UsersCreateOrConnectWithoutPhotosInput
-    upsert?: UsersUpsertWithoutPhotosInput
-    connect?: UsersWhereUniqueInput
-    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutPhotosInput, UsersUpdateWithoutPhotosInput>, UsersUncheckedUpdateWithoutPhotosInput>
-  }
-
-  export type CommentsUncheckedUpdateManyWithoutPhotosNestedInput = {
-    create?: XOR<CommentsCreateWithoutPhotosInput, CommentsUncheckedCreateWithoutPhotosInput> | CommentsCreateWithoutPhotosInput[] | CommentsUncheckedCreateWithoutPhotosInput[]
-    connectOrCreate?: CommentsCreateOrConnectWithoutPhotosInput | CommentsCreateOrConnectWithoutPhotosInput[]
-    upsert?: CommentsUpsertWithWhereUniqueWithoutPhotosInput | CommentsUpsertWithWhereUniqueWithoutPhotosInput[]
-    createMany?: CommentsCreateManyPhotosInputEnvelope
-    set?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
-    disconnect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
-    delete?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
-    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
-    update?: CommentsUpdateWithWhereUniqueWithoutPhotosInput | CommentsUpdateWithWhereUniqueWithoutPhotosInput[]
-    updateMany?: CommentsUpdateManyWithWhereWithoutPhotosInput | CommentsUpdateManyWithWhereWithoutPhotosInput[]
-    deleteMany?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
-  }
-
-  export type Photo_LikesUncheckedUpdateManyWithoutPhotosNestedInput = {
-    create?: XOR<Photo_LikesCreateWithoutPhotosInput, Photo_LikesUncheckedCreateWithoutPhotosInput> | Photo_LikesCreateWithoutPhotosInput[] | Photo_LikesUncheckedCreateWithoutPhotosInput[]
-    connectOrCreate?: Photo_LikesCreateOrConnectWithoutPhotosInput | Photo_LikesCreateOrConnectWithoutPhotosInput[]
-    upsert?: Photo_LikesUpsertWithWhereUniqueWithoutPhotosInput | Photo_LikesUpsertWithWhereUniqueWithoutPhotosInput[]
-    createMany?: Photo_LikesCreateManyPhotosInputEnvelope
-    set?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    disconnect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    delete?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    connect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    update?: Photo_LikesUpdateWithWhereUniqueWithoutPhotosInput | Photo_LikesUpdateWithWhereUniqueWithoutPhotosInput[]
-    updateMany?: Photo_LikesUpdateManyWithWhereWithoutPhotosInput | Photo_LikesUpdateManyWithWhereWithoutPhotosInput[]
-    deleteMany?: Photo_LikesScalarWhereInput | Photo_LikesScalarWhereInput[]
   }
 
   export type UsersCreateNestedOneWithoutUser_SessionsInput = {
@@ -9324,18 +9186,18 @@ export namespace Prisma {
     connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
   }
 
-  export type Photo_LikesCreateNestedManyWithoutUsersInput = {
-    create?: XOR<Photo_LikesCreateWithoutUsersInput, Photo_LikesUncheckedCreateWithoutUsersInput> | Photo_LikesCreateWithoutUsersInput[] | Photo_LikesUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: Photo_LikesCreateOrConnectWithoutUsersInput | Photo_LikesCreateOrConnectWithoutUsersInput[]
-    createMany?: Photo_LikesCreateManyUsersInputEnvelope
-    connect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
+  export type Post_LikesCreateNestedManyWithoutUsersInput = {
+    create?: XOR<Post_LikesCreateWithoutUsersInput, Post_LikesUncheckedCreateWithoutUsersInput> | Post_LikesCreateWithoutUsersInput[] | Post_LikesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: Post_LikesCreateOrConnectWithoutUsersInput | Post_LikesCreateOrConnectWithoutUsersInput[]
+    createMany?: Post_LikesCreateManyUsersInputEnvelope
+    connect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
   }
 
-  export type PhotosCreateNestedManyWithoutUsersInput = {
-    create?: XOR<PhotosCreateWithoutUsersInput, PhotosUncheckedCreateWithoutUsersInput> | PhotosCreateWithoutUsersInput[] | PhotosUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: PhotosCreateOrConnectWithoutUsersInput | PhotosCreateOrConnectWithoutUsersInput[]
-    createMany?: PhotosCreateManyUsersInputEnvelope
-    connect?: PhotosWhereUniqueInput | PhotosWhereUniqueInput[]
+  export type PostsCreateNestedManyWithoutUsersInput = {
+    create?: XOR<PostsCreateWithoutUsersInput, PostsUncheckedCreateWithoutUsersInput> | PostsCreateWithoutUsersInput[] | PostsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: PostsCreateOrConnectWithoutUsersInput | PostsCreateOrConnectWithoutUsersInput[]
+    createMany?: PostsCreateManyUsersInputEnvelope
+    connect?: PostsWhereUniqueInput | PostsWhereUniqueInput[]
   }
 
   export type User_SessionsCreateNestedManyWithoutUsersInput = {
@@ -9366,18 +9228,18 @@ export namespace Prisma {
     connect?: FollowsWhereUniqueInput | FollowsWhereUniqueInput[]
   }
 
-  export type Photo_LikesUncheckedCreateNestedManyWithoutUsersInput = {
-    create?: XOR<Photo_LikesCreateWithoutUsersInput, Photo_LikesUncheckedCreateWithoutUsersInput> | Photo_LikesCreateWithoutUsersInput[] | Photo_LikesUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: Photo_LikesCreateOrConnectWithoutUsersInput | Photo_LikesCreateOrConnectWithoutUsersInput[]
-    createMany?: Photo_LikesCreateManyUsersInputEnvelope
-    connect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
+  export type Post_LikesUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<Post_LikesCreateWithoutUsersInput, Post_LikesUncheckedCreateWithoutUsersInput> | Post_LikesCreateWithoutUsersInput[] | Post_LikesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: Post_LikesCreateOrConnectWithoutUsersInput | Post_LikesCreateOrConnectWithoutUsersInput[]
+    createMany?: Post_LikesCreateManyUsersInputEnvelope
+    connect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
   }
 
-  export type PhotosUncheckedCreateNestedManyWithoutUsersInput = {
-    create?: XOR<PhotosCreateWithoutUsersInput, PhotosUncheckedCreateWithoutUsersInput> | PhotosCreateWithoutUsersInput[] | PhotosUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: PhotosCreateOrConnectWithoutUsersInput | PhotosCreateOrConnectWithoutUsersInput[]
-    createMany?: PhotosCreateManyUsersInputEnvelope
-    connect?: PhotosWhereUniqueInput | PhotosWhereUniqueInput[]
+  export type PostsUncheckedCreateNestedManyWithoutUsersInput = {
+    create?: XOR<PostsCreateWithoutUsersInput, PostsUncheckedCreateWithoutUsersInput> | PostsCreateWithoutUsersInput[] | PostsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: PostsCreateOrConnectWithoutUsersInput | PostsCreateOrConnectWithoutUsersInput[]
+    createMany?: PostsCreateManyUsersInputEnvelope
+    connect?: PostsWhereUniqueInput | PostsWhereUniqueInput[]
   }
 
   export type User_SessionsUncheckedCreateNestedManyWithoutUsersInput = {
@@ -9387,8 +9249,20 @@ export namespace Prisma {
     connect?: User_SessionsWhereUniqueInput | User_SessionsWhereUniqueInput[]
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
   export type NullableBoolFieldUpdateOperationsInput = {
     set?: boolean | null
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type CommentsUpdateManyWithoutUsersNestedInput = {
@@ -9433,32 +9307,32 @@ export namespace Prisma {
     deleteMany?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
   }
 
-  export type Photo_LikesUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<Photo_LikesCreateWithoutUsersInput, Photo_LikesUncheckedCreateWithoutUsersInput> | Photo_LikesCreateWithoutUsersInput[] | Photo_LikesUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: Photo_LikesCreateOrConnectWithoutUsersInput | Photo_LikesCreateOrConnectWithoutUsersInput[]
-    upsert?: Photo_LikesUpsertWithWhereUniqueWithoutUsersInput | Photo_LikesUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: Photo_LikesCreateManyUsersInputEnvelope
-    set?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    disconnect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    delete?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    connect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    update?: Photo_LikesUpdateWithWhereUniqueWithoutUsersInput | Photo_LikesUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: Photo_LikesUpdateManyWithWhereWithoutUsersInput | Photo_LikesUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: Photo_LikesScalarWhereInput | Photo_LikesScalarWhereInput[]
+  export type Post_LikesUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<Post_LikesCreateWithoutUsersInput, Post_LikesUncheckedCreateWithoutUsersInput> | Post_LikesCreateWithoutUsersInput[] | Post_LikesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: Post_LikesCreateOrConnectWithoutUsersInput | Post_LikesCreateOrConnectWithoutUsersInput[]
+    upsert?: Post_LikesUpsertWithWhereUniqueWithoutUsersInput | Post_LikesUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: Post_LikesCreateManyUsersInputEnvelope
+    set?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    disconnect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    delete?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    connect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    update?: Post_LikesUpdateWithWhereUniqueWithoutUsersInput | Post_LikesUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: Post_LikesUpdateManyWithWhereWithoutUsersInput | Post_LikesUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: Post_LikesScalarWhereInput | Post_LikesScalarWhereInput[]
   }
 
-  export type PhotosUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<PhotosCreateWithoutUsersInput, PhotosUncheckedCreateWithoutUsersInput> | PhotosCreateWithoutUsersInput[] | PhotosUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: PhotosCreateOrConnectWithoutUsersInput | PhotosCreateOrConnectWithoutUsersInput[]
-    upsert?: PhotosUpsertWithWhereUniqueWithoutUsersInput | PhotosUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: PhotosCreateManyUsersInputEnvelope
-    set?: PhotosWhereUniqueInput | PhotosWhereUniqueInput[]
-    disconnect?: PhotosWhereUniqueInput | PhotosWhereUniqueInput[]
-    delete?: PhotosWhereUniqueInput | PhotosWhereUniqueInput[]
-    connect?: PhotosWhereUniqueInput | PhotosWhereUniqueInput[]
-    update?: PhotosUpdateWithWhereUniqueWithoutUsersInput | PhotosUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: PhotosUpdateManyWithWhereWithoutUsersInput | PhotosUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: PhotosScalarWhereInput | PhotosScalarWhereInput[]
+  export type PostsUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<PostsCreateWithoutUsersInput, PostsUncheckedCreateWithoutUsersInput> | PostsCreateWithoutUsersInput[] | PostsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: PostsCreateOrConnectWithoutUsersInput | PostsCreateOrConnectWithoutUsersInput[]
+    upsert?: PostsUpsertWithWhereUniqueWithoutUsersInput | PostsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: PostsCreateManyUsersInputEnvelope
+    set?: PostsWhereUniqueInput | PostsWhereUniqueInput[]
+    disconnect?: PostsWhereUniqueInput | PostsWhereUniqueInput[]
+    delete?: PostsWhereUniqueInput | PostsWhereUniqueInput[]
+    connect?: PostsWhereUniqueInput | PostsWhereUniqueInput[]
+    update?: PostsUpdateWithWhereUniqueWithoutUsersInput | PostsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: PostsUpdateManyWithWhereWithoutUsersInput | PostsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: PostsScalarWhereInput | PostsScalarWhereInput[]
   }
 
   export type User_SessionsUpdateManyWithoutUsersNestedInput = {
@@ -9517,32 +9391,32 @@ export namespace Prisma {
     deleteMany?: FollowsScalarWhereInput | FollowsScalarWhereInput[]
   }
 
-  export type Photo_LikesUncheckedUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<Photo_LikesCreateWithoutUsersInput, Photo_LikesUncheckedCreateWithoutUsersInput> | Photo_LikesCreateWithoutUsersInput[] | Photo_LikesUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: Photo_LikesCreateOrConnectWithoutUsersInput | Photo_LikesCreateOrConnectWithoutUsersInput[]
-    upsert?: Photo_LikesUpsertWithWhereUniqueWithoutUsersInput | Photo_LikesUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: Photo_LikesCreateManyUsersInputEnvelope
-    set?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    disconnect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    delete?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    connect?: Photo_LikesWhereUniqueInput | Photo_LikesWhereUniqueInput[]
-    update?: Photo_LikesUpdateWithWhereUniqueWithoutUsersInput | Photo_LikesUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: Photo_LikesUpdateManyWithWhereWithoutUsersInput | Photo_LikesUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: Photo_LikesScalarWhereInput | Photo_LikesScalarWhereInput[]
+  export type Post_LikesUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<Post_LikesCreateWithoutUsersInput, Post_LikesUncheckedCreateWithoutUsersInput> | Post_LikesCreateWithoutUsersInput[] | Post_LikesUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: Post_LikesCreateOrConnectWithoutUsersInput | Post_LikesCreateOrConnectWithoutUsersInput[]
+    upsert?: Post_LikesUpsertWithWhereUniqueWithoutUsersInput | Post_LikesUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: Post_LikesCreateManyUsersInputEnvelope
+    set?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    disconnect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    delete?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    connect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    update?: Post_LikesUpdateWithWhereUniqueWithoutUsersInput | Post_LikesUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: Post_LikesUpdateManyWithWhereWithoutUsersInput | Post_LikesUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: Post_LikesScalarWhereInput | Post_LikesScalarWhereInput[]
   }
 
-  export type PhotosUncheckedUpdateManyWithoutUsersNestedInput = {
-    create?: XOR<PhotosCreateWithoutUsersInput, PhotosUncheckedCreateWithoutUsersInput> | PhotosCreateWithoutUsersInput[] | PhotosUncheckedCreateWithoutUsersInput[]
-    connectOrCreate?: PhotosCreateOrConnectWithoutUsersInput | PhotosCreateOrConnectWithoutUsersInput[]
-    upsert?: PhotosUpsertWithWhereUniqueWithoutUsersInput | PhotosUpsertWithWhereUniqueWithoutUsersInput[]
-    createMany?: PhotosCreateManyUsersInputEnvelope
-    set?: PhotosWhereUniqueInput | PhotosWhereUniqueInput[]
-    disconnect?: PhotosWhereUniqueInput | PhotosWhereUniqueInput[]
-    delete?: PhotosWhereUniqueInput | PhotosWhereUniqueInput[]
-    connect?: PhotosWhereUniqueInput | PhotosWhereUniqueInput[]
-    update?: PhotosUpdateWithWhereUniqueWithoutUsersInput | PhotosUpdateWithWhereUniqueWithoutUsersInput[]
-    updateMany?: PhotosUpdateManyWithWhereWithoutUsersInput | PhotosUpdateManyWithWhereWithoutUsersInput[]
-    deleteMany?: PhotosScalarWhereInput | PhotosScalarWhereInput[]
+  export type PostsUncheckedUpdateManyWithoutUsersNestedInput = {
+    create?: XOR<PostsCreateWithoutUsersInput, PostsUncheckedCreateWithoutUsersInput> | PostsCreateWithoutUsersInput[] | PostsUncheckedCreateWithoutUsersInput[]
+    connectOrCreate?: PostsCreateOrConnectWithoutUsersInput | PostsCreateOrConnectWithoutUsersInput[]
+    upsert?: PostsUpsertWithWhereUniqueWithoutUsersInput | PostsUpsertWithWhereUniqueWithoutUsersInput[]
+    createMany?: PostsCreateManyUsersInputEnvelope
+    set?: PostsWhereUniqueInput | PostsWhereUniqueInput[]
+    disconnect?: PostsWhereUniqueInput | PostsWhereUniqueInput[]
+    delete?: PostsWhereUniqueInput | PostsWhereUniqueInput[]
+    connect?: PostsWhereUniqueInput | PostsWhereUniqueInput[]
+    update?: PostsUpdateWithWhereUniqueWithoutUsersInput | PostsUpdateWithWhereUniqueWithoutUsersInput[]
+    updateMany?: PostsUpdateManyWithWhereWithoutUsersInput | PostsUpdateManyWithWhereWithoutUsersInput[]
+    deleteMany?: PostsScalarWhereInput | PostsScalarWhereInput[]
   }
 
   export type User_SessionsUncheckedUpdateManyWithoutUsersNestedInput = {
@@ -9557,6 +9431,132 @@ export namespace Prisma {
     update?: User_SessionsUpdateWithWhereUniqueWithoutUsersInput | User_SessionsUpdateWithWhereUniqueWithoutUsersInput[]
     updateMany?: User_SessionsUpdateManyWithWhereWithoutUsersInput | User_SessionsUpdateManyWithWhereWithoutUsersInput[]
     deleteMany?: User_SessionsScalarWhereInput | User_SessionsScalarWhereInput[]
+  }
+
+  export type PostsCreateNestedOneWithoutPost_LikesInput = {
+    create?: XOR<PostsCreateWithoutPost_LikesInput, PostsUncheckedCreateWithoutPost_LikesInput>
+    connectOrCreate?: PostsCreateOrConnectWithoutPost_LikesInput
+    connect?: PostsWhereUniqueInput
+  }
+
+  export type UsersCreateNestedOneWithoutPost_LikesInput = {
+    create?: XOR<UsersCreateWithoutPost_LikesInput, UsersUncheckedCreateWithoutPost_LikesInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutPost_LikesInput
+    connect?: UsersWhereUniqueInput
+  }
+
+  export type PostsUpdateOneRequiredWithoutPost_LikesNestedInput = {
+    create?: XOR<PostsCreateWithoutPost_LikesInput, PostsUncheckedCreateWithoutPost_LikesInput>
+    connectOrCreate?: PostsCreateOrConnectWithoutPost_LikesInput
+    upsert?: PostsUpsertWithoutPost_LikesInput
+    connect?: PostsWhereUniqueInput
+    update?: XOR<XOR<PostsUpdateToOneWithWhereWithoutPost_LikesInput, PostsUpdateWithoutPost_LikesInput>, PostsUncheckedUpdateWithoutPost_LikesInput>
+  }
+
+  export type UsersUpdateOneRequiredWithoutPost_LikesNestedInput = {
+    create?: XOR<UsersCreateWithoutPost_LikesInput, UsersUncheckedCreateWithoutPost_LikesInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutPost_LikesInput
+    upsert?: UsersUpsertWithoutPost_LikesInput
+    connect?: UsersWhereUniqueInput
+    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutPost_LikesInput, UsersUpdateWithoutPost_LikesInput>, UsersUncheckedUpdateWithoutPost_LikesInput>
+  }
+
+  export type CommentsCreateNestedManyWithoutPostsInput = {
+    create?: XOR<CommentsCreateWithoutPostsInput, CommentsUncheckedCreateWithoutPostsInput> | CommentsCreateWithoutPostsInput[] | CommentsUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutPostsInput | CommentsCreateOrConnectWithoutPostsInput[]
+    createMany?: CommentsCreateManyPostsInputEnvelope
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+  }
+
+  export type Post_LikesCreateNestedManyWithoutPostsInput = {
+    create?: XOR<Post_LikesCreateWithoutPostsInput, Post_LikesUncheckedCreateWithoutPostsInput> | Post_LikesCreateWithoutPostsInput[] | Post_LikesUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: Post_LikesCreateOrConnectWithoutPostsInput | Post_LikesCreateOrConnectWithoutPostsInput[]
+    createMany?: Post_LikesCreateManyPostsInputEnvelope
+    connect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+  }
+
+  export type UsersCreateNestedOneWithoutPostsInput = {
+    create?: XOR<UsersCreateWithoutPostsInput, UsersUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutPostsInput
+    connect?: UsersWhereUniqueInput
+  }
+
+  export type CommentsUncheckedCreateNestedManyWithoutPostsInput = {
+    create?: XOR<CommentsCreateWithoutPostsInput, CommentsUncheckedCreateWithoutPostsInput> | CommentsCreateWithoutPostsInput[] | CommentsUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutPostsInput | CommentsCreateOrConnectWithoutPostsInput[]
+    createMany?: CommentsCreateManyPostsInputEnvelope
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+  }
+
+  export type Post_LikesUncheckedCreateNestedManyWithoutPostsInput = {
+    create?: XOR<Post_LikesCreateWithoutPostsInput, Post_LikesUncheckedCreateWithoutPostsInput> | Post_LikesCreateWithoutPostsInput[] | Post_LikesUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: Post_LikesCreateOrConnectWithoutPostsInput | Post_LikesCreateOrConnectWithoutPostsInput[]
+    createMany?: Post_LikesCreateManyPostsInputEnvelope
+    connect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+  }
+
+  export type CommentsUpdateManyWithoutPostsNestedInput = {
+    create?: XOR<CommentsCreateWithoutPostsInput, CommentsUncheckedCreateWithoutPostsInput> | CommentsCreateWithoutPostsInput[] | CommentsUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutPostsInput | CommentsCreateOrConnectWithoutPostsInput[]
+    upsert?: CommentsUpsertWithWhereUniqueWithoutPostsInput | CommentsUpsertWithWhereUniqueWithoutPostsInput[]
+    createMany?: CommentsCreateManyPostsInputEnvelope
+    set?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    disconnect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    delete?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    update?: CommentsUpdateWithWhereUniqueWithoutPostsInput | CommentsUpdateWithWhereUniqueWithoutPostsInput[]
+    updateMany?: CommentsUpdateManyWithWhereWithoutPostsInput | CommentsUpdateManyWithWhereWithoutPostsInput[]
+    deleteMany?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
+  }
+
+  export type Post_LikesUpdateManyWithoutPostsNestedInput = {
+    create?: XOR<Post_LikesCreateWithoutPostsInput, Post_LikesUncheckedCreateWithoutPostsInput> | Post_LikesCreateWithoutPostsInput[] | Post_LikesUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: Post_LikesCreateOrConnectWithoutPostsInput | Post_LikesCreateOrConnectWithoutPostsInput[]
+    upsert?: Post_LikesUpsertWithWhereUniqueWithoutPostsInput | Post_LikesUpsertWithWhereUniqueWithoutPostsInput[]
+    createMany?: Post_LikesCreateManyPostsInputEnvelope
+    set?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    disconnect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    delete?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    connect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    update?: Post_LikesUpdateWithWhereUniqueWithoutPostsInput | Post_LikesUpdateWithWhereUniqueWithoutPostsInput[]
+    updateMany?: Post_LikesUpdateManyWithWhereWithoutPostsInput | Post_LikesUpdateManyWithWhereWithoutPostsInput[]
+    deleteMany?: Post_LikesScalarWhereInput | Post_LikesScalarWhereInput[]
+  }
+
+  export type UsersUpdateOneRequiredWithoutPostsNestedInput = {
+    create?: XOR<UsersCreateWithoutPostsInput, UsersUncheckedCreateWithoutPostsInput>
+    connectOrCreate?: UsersCreateOrConnectWithoutPostsInput
+    upsert?: UsersUpsertWithoutPostsInput
+    connect?: UsersWhereUniqueInput
+    update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutPostsInput, UsersUpdateWithoutPostsInput>, UsersUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type CommentsUncheckedUpdateManyWithoutPostsNestedInput = {
+    create?: XOR<CommentsCreateWithoutPostsInput, CommentsUncheckedCreateWithoutPostsInput> | CommentsCreateWithoutPostsInput[] | CommentsUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: CommentsCreateOrConnectWithoutPostsInput | CommentsCreateOrConnectWithoutPostsInput[]
+    upsert?: CommentsUpsertWithWhereUniqueWithoutPostsInput | CommentsUpsertWithWhereUniqueWithoutPostsInput[]
+    createMany?: CommentsCreateManyPostsInputEnvelope
+    set?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    disconnect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    delete?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    connect?: CommentsWhereUniqueInput | CommentsWhereUniqueInput[]
+    update?: CommentsUpdateWithWhereUniqueWithoutPostsInput | CommentsUpdateWithWhereUniqueWithoutPostsInput[]
+    updateMany?: CommentsUpdateManyWithWhereWithoutPostsInput | CommentsUpdateManyWithWhereWithoutPostsInput[]
+    deleteMany?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
+  }
+
+  export type Post_LikesUncheckedUpdateManyWithoutPostsNestedInput = {
+    create?: XOR<Post_LikesCreateWithoutPostsInput, Post_LikesUncheckedCreateWithoutPostsInput> | Post_LikesCreateWithoutPostsInput[] | Post_LikesUncheckedCreateWithoutPostsInput[]
+    connectOrCreate?: Post_LikesCreateOrConnectWithoutPostsInput | Post_LikesCreateOrConnectWithoutPostsInput[]
+    upsert?: Post_LikesUpsertWithWhereUniqueWithoutPostsInput | Post_LikesUpsertWithWhereUniqueWithoutPostsInput[]
+    createMany?: Post_LikesCreateManyPostsInputEnvelope
+    set?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    disconnect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    delete?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    connect?: Post_LikesWhereUniqueInput | Post_LikesWhereUniqueInput[]
+    update?: Post_LikesUpdateWithWhereUniqueWithoutPostsInput | Post_LikesUpdateWithWhereUniqueWithoutPostsInput[]
+    updateMany?: Post_LikesUpdateManyWithWhereWithoutPostsInput | Post_LikesUpdateManyWithWhereWithoutPostsInput[]
+    deleteMany?: Post_LikesScalarWhereInput | Post_LikesScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -9666,6 +9666,31 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -9679,6 +9704,11 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9697,6 +9727,14 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -9726,74 +9764,6 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedBoolNullableFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
-  }
-
-  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
-    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedBoolNullableFilter<$PrismaModel>
-    _max?: NestedBoolNullableFilter<$PrismaModel>
-  }
-
-  export type PhotosCreateWithoutCommentsInput = {
-    title?: string | null
-    description?: string | null
-    image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    Photo_Likes?: Photo_LikesCreateNestedManyWithoutPhotosInput
-    Users: UsersCreateNestedOneWithoutPhotosInput
-  }
-
-  export type PhotosUncheckedCreateWithoutCommentsInput = {
-    id?: number
-    user_id: number
-    title?: string | null
-    description?: string | null
-    image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    Photo_Likes?: Photo_LikesUncheckedCreateNestedManyWithoutPhotosInput
-  }
-
-  export type PhotosCreateOrConnectWithoutCommentsInput = {
-    where: PhotosWhereUniqueInput
-    create: XOR<PhotosCreateWithoutCommentsInput, PhotosUncheckedCreateWithoutCommentsInput>
-  }
-
   export type UsersCreateWithoutCommentsInput = {
     email: string
     username: string
@@ -9808,8 +9778,8 @@ export namespace Prisma {
     updated_at?: Date | string | null
     Follows_Follows_follower_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
     Follows_Follows_following_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photo_Likes?: Photo_LikesCreateNestedManyWithoutUsersInput
-    Photos?: PhotosCreateNestedManyWithoutUsersInput
+    Post_Likes?: Post_LikesCreateNestedManyWithoutUsersInput
+    Posts?: PostsCreateNestedManyWithoutUsersInput
     User_Sessions?: User_SessionsCreateNestedManyWithoutUsersInput
   }
 
@@ -9828,8 +9798,8 @@ export namespace Prisma {
     updated_at?: Date | string | null
     Follows_Follows_follower_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
     Follows_Follows_following_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photo_Likes?: Photo_LikesUncheckedCreateNestedManyWithoutUsersInput
-    Photos?: PhotosUncheckedCreateNestedManyWithoutUsersInput
+    Post_Likes?: Post_LikesUncheckedCreateNestedManyWithoutUsersInput
+    Posts?: PostsUncheckedCreateNestedManyWithoutUsersInput
     User_Sessions?: User_SessionsUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -9838,40 +9808,34 @@ export namespace Prisma {
     create: XOR<UsersCreateWithoutCommentsInput, UsersUncheckedCreateWithoutCommentsInput>
   }
 
-  export type PhotosUpsertWithoutCommentsInput = {
-    update: XOR<PhotosUpdateWithoutCommentsInput, PhotosUncheckedUpdateWithoutCommentsInput>
-    create: XOR<PhotosCreateWithoutCommentsInput, PhotosUncheckedCreateWithoutCommentsInput>
-    where?: PhotosWhereInput
+  export type PostsCreateWithoutCommentsInput = {
+    title?: string | null
+    description?: string | null
+    image_url: string
+    likes_count?: number | null
+    comments_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    Post_Likes?: Post_LikesCreateNestedManyWithoutPostsInput
+    Users: UsersCreateNestedOneWithoutPostsInput
   }
 
-  export type PhotosUpdateToOneWithWhereWithoutCommentsInput = {
-    where?: PhotosWhereInput
-    data: XOR<PhotosUpdateWithoutCommentsInput, PhotosUncheckedUpdateWithoutCommentsInput>
+  export type PostsUncheckedCreateWithoutCommentsInput = {
+    id?: number
+    user_id: number
+    title?: string | null
+    description?: string | null
+    image_url: string
+    likes_count?: number | null
+    comments_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    Post_Likes?: Post_LikesUncheckedCreateNestedManyWithoutPostsInput
   }
 
-  export type PhotosUpdateWithoutCommentsInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Photo_Likes?: Photo_LikesUpdateManyWithoutPhotosNestedInput
-    Users?: UsersUpdateOneRequiredWithoutPhotosNestedInput
-  }
-
-  export type PhotosUncheckedUpdateWithoutCommentsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Photo_Likes?: Photo_LikesUncheckedUpdateManyWithoutPhotosNestedInput
+  export type PostsCreateOrConnectWithoutCommentsInput = {
+    where: PostsWhereUniqueInput
+    create: XOR<PostsCreateWithoutCommentsInput, PostsUncheckedCreateWithoutCommentsInput>
   }
 
   export type UsersUpsertWithoutCommentsInput = {
@@ -9899,8 +9863,8 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Follows_Follows_follower_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
     Follows_Follows_following_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUpdateManyWithoutUsersNestedInput
-    Photos?: PhotosUpdateManyWithoutUsersNestedInput
+    Post_Likes?: Post_LikesUpdateManyWithoutUsersNestedInput
+    Posts?: PostsUpdateManyWithoutUsersNestedInput
     User_Sessions?: User_SessionsUpdateManyWithoutUsersNestedInput
   }
 
@@ -9919,9 +9883,45 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Follows_Follows_follower_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
     Follows_Follows_following_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUncheckedUpdateManyWithoutUsersNestedInput
-    Photos?: PhotosUncheckedUpdateManyWithoutUsersNestedInput
+    Post_Likes?: Post_LikesUncheckedUpdateManyWithoutUsersNestedInput
+    Posts?: PostsUncheckedUpdateManyWithoutUsersNestedInput
     User_Sessions?: User_SessionsUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type PostsUpsertWithoutCommentsInput = {
+    update: XOR<PostsUpdateWithoutCommentsInput, PostsUncheckedUpdateWithoutCommentsInput>
+    create: XOR<PostsCreateWithoutCommentsInput, PostsUncheckedCreateWithoutCommentsInput>
+    where?: PostsWhereInput
+  }
+
+  export type PostsUpdateToOneWithWhereWithoutCommentsInput = {
+    where?: PostsWhereInput
+    data: XOR<PostsUpdateWithoutCommentsInput, PostsUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type PostsUpdateWithoutCommentsInput = {
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
+    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Post_Likes?: Post_LikesUpdateManyWithoutPostsNestedInput
+    Users?: UsersUpdateOneRequiredWithoutPostsNestedInput
+  }
+
+  export type PostsUncheckedUpdateWithoutCommentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
+    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Post_Likes?: Post_LikesUncheckedUpdateManyWithoutPostsNestedInput
   }
 
   export type UsersCreateWithoutFollows_Follows_follower_idToUsersInput = {
@@ -9938,8 +9938,8 @@ export namespace Prisma {
     updated_at?: Date | string | null
     Comments?: CommentsCreateNestedManyWithoutUsersInput
     Follows_Follows_following_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photo_Likes?: Photo_LikesCreateNestedManyWithoutUsersInput
-    Photos?: PhotosCreateNestedManyWithoutUsersInput
+    Post_Likes?: Post_LikesCreateNestedManyWithoutUsersInput
+    Posts?: PostsCreateNestedManyWithoutUsersInput
     User_Sessions?: User_SessionsCreateNestedManyWithoutUsersInput
   }
 
@@ -9958,8 +9958,8 @@ export namespace Prisma {
     updated_at?: Date | string | null
     Comments?: CommentsUncheckedCreateNestedManyWithoutUsersInput
     Follows_Follows_following_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photo_Likes?: Photo_LikesUncheckedCreateNestedManyWithoutUsersInput
-    Photos?: PhotosUncheckedCreateNestedManyWithoutUsersInput
+    Post_Likes?: Post_LikesUncheckedCreateNestedManyWithoutUsersInput
+    Posts?: PostsUncheckedCreateNestedManyWithoutUsersInput
     User_Sessions?: User_SessionsUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -9982,8 +9982,8 @@ export namespace Prisma {
     updated_at?: Date | string | null
     Comments?: CommentsCreateNestedManyWithoutUsersInput
     Follows_Follows_follower_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
-    Photo_Likes?: Photo_LikesCreateNestedManyWithoutUsersInput
-    Photos?: PhotosCreateNestedManyWithoutUsersInput
+    Post_Likes?: Post_LikesCreateNestedManyWithoutUsersInput
+    Posts?: PostsCreateNestedManyWithoutUsersInput
     User_Sessions?: User_SessionsCreateNestedManyWithoutUsersInput
   }
 
@@ -10002,8 +10002,8 @@ export namespace Prisma {
     updated_at?: Date | string | null
     Comments?: CommentsUncheckedCreateNestedManyWithoutUsersInput
     Follows_Follows_follower_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
-    Photo_Likes?: Photo_LikesUncheckedCreateNestedManyWithoutUsersInput
-    Photos?: PhotosUncheckedCreateNestedManyWithoutUsersInput
+    Post_Likes?: Post_LikesUncheckedCreateNestedManyWithoutUsersInput
+    Posts?: PostsUncheckedCreateNestedManyWithoutUsersInput
     User_Sessions?: User_SessionsUncheckedCreateNestedManyWithoutUsersInput
   }
 
@@ -10037,8 +10037,8 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Comments?: CommentsUpdateManyWithoutUsersNestedInput
     Follows_Follows_following_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUpdateManyWithoutUsersNestedInput
-    Photos?: PhotosUpdateManyWithoutUsersNestedInput
+    Post_Likes?: Post_LikesUpdateManyWithoutUsersNestedInput
+    Posts?: PostsUpdateManyWithoutUsersNestedInput
     User_Sessions?: User_SessionsUpdateManyWithoutUsersNestedInput
   }
 
@@ -10057,8 +10057,8 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Comments?: CommentsUncheckedUpdateManyWithoutUsersNestedInput
     Follows_Follows_following_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUncheckedUpdateManyWithoutUsersNestedInput
-    Photos?: PhotosUncheckedUpdateManyWithoutUsersNestedInput
+    Post_Likes?: Post_LikesUncheckedUpdateManyWithoutUsersNestedInput
+    Posts?: PostsUncheckedUpdateManyWithoutUsersNestedInput
     User_Sessions?: User_SessionsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -10087,8 +10087,8 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Comments?: CommentsUpdateManyWithoutUsersNestedInput
     Follows_Follows_follower_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUpdateManyWithoutUsersNestedInput
-    Photos?: PhotosUpdateManyWithoutUsersNestedInput
+    Post_Likes?: Post_LikesUpdateManyWithoutUsersNestedInput
+    Posts?: PostsUpdateManyWithoutUsersNestedInput
     User_Sessions?: User_SessionsUpdateManyWithoutUsersNestedInput
   }
 
@@ -10107,359 +10107,8 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Comments?: CommentsUncheckedUpdateManyWithoutUsersNestedInput
     Follows_Follows_follower_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUncheckedUpdateManyWithoutUsersNestedInput
-    Photos?: PhotosUncheckedUpdateManyWithoutUsersNestedInput
-    User_Sessions?: User_SessionsUncheckedUpdateManyWithoutUsersNestedInput
-  }
-
-  export type PhotosCreateWithoutPhoto_LikesInput = {
-    title?: string | null
-    description?: string | null
-    image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    Comments?: CommentsCreateNestedManyWithoutPhotosInput
-    Users: UsersCreateNestedOneWithoutPhotosInput
-  }
-
-  export type PhotosUncheckedCreateWithoutPhoto_LikesInput = {
-    id?: number
-    user_id: number
-    title?: string | null
-    description?: string | null
-    image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    Comments?: CommentsUncheckedCreateNestedManyWithoutPhotosInput
-  }
-
-  export type PhotosCreateOrConnectWithoutPhoto_LikesInput = {
-    where: PhotosWhereUniqueInput
-    create: XOR<PhotosCreateWithoutPhoto_LikesInput, PhotosUncheckedCreateWithoutPhoto_LikesInput>
-  }
-
-  export type UsersCreateWithoutPhoto_LikesInput = {
-    email: string
-    username: string
-    password: string
-    full_name?: string | null
-    avatar?: string | null
-    bio?: string | null
-    is_admin?: boolean | null
-    followers_count?: number | null
-    following_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    Comments?: CommentsCreateNestedManyWithoutUsersInput
-    Follows_Follows_follower_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
-    Follows_Follows_following_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photos?: PhotosCreateNestedManyWithoutUsersInput
-    User_Sessions?: User_SessionsCreateNestedManyWithoutUsersInput
-  }
-
-  export type UsersUncheckedCreateWithoutPhoto_LikesInput = {
-    id?: number
-    email: string
-    username: string
-    password: string
-    full_name?: string | null
-    avatar?: string | null
-    bio?: string | null
-    is_admin?: boolean | null
-    followers_count?: number | null
-    following_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    Comments?: CommentsUncheckedCreateNestedManyWithoutUsersInput
-    Follows_Follows_follower_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
-    Follows_Follows_following_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photos?: PhotosUncheckedCreateNestedManyWithoutUsersInput
-    User_Sessions?: User_SessionsUncheckedCreateNestedManyWithoutUsersInput
-  }
-
-  export type UsersCreateOrConnectWithoutPhoto_LikesInput = {
-    where: UsersWhereUniqueInput
-    create: XOR<UsersCreateWithoutPhoto_LikesInput, UsersUncheckedCreateWithoutPhoto_LikesInput>
-  }
-
-  export type PhotosUpsertWithoutPhoto_LikesInput = {
-    update: XOR<PhotosUpdateWithoutPhoto_LikesInput, PhotosUncheckedUpdateWithoutPhoto_LikesInput>
-    create: XOR<PhotosCreateWithoutPhoto_LikesInput, PhotosUncheckedCreateWithoutPhoto_LikesInput>
-    where?: PhotosWhereInput
-  }
-
-  export type PhotosUpdateToOneWithWhereWithoutPhoto_LikesInput = {
-    where?: PhotosWhereInput
-    data: XOR<PhotosUpdateWithoutPhoto_LikesInput, PhotosUncheckedUpdateWithoutPhoto_LikesInput>
-  }
-
-  export type PhotosUpdateWithoutPhoto_LikesInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Comments?: CommentsUpdateManyWithoutPhotosNestedInput
-    Users?: UsersUpdateOneRequiredWithoutPhotosNestedInput
-  }
-
-  export type PhotosUncheckedUpdateWithoutPhoto_LikesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Comments?: CommentsUncheckedUpdateManyWithoutPhotosNestedInput
-  }
-
-  export type UsersUpsertWithoutPhoto_LikesInput = {
-    update: XOR<UsersUpdateWithoutPhoto_LikesInput, UsersUncheckedUpdateWithoutPhoto_LikesInput>
-    create: XOR<UsersCreateWithoutPhoto_LikesInput, UsersUncheckedCreateWithoutPhoto_LikesInput>
-    where?: UsersWhereInput
-  }
-
-  export type UsersUpdateToOneWithWhereWithoutPhoto_LikesInput = {
-    where?: UsersWhereInput
-    data: XOR<UsersUpdateWithoutPhoto_LikesInput, UsersUncheckedUpdateWithoutPhoto_LikesInput>
-  }
-
-  export type UsersUpdateWithoutPhoto_LikesInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    is_admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    followers_count?: NullableIntFieldUpdateOperationsInput | number | null
-    following_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Comments?: CommentsUpdateManyWithoutUsersNestedInput
-    Follows_Follows_follower_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
-    Follows_Follows_following_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photos?: PhotosUpdateManyWithoutUsersNestedInput
-    User_Sessions?: User_SessionsUpdateManyWithoutUsersNestedInput
-  }
-
-  export type UsersUncheckedUpdateWithoutPhoto_LikesInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    is_admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    followers_count?: NullableIntFieldUpdateOperationsInput | number | null
-    following_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Comments?: CommentsUncheckedUpdateManyWithoutUsersNestedInput
-    Follows_Follows_follower_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
-    Follows_Follows_following_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photos?: PhotosUncheckedUpdateManyWithoutUsersNestedInput
-    User_Sessions?: User_SessionsUncheckedUpdateManyWithoutUsersNestedInput
-  }
-
-  export type CommentsCreateWithoutPhotosInput = {
-    content: string
-    created_at?: Date | string | null
-    Users: UsersCreateNestedOneWithoutCommentsInput
-  }
-
-  export type CommentsUncheckedCreateWithoutPhotosInput = {
-    id?: number
-    user_id: number
-    content: string
-    created_at?: Date | string | null
-  }
-
-  export type CommentsCreateOrConnectWithoutPhotosInput = {
-    where: CommentsWhereUniqueInput
-    create: XOR<CommentsCreateWithoutPhotosInput, CommentsUncheckedCreateWithoutPhotosInput>
-  }
-
-  export type CommentsCreateManyPhotosInputEnvelope = {
-    data: CommentsCreateManyPhotosInput | CommentsCreateManyPhotosInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type Photo_LikesCreateWithoutPhotosInput = {
-    created_at?: Date | string | null
-    Users: UsersCreateNestedOneWithoutPhoto_LikesInput
-  }
-
-  export type Photo_LikesUncheckedCreateWithoutPhotosInput = {
-    id?: number
-    user_id: number
-    created_at?: Date | string | null
-  }
-
-  export type Photo_LikesCreateOrConnectWithoutPhotosInput = {
-    where: Photo_LikesWhereUniqueInput
-    create: XOR<Photo_LikesCreateWithoutPhotosInput, Photo_LikesUncheckedCreateWithoutPhotosInput>
-  }
-
-  export type Photo_LikesCreateManyPhotosInputEnvelope = {
-    data: Photo_LikesCreateManyPhotosInput | Photo_LikesCreateManyPhotosInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type UsersCreateWithoutPhotosInput = {
-    email: string
-    username: string
-    password: string
-    full_name?: string | null
-    avatar?: string | null
-    bio?: string | null
-    is_admin?: boolean | null
-    followers_count?: number | null
-    following_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    Comments?: CommentsCreateNestedManyWithoutUsersInput
-    Follows_Follows_follower_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
-    Follows_Follows_following_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photo_Likes?: Photo_LikesCreateNestedManyWithoutUsersInput
-    User_Sessions?: User_SessionsCreateNestedManyWithoutUsersInput
-  }
-
-  export type UsersUncheckedCreateWithoutPhotosInput = {
-    id?: number
-    email: string
-    username: string
-    password: string
-    full_name?: string | null
-    avatar?: string | null
-    bio?: string | null
-    is_admin?: boolean | null
-    followers_count?: number | null
-    following_count?: number | null
-    created_at?: Date | string | null
-    updated_at?: Date | string | null
-    Comments?: CommentsUncheckedCreateNestedManyWithoutUsersInput
-    Follows_Follows_follower_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
-    Follows_Follows_following_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photo_Likes?: Photo_LikesUncheckedCreateNestedManyWithoutUsersInput
-    User_Sessions?: User_SessionsUncheckedCreateNestedManyWithoutUsersInput
-  }
-
-  export type UsersCreateOrConnectWithoutPhotosInput = {
-    where: UsersWhereUniqueInput
-    create: XOR<UsersCreateWithoutPhotosInput, UsersUncheckedCreateWithoutPhotosInput>
-  }
-
-  export type CommentsUpsertWithWhereUniqueWithoutPhotosInput = {
-    where: CommentsWhereUniqueInput
-    update: XOR<CommentsUpdateWithoutPhotosInput, CommentsUncheckedUpdateWithoutPhotosInput>
-    create: XOR<CommentsCreateWithoutPhotosInput, CommentsUncheckedCreateWithoutPhotosInput>
-  }
-
-  export type CommentsUpdateWithWhereUniqueWithoutPhotosInput = {
-    where: CommentsWhereUniqueInput
-    data: XOR<CommentsUpdateWithoutPhotosInput, CommentsUncheckedUpdateWithoutPhotosInput>
-  }
-
-  export type CommentsUpdateManyWithWhereWithoutPhotosInput = {
-    where: CommentsScalarWhereInput
-    data: XOR<CommentsUpdateManyMutationInput, CommentsUncheckedUpdateManyWithoutPhotosInput>
-  }
-
-  export type CommentsScalarWhereInput = {
-    AND?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
-    OR?: CommentsScalarWhereInput[]
-    NOT?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
-    id?: IntFilter<"Comments"> | number
-    photo_id?: IntFilter<"Comments"> | number
-    user_id?: IntFilter<"Comments"> | number
-    content?: StringFilter<"Comments"> | string
-    created_at?: DateTimeNullableFilter<"Comments"> | Date | string | null
-  }
-
-  export type Photo_LikesUpsertWithWhereUniqueWithoutPhotosInput = {
-    where: Photo_LikesWhereUniqueInput
-    update: XOR<Photo_LikesUpdateWithoutPhotosInput, Photo_LikesUncheckedUpdateWithoutPhotosInput>
-    create: XOR<Photo_LikesCreateWithoutPhotosInput, Photo_LikesUncheckedCreateWithoutPhotosInput>
-  }
-
-  export type Photo_LikesUpdateWithWhereUniqueWithoutPhotosInput = {
-    where: Photo_LikesWhereUniqueInput
-    data: XOR<Photo_LikesUpdateWithoutPhotosInput, Photo_LikesUncheckedUpdateWithoutPhotosInput>
-  }
-
-  export type Photo_LikesUpdateManyWithWhereWithoutPhotosInput = {
-    where: Photo_LikesScalarWhereInput
-    data: XOR<Photo_LikesUpdateManyMutationInput, Photo_LikesUncheckedUpdateManyWithoutPhotosInput>
-  }
-
-  export type Photo_LikesScalarWhereInput = {
-    AND?: Photo_LikesScalarWhereInput | Photo_LikesScalarWhereInput[]
-    OR?: Photo_LikesScalarWhereInput[]
-    NOT?: Photo_LikesScalarWhereInput | Photo_LikesScalarWhereInput[]
-    id?: IntFilter<"Photo_Likes"> | number
-    photo_id?: IntFilter<"Photo_Likes"> | number
-    user_id?: IntFilter<"Photo_Likes"> | number
-    created_at?: DateTimeNullableFilter<"Photo_Likes"> | Date | string | null
-  }
-
-  export type UsersUpsertWithoutPhotosInput = {
-    update: XOR<UsersUpdateWithoutPhotosInput, UsersUncheckedUpdateWithoutPhotosInput>
-    create: XOR<UsersCreateWithoutPhotosInput, UsersUncheckedCreateWithoutPhotosInput>
-    where?: UsersWhereInput
-  }
-
-  export type UsersUpdateToOneWithWhereWithoutPhotosInput = {
-    where?: UsersWhereInput
-    data: XOR<UsersUpdateWithoutPhotosInput, UsersUncheckedUpdateWithoutPhotosInput>
-  }
-
-  export type UsersUpdateWithoutPhotosInput = {
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    is_admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    followers_count?: NullableIntFieldUpdateOperationsInput | number | null
-    following_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Comments?: CommentsUpdateManyWithoutUsersNestedInput
-    Follows_Follows_follower_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
-    Follows_Follows_following_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUpdateManyWithoutUsersNestedInput
-    User_Sessions?: User_SessionsUpdateManyWithoutUsersNestedInput
-  }
-
-  export type UsersUncheckedUpdateWithoutPhotosInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    email?: StringFieldUpdateOperationsInput | string
-    username?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
-    full_name?: NullableStringFieldUpdateOperationsInput | string | null
-    avatar?: NullableStringFieldUpdateOperationsInput | string | null
-    bio?: NullableStringFieldUpdateOperationsInput | string | null
-    is_admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
-    followers_count?: NullableIntFieldUpdateOperationsInput | number | null
-    following_count?: NullableIntFieldUpdateOperationsInput | number | null
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Comments?: CommentsUncheckedUpdateManyWithoutUsersNestedInput
-    Follows_Follows_follower_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
-    Follows_Follows_following_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUncheckedUpdateManyWithoutUsersNestedInput
+    Post_Likes?: Post_LikesUncheckedUpdateManyWithoutUsersNestedInput
+    Posts?: PostsUncheckedUpdateManyWithoutUsersNestedInput
     User_Sessions?: User_SessionsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
@@ -10478,8 +10127,8 @@ export namespace Prisma {
     Comments?: CommentsCreateNestedManyWithoutUsersInput
     Follows_Follows_follower_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
     Follows_Follows_following_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photo_Likes?: Photo_LikesCreateNestedManyWithoutUsersInput
-    Photos?: PhotosCreateNestedManyWithoutUsersInput
+    Post_Likes?: Post_LikesCreateNestedManyWithoutUsersInput
+    Posts?: PostsCreateNestedManyWithoutUsersInput
   }
 
   export type UsersUncheckedCreateWithoutUser_SessionsInput = {
@@ -10498,8 +10147,8 @@ export namespace Prisma {
     Comments?: CommentsUncheckedCreateNestedManyWithoutUsersInput
     Follows_Follows_follower_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
     Follows_Follows_following_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
-    Photo_Likes?: Photo_LikesUncheckedCreateNestedManyWithoutUsersInput
-    Photos?: PhotosUncheckedCreateNestedManyWithoutUsersInput
+    Post_Likes?: Post_LikesUncheckedCreateNestedManyWithoutUsersInput
+    Posts?: PostsUncheckedCreateNestedManyWithoutUsersInput
   }
 
   export type UsersCreateOrConnectWithoutUser_SessionsInput = {
@@ -10533,8 +10182,8 @@ export namespace Prisma {
     Comments?: CommentsUpdateManyWithoutUsersNestedInput
     Follows_Follows_follower_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
     Follows_Follows_following_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUpdateManyWithoutUsersNestedInput
-    Photos?: PhotosUpdateManyWithoutUsersNestedInput
+    Post_Likes?: Post_LikesUpdateManyWithoutUsersNestedInput
+    Posts?: PostsUpdateManyWithoutUsersNestedInput
   }
 
   export type UsersUncheckedUpdateWithoutUser_SessionsInput = {
@@ -10553,19 +10202,19 @@ export namespace Prisma {
     Comments?: CommentsUncheckedUpdateManyWithoutUsersNestedInput
     Follows_Follows_follower_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
     Follows_Follows_following_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
-    Photo_Likes?: Photo_LikesUncheckedUpdateManyWithoutUsersNestedInput
-    Photos?: PhotosUncheckedUpdateManyWithoutUsersNestedInput
+    Post_Likes?: Post_LikesUncheckedUpdateManyWithoutUsersNestedInput
+    Posts?: PostsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type CommentsCreateWithoutUsersInput = {
     content: string
     created_at?: Date | string | null
-    Photos: PhotosCreateNestedOneWithoutCommentsInput
+    Posts: PostsCreateNestedOneWithoutCommentsInput
   }
 
   export type CommentsUncheckedCreateWithoutUsersInput = {
     id?: number
-    photo_id: number
+    post_id: number
     content: string
     created_at?: Date | string | null
   }
@@ -10622,28 +10271,28 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type Photo_LikesCreateWithoutUsersInput = {
+  export type Post_LikesCreateWithoutUsersInput = {
     created_at?: Date | string | null
-    Photos: PhotosCreateNestedOneWithoutPhoto_LikesInput
+    Posts: PostsCreateNestedOneWithoutPost_LikesInput
   }
 
-  export type Photo_LikesUncheckedCreateWithoutUsersInput = {
+  export type Post_LikesUncheckedCreateWithoutUsersInput = {
     id?: number
-    photo_id: number
+    post_id: number
     created_at?: Date | string | null
   }
 
-  export type Photo_LikesCreateOrConnectWithoutUsersInput = {
-    where: Photo_LikesWhereUniqueInput
-    create: XOR<Photo_LikesCreateWithoutUsersInput, Photo_LikesUncheckedCreateWithoutUsersInput>
+  export type Post_LikesCreateOrConnectWithoutUsersInput = {
+    where: Post_LikesWhereUniqueInput
+    create: XOR<Post_LikesCreateWithoutUsersInput, Post_LikesUncheckedCreateWithoutUsersInput>
   }
 
-  export type Photo_LikesCreateManyUsersInputEnvelope = {
-    data: Photo_LikesCreateManyUsersInput | Photo_LikesCreateManyUsersInput[]
+  export type Post_LikesCreateManyUsersInputEnvelope = {
+    data: Post_LikesCreateManyUsersInput | Post_LikesCreateManyUsersInput[]
     skipDuplicates?: boolean
   }
 
-  export type PhotosCreateWithoutUsersInput = {
+  export type PostsCreateWithoutUsersInput = {
     title?: string | null
     description?: string | null
     image_url: string
@@ -10651,11 +10300,11 @@ export namespace Prisma {
     comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    Comments?: CommentsCreateNestedManyWithoutPhotosInput
-    Photo_Likes?: Photo_LikesCreateNestedManyWithoutPhotosInput
+    Comments?: CommentsCreateNestedManyWithoutPostsInput
+    Post_Likes?: Post_LikesCreateNestedManyWithoutPostsInput
   }
 
-  export type PhotosUncheckedCreateWithoutUsersInput = {
+  export type PostsUncheckedCreateWithoutUsersInput = {
     id?: number
     title?: string | null
     description?: string | null
@@ -10664,17 +10313,17 @@ export namespace Prisma {
     comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
-    Comments?: CommentsUncheckedCreateNestedManyWithoutPhotosInput
-    Photo_Likes?: Photo_LikesUncheckedCreateNestedManyWithoutPhotosInput
+    Comments?: CommentsUncheckedCreateNestedManyWithoutPostsInput
+    Post_Likes?: Post_LikesUncheckedCreateNestedManyWithoutPostsInput
   }
 
-  export type PhotosCreateOrConnectWithoutUsersInput = {
-    where: PhotosWhereUniqueInput
-    create: XOR<PhotosCreateWithoutUsersInput, PhotosUncheckedCreateWithoutUsersInput>
+  export type PostsCreateOrConnectWithoutUsersInput = {
+    where: PostsWhereUniqueInput
+    create: XOR<PostsCreateWithoutUsersInput, PostsUncheckedCreateWithoutUsersInput>
   }
 
-  export type PhotosCreateManyUsersInputEnvelope = {
-    data: PhotosCreateManyUsersInput | PhotosCreateManyUsersInput[]
+  export type PostsCreateManyUsersInputEnvelope = {
+    data: PostsCreateManyUsersInput | PostsCreateManyUsersInput[]
     skipDuplicates?: boolean
   }
 
@@ -10715,6 +10364,17 @@ export namespace Prisma {
   export type CommentsUpdateManyWithWhereWithoutUsersInput = {
     where: CommentsScalarWhereInput
     data: XOR<CommentsUpdateManyMutationInput, CommentsUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type CommentsScalarWhereInput = {
+    AND?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
+    OR?: CommentsScalarWhereInput[]
+    NOT?: CommentsScalarWhereInput | CommentsScalarWhereInput[]
+    id?: IntFilter<"Comments"> | number
+    post_id?: IntFilter<"Comments"> | number
+    user_id?: IntFilter<"Comments"> | number
+    content?: StringFilter<"Comments"> | string
+    created_at?: DateTimeNullableFilter<"Comments"> | Date | string | null
   }
 
   export type FollowsUpsertWithWhereUniqueWithoutUsers_Follows_follower_idToUsersInput = {
@@ -10759,51 +10419,61 @@ export namespace Prisma {
     data: XOR<FollowsUpdateManyMutationInput, FollowsUncheckedUpdateManyWithoutUsers_Follows_following_idToUsersInput>
   }
 
-  export type Photo_LikesUpsertWithWhereUniqueWithoutUsersInput = {
-    where: Photo_LikesWhereUniqueInput
-    update: XOR<Photo_LikesUpdateWithoutUsersInput, Photo_LikesUncheckedUpdateWithoutUsersInput>
-    create: XOR<Photo_LikesCreateWithoutUsersInput, Photo_LikesUncheckedCreateWithoutUsersInput>
+  export type Post_LikesUpsertWithWhereUniqueWithoutUsersInput = {
+    where: Post_LikesWhereUniqueInput
+    update: XOR<Post_LikesUpdateWithoutUsersInput, Post_LikesUncheckedUpdateWithoutUsersInput>
+    create: XOR<Post_LikesCreateWithoutUsersInput, Post_LikesUncheckedCreateWithoutUsersInput>
   }
 
-  export type Photo_LikesUpdateWithWhereUniqueWithoutUsersInput = {
-    where: Photo_LikesWhereUniqueInput
-    data: XOR<Photo_LikesUpdateWithoutUsersInput, Photo_LikesUncheckedUpdateWithoutUsersInput>
+  export type Post_LikesUpdateWithWhereUniqueWithoutUsersInput = {
+    where: Post_LikesWhereUniqueInput
+    data: XOR<Post_LikesUpdateWithoutUsersInput, Post_LikesUncheckedUpdateWithoutUsersInput>
   }
 
-  export type Photo_LikesUpdateManyWithWhereWithoutUsersInput = {
-    where: Photo_LikesScalarWhereInput
-    data: XOR<Photo_LikesUpdateManyMutationInput, Photo_LikesUncheckedUpdateManyWithoutUsersInput>
+  export type Post_LikesUpdateManyWithWhereWithoutUsersInput = {
+    where: Post_LikesScalarWhereInput
+    data: XOR<Post_LikesUpdateManyMutationInput, Post_LikesUncheckedUpdateManyWithoutUsersInput>
   }
 
-  export type PhotosUpsertWithWhereUniqueWithoutUsersInput = {
-    where: PhotosWhereUniqueInput
-    update: XOR<PhotosUpdateWithoutUsersInput, PhotosUncheckedUpdateWithoutUsersInput>
-    create: XOR<PhotosCreateWithoutUsersInput, PhotosUncheckedCreateWithoutUsersInput>
+  export type Post_LikesScalarWhereInput = {
+    AND?: Post_LikesScalarWhereInput | Post_LikesScalarWhereInput[]
+    OR?: Post_LikesScalarWhereInput[]
+    NOT?: Post_LikesScalarWhereInput | Post_LikesScalarWhereInput[]
+    id?: IntFilter<"Post_Likes"> | number
+    post_id?: IntFilter<"Post_Likes"> | number
+    user_id?: IntFilter<"Post_Likes"> | number
+    created_at?: DateTimeNullableFilter<"Post_Likes"> | Date | string | null
   }
 
-  export type PhotosUpdateWithWhereUniqueWithoutUsersInput = {
-    where: PhotosWhereUniqueInput
-    data: XOR<PhotosUpdateWithoutUsersInput, PhotosUncheckedUpdateWithoutUsersInput>
+  export type PostsUpsertWithWhereUniqueWithoutUsersInput = {
+    where: PostsWhereUniqueInput
+    update: XOR<PostsUpdateWithoutUsersInput, PostsUncheckedUpdateWithoutUsersInput>
+    create: XOR<PostsCreateWithoutUsersInput, PostsUncheckedCreateWithoutUsersInput>
   }
 
-  export type PhotosUpdateManyWithWhereWithoutUsersInput = {
-    where: PhotosScalarWhereInput
-    data: XOR<PhotosUpdateManyMutationInput, PhotosUncheckedUpdateManyWithoutUsersInput>
+  export type PostsUpdateWithWhereUniqueWithoutUsersInput = {
+    where: PostsWhereUniqueInput
+    data: XOR<PostsUpdateWithoutUsersInput, PostsUncheckedUpdateWithoutUsersInput>
   }
 
-  export type PhotosScalarWhereInput = {
-    AND?: PhotosScalarWhereInput | PhotosScalarWhereInput[]
-    OR?: PhotosScalarWhereInput[]
-    NOT?: PhotosScalarWhereInput | PhotosScalarWhereInput[]
-    id?: IntFilter<"Photos"> | number
-    user_id?: IntFilter<"Photos"> | number
-    title?: StringNullableFilter<"Photos"> | string | null
-    description?: StringNullableFilter<"Photos"> | string | null
-    image_url?: StringFilter<"Photos"> | string
-    likes_count?: IntNullableFilter<"Photos"> | number | null
-    comments_count?: IntNullableFilter<"Photos"> | number | null
-    created_at?: DateTimeNullableFilter<"Photos"> | Date | string | null
-    updated_at?: DateTimeNullableFilter<"Photos"> | Date | string | null
+  export type PostsUpdateManyWithWhereWithoutUsersInput = {
+    where: PostsScalarWhereInput
+    data: XOR<PostsUpdateManyMutationInput, PostsUncheckedUpdateManyWithoutUsersInput>
+  }
+
+  export type PostsScalarWhereInput = {
+    AND?: PostsScalarWhereInput | PostsScalarWhereInput[]
+    OR?: PostsScalarWhereInput[]
+    NOT?: PostsScalarWhereInput | PostsScalarWhereInput[]
+    id?: IntFilter<"Posts"> | number
+    user_id?: IntFilter<"Posts"> | number
+    title?: StringNullableFilter<"Posts"> | string | null
+    description?: StringNullableFilter<"Posts"> | string | null
+    image_url?: StringFilter<"Posts"> | string
+    likes_count?: IntNullableFilter<"Posts"> | number | null
+    comments_count?: IntNullableFilter<"Posts"> | number | null
+    created_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
+    updated_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
   }
 
   export type User_SessionsUpsertWithWhereUniqueWithoutUsersInput = {
@@ -10833,59 +10503,339 @@ export namespace Prisma {
     created_at?: DateTimeNullableFilter<"User_Sessions"> | Date | string | null
   }
 
-  export type CommentsCreateManyPhotosInput = {
+  export type PostsCreateWithoutPost_LikesInput = {
+    title?: string | null
+    description?: string | null
+    image_url: string
+    likes_count?: number | null
+    comments_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    Comments?: CommentsCreateNestedManyWithoutPostsInput
+    Users: UsersCreateNestedOneWithoutPostsInput
+  }
+
+  export type PostsUncheckedCreateWithoutPost_LikesInput = {
+    id?: number
+    user_id: number
+    title?: string | null
+    description?: string | null
+    image_url: string
+    likes_count?: number | null
+    comments_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    Comments?: CommentsUncheckedCreateNestedManyWithoutPostsInput
+  }
+
+  export type PostsCreateOrConnectWithoutPost_LikesInput = {
+    where: PostsWhereUniqueInput
+    create: XOR<PostsCreateWithoutPost_LikesInput, PostsUncheckedCreateWithoutPost_LikesInput>
+  }
+
+  export type UsersCreateWithoutPost_LikesInput = {
+    email: string
+    username: string
+    password: string
+    full_name?: string | null
+    avatar?: string | null
+    bio?: string | null
+    is_admin?: boolean | null
+    followers_count?: number | null
+    following_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    Comments?: CommentsCreateNestedManyWithoutUsersInput
+    Follows_Follows_follower_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
+    Follows_Follows_following_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
+    Posts?: PostsCreateNestedManyWithoutUsersInput
+    User_Sessions?: User_SessionsCreateNestedManyWithoutUsersInput
+  }
+
+  export type UsersUncheckedCreateWithoutPost_LikesInput = {
+    id?: number
+    email: string
+    username: string
+    password: string
+    full_name?: string | null
+    avatar?: string | null
+    bio?: string | null
+    is_admin?: boolean | null
+    followers_count?: number | null
+    following_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    Comments?: CommentsUncheckedCreateNestedManyWithoutUsersInput
+    Follows_Follows_follower_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
+    Follows_Follows_following_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
+    Posts?: PostsUncheckedCreateNestedManyWithoutUsersInput
+    User_Sessions?: User_SessionsUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type UsersCreateOrConnectWithoutPost_LikesInput = {
+    where: UsersWhereUniqueInput
+    create: XOR<UsersCreateWithoutPost_LikesInput, UsersUncheckedCreateWithoutPost_LikesInput>
+  }
+
+  export type PostsUpsertWithoutPost_LikesInput = {
+    update: XOR<PostsUpdateWithoutPost_LikesInput, PostsUncheckedUpdateWithoutPost_LikesInput>
+    create: XOR<PostsCreateWithoutPost_LikesInput, PostsUncheckedCreateWithoutPost_LikesInput>
+    where?: PostsWhereInput
+  }
+
+  export type PostsUpdateToOneWithWhereWithoutPost_LikesInput = {
+    where?: PostsWhereInput
+    data: XOR<PostsUpdateWithoutPost_LikesInput, PostsUncheckedUpdateWithoutPost_LikesInput>
+  }
+
+  export type PostsUpdateWithoutPost_LikesInput = {
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
+    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Comments?: CommentsUpdateManyWithoutPostsNestedInput
+    Users?: UsersUpdateOneRequiredWithoutPostsNestedInput
+  }
+
+  export type PostsUncheckedUpdateWithoutPost_LikesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    image_url?: StringFieldUpdateOperationsInput | string
+    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
+    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Comments?: CommentsUncheckedUpdateManyWithoutPostsNestedInput
+  }
+
+  export type UsersUpsertWithoutPost_LikesInput = {
+    update: XOR<UsersUpdateWithoutPost_LikesInput, UsersUncheckedUpdateWithoutPost_LikesInput>
+    create: XOR<UsersCreateWithoutPost_LikesInput, UsersUncheckedCreateWithoutPost_LikesInput>
+    where?: UsersWhereInput
+  }
+
+  export type UsersUpdateToOneWithWhereWithoutPost_LikesInput = {
+    where?: UsersWhereInput
+    data: XOR<UsersUpdateWithoutPost_LikesInput, UsersUncheckedUpdateWithoutPost_LikesInput>
+  }
+
+  export type UsersUpdateWithoutPost_LikesInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    is_admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    followers_count?: NullableIntFieldUpdateOperationsInput | number | null
+    following_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Comments?: CommentsUpdateManyWithoutUsersNestedInput
+    Follows_Follows_follower_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
+    Follows_Follows_following_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
+    Posts?: PostsUpdateManyWithoutUsersNestedInput
+    User_Sessions?: User_SessionsUpdateManyWithoutUsersNestedInput
+  }
+
+  export type UsersUncheckedUpdateWithoutPost_LikesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    is_admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    followers_count?: NullableIntFieldUpdateOperationsInput | number | null
+    following_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Comments?: CommentsUncheckedUpdateManyWithoutUsersNestedInput
+    Follows_Follows_follower_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
+    Follows_Follows_following_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
+    Posts?: PostsUncheckedUpdateManyWithoutUsersNestedInput
+    User_Sessions?: User_SessionsUncheckedUpdateManyWithoutUsersNestedInput
+  }
+
+  export type CommentsCreateWithoutPostsInput = {
+    content: string
+    created_at?: Date | string | null
+    Users: UsersCreateNestedOneWithoutCommentsInput
+  }
+
+  export type CommentsUncheckedCreateWithoutPostsInput = {
     id?: number
     user_id: number
     content: string
     created_at?: Date | string | null
   }
 
-  export type Photo_LikesCreateManyPhotosInput = {
+  export type CommentsCreateOrConnectWithoutPostsInput = {
+    where: CommentsWhereUniqueInput
+    create: XOR<CommentsCreateWithoutPostsInput, CommentsUncheckedCreateWithoutPostsInput>
+  }
+
+  export type CommentsCreateManyPostsInputEnvelope = {
+    data: CommentsCreateManyPostsInput | CommentsCreateManyPostsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type Post_LikesCreateWithoutPostsInput = {
+    created_at?: Date | string | null
+    Users: UsersCreateNestedOneWithoutPost_LikesInput
+  }
+
+  export type Post_LikesUncheckedCreateWithoutPostsInput = {
     id?: number
     user_id: number
     created_at?: Date | string | null
   }
 
-  export type CommentsUpdateWithoutPhotosInput = {
-    content?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Users?: UsersUpdateOneRequiredWithoutCommentsNestedInput
+  export type Post_LikesCreateOrConnectWithoutPostsInput = {
+    where: Post_LikesWhereUniqueInput
+    create: XOR<Post_LikesCreateWithoutPostsInput, Post_LikesUncheckedCreateWithoutPostsInput>
   }
 
-  export type CommentsUncheckedUpdateWithoutPhotosInput = {
+  export type Post_LikesCreateManyPostsInputEnvelope = {
+    data: Post_LikesCreateManyPostsInput | Post_LikesCreateManyPostsInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UsersCreateWithoutPostsInput = {
+    email: string
+    username: string
+    password: string
+    full_name?: string | null
+    avatar?: string | null
+    bio?: string | null
+    is_admin?: boolean | null
+    followers_count?: number | null
+    following_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    Comments?: CommentsCreateNestedManyWithoutUsersInput
+    Follows_Follows_follower_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
+    Follows_Follows_following_idToUsers?: FollowsCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
+    Post_Likes?: Post_LikesCreateNestedManyWithoutUsersInput
+    User_Sessions?: User_SessionsCreateNestedManyWithoutUsersInput
+  }
+
+  export type UsersUncheckedCreateWithoutPostsInput = {
+    id?: number
+    email: string
+    username: string
+    password: string
+    full_name?: string | null
+    avatar?: string | null
+    bio?: string | null
+    is_admin?: boolean | null
+    followers_count?: number | null
+    following_count?: number | null
+    created_at?: Date | string | null
+    updated_at?: Date | string | null
+    Comments?: CommentsUncheckedCreateNestedManyWithoutUsersInput
+    Follows_Follows_follower_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_follower_idToUsersInput
+    Follows_Follows_following_idToUsers?: FollowsUncheckedCreateNestedManyWithoutUsers_Follows_following_idToUsersInput
+    Post_Likes?: Post_LikesUncheckedCreateNestedManyWithoutUsersInput
+    User_Sessions?: User_SessionsUncheckedCreateNestedManyWithoutUsersInput
+  }
+
+  export type UsersCreateOrConnectWithoutPostsInput = {
+    where: UsersWhereUniqueInput
+    create: XOR<UsersCreateWithoutPostsInput, UsersUncheckedCreateWithoutPostsInput>
+  }
+
+  export type CommentsUpsertWithWhereUniqueWithoutPostsInput = {
+    where: CommentsWhereUniqueInput
+    update: XOR<CommentsUpdateWithoutPostsInput, CommentsUncheckedUpdateWithoutPostsInput>
+    create: XOR<CommentsCreateWithoutPostsInput, CommentsUncheckedCreateWithoutPostsInput>
+  }
+
+  export type CommentsUpdateWithWhereUniqueWithoutPostsInput = {
+    where: CommentsWhereUniqueInput
+    data: XOR<CommentsUpdateWithoutPostsInput, CommentsUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type CommentsUpdateManyWithWhereWithoutPostsInput = {
+    where: CommentsScalarWhereInput
+    data: XOR<CommentsUpdateManyMutationInput, CommentsUncheckedUpdateManyWithoutPostsInput>
+  }
+
+  export type Post_LikesUpsertWithWhereUniqueWithoutPostsInput = {
+    where: Post_LikesWhereUniqueInput
+    update: XOR<Post_LikesUpdateWithoutPostsInput, Post_LikesUncheckedUpdateWithoutPostsInput>
+    create: XOR<Post_LikesCreateWithoutPostsInput, Post_LikesUncheckedCreateWithoutPostsInput>
+  }
+
+  export type Post_LikesUpdateWithWhereUniqueWithoutPostsInput = {
+    where: Post_LikesWhereUniqueInput
+    data: XOR<Post_LikesUpdateWithoutPostsInput, Post_LikesUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type Post_LikesUpdateManyWithWhereWithoutPostsInput = {
+    where: Post_LikesScalarWhereInput
+    data: XOR<Post_LikesUpdateManyMutationInput, Post_LikesUncheckedUpdateManyWithoutPostsInput>
+  }
+
+  export type UsersUpsertWithoutPostsInput = {
+    update: XOR<UsersUpdateWithoutPostsInput, UsersUncheckedUpdateWithoutPostsInput>
+    create: XOR<UsersCreateWithoutPostsInput, UsersUncheckedCreateWithoutPostsInput>
+    where?: UsersWhereInput
+  }
+
+  export type UsersUpdateToOneWithWhereWithoutPostsInput = {
+    where?: UsersWhereInput
+    data: XOR<UsersUpdateWithoutPostsInput, UsersUncheckedUpdateWithoutPostsInput>
+  }
+
+  export type UsersUpdateWithoutPostsInput = {
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    is_admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    followers_count?: NullableIntFieldUpdateOperationsInput | number | null
+    following_count?: NullableIntFieldUpdateOperationsInput | number | null
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Comments?: CommentsUpdateManyWithoutUsersNestedInput
+    Follows_Follows_follower_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
+    Follows_Follows_following_idToUsers?: FollowsUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
+    Post_Likes?: Post_LikesUpdateManyWithoutUsersNestedInput
+    User_Sessions?: User_SessionsUpdateManyWithoutUsersNestedInput
+  }
+
+  export type UsersUncheckedUpdateWithoutPostsInput = {
     id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    full_name?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    is_admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    followers_count?: NullableIntFieldUpdateOperationsInput | number | null
+    following_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type CommentsUncheckedUpdateManyWithoutPhotosInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    content?: StringFieldUpdateOperationsInput | string
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type Photo_LikesUpdateWithoutPhotosInput = {
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Users?: UsersUpdateOneRequiredWithoutPhoto_LikesNestedInput
-  }
-
-  export type Photo_LikesUncheckedUpdateWithoutPhotosInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type Photo_LikesUncheckedUpdateManyWithoutPhotosInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    user_id?: IntFieldUpdateOperationsInput | number
-    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Comments?: CommentsUncheckedUpdateManyWithoutUsersNestedInput
+    Follows_Follows_follower_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_follower_idToUsersNestedInput
+    Follows_Follows_following_idToUsers?: FollowsUncheckedUpdateManyWithoutUsers_Follows_following_idToUsersNestedInput
+    Post_Likes?: Post_LikesUncheckedUpdateManyWithoutUsersNestedInput
+    User_Sessions?: User_SessionsUncheckedUpdateManyWithoutUsersNestedInput
   }
 
   export type CommentsCreateManyUsersInput = {
     id?: number
-    photo_id: number
+    post_id: number
     content: string
     created_at?: Date | string | null
   }
@@ -10902,13 +10852,13 @@ export namespace Prisma {
     created_at?: Date | string | null
   }
 
-  export type Photo_LikesCreateManyUsersInput = {
+  export type Post_LikesCreateManyUsersInput = {
     id?: number
-    photo_id: number
+    post_id: number
     created_at?: Date | string | null
   }
 
-  export type PhotosCreateManyUsersInput = {
+  export type PostsCreateManyUsersInput = {
     id?: number
     title?: string | null
     description?: string | null
@@ -10929,19 +10879,19 @@ export namespace Prisma {
   export type CommentsUpdateWithoutUsersInput = {
     content?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Photos?: PhotosUpdateOneRequiredWithoutCommentsNestedInput
+    Posts?: PostsUpdateOneRequiredWithoutCommentsNestedInput
   }
 
   export type CommentsUncheckedUpdateWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    photo_id?: IntFieldUpdateOperationsInput | number
+    post_id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type CommentsUncheckedUpdateManyWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    photo_id?: IntFieldUpdateOperationsInput | number
+    post_id?: IntFieldUpdateOperationsInput | number
     content?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -10980,24 +10930,24 @@ export namespace Prisma {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type Photo_LikesUpdateWithoutUsersInput = {
+  export type Post_LikesUpdateWithoutUsersInput = {
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Photos?: PhotosUpdateOneRequiredWithoutPhoto_LikesNestedInput
+    Posts?: PostsUpdateOneRequiredWithoutPost_LikesNestedInput
   }
 
-  export type Photo_LikesUncheckedUpdateWithoutUsersInput = {
+  export type Post_LikesUncheckedUpdateWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    photo_id?: IntFieldUpdateOperationsInput | number
+    post_id?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type Photo_LikesUncheckedUpdateManyWithoutUsersInput = {
+  export type Post_LikesUncheckedUpdateManyWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    photo_id?: IntFieldUpdateOperationsInput | number
+    post_id?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type PhotosUpdateWithoutUsersInput = {
+  export type PostsUpdateWithoutUsersInput = {
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
@@ -11005,11 +10955,11 @@ export namespace Prisma {
     comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Comments?: CommentsUpdateManyWithoutPhotosNestedInput
-    Photo_Likes?: Photo_LikesUpdateManyWithoutPhotosNestedInput
+    Comments?: CommentsUpdateManyWithoutPostsNestedInput
+    Post_Likes?: Post_LikesUpdateManyWithoutPostsNestedInput
   }
 
-  export type PhotosUncheckedUpdateWithoutUsersInput = {
+  export type PostsUncheckedUpdateWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11018,11 +10968,11 @@ export namespace Prisma {
     comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Comments?: CommentsUncheckedUpdateManyWithoutPhotosNestedInput
-    Photo_Likes?: Photo_LikesUncheckedUpdateManyWithoutPhotosNestedInput
+    Comments?: CommentsUncheckedUpdateManyWithoutPostsNestedInput
+    Post_Likes?: Post_LikesUncheckedUpdateManyWithoutPostsNestedInput
   }
 
-  export type PhotosUncheckedUpdateManyWithoutUsersInput = {
+  export type PostsUncheckedUpdateManyWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
@@ -11050,6 +11000,56 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     refresh_token?: StringFieldUpdateOperationsInput | string
     expires_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type CommentsCreateManyPostsInput = {
+    id?: number
+    user_id: number
+    content: string
+    created_at?: Date | string | null
+  }
+
+  export type Post_LikesCreateManyPostsInput = {
+    id?: number
+    user_id: number
+    created_at?: Date | string | null
+  }
+
+  export type CommentsUpdateWithoutPostsInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Users?: UsersUpdateOneRequiredWithoutCommentsNestedInput
+  }
+
+  export type CommentsUncheckedUpdateWithoutPostsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type CommentsUncheckedUpdateManyWithoutPostsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    content?: StringFieldUpdateOperationsInput | string
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type Post_LikesUpdateWithoutPostsInput = {
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Users?: UsersUpdateOneRequiredWithoutPost_LikesNestedInput
+  }
+
+  export type Post_LikesUncheckedUpdateWithoutPostsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
+    created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type Post_LikesUncheckedUpdateManyWithoutPostsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    user_id?: IntFieldUpdateOperationsInput | number
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 

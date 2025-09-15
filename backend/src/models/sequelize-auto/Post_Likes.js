@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Comments', {
+  return sequelize.define('Post_Likes', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -22,14 +22,10 @@ module.exports = function(sequelize, DataTypes) {
         model: 'Users',
         key: 'id'
       }
-    },
-    content: {
-      type: DataTypes.TEXT,
-      allowNull: false
     }
   }, {
     sequelize,
-    tableName: 'Comments',
+    tableName: 'Post_Likes',
     timestamps: true,
     indexes: [
       {
@@ -41,10 +37,12 @@ module.exports = function(sequelize, DataTypes) {
         ]
       },
       {
-        name: "photo_id",
+        name: "unique_photo_like",
+        unique: true,
         using: "BTREE",
         fields: [
           { name: "post_id" },
+          { name: "user_id" },
         ]
       },
       {
