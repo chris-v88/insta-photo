@@ -1,7 +1,17 @@
+import { dataUserSchema } from '../schemas/user.schema';
 import { axiosInstance } from './axiosInstance.api';
-import { LoginUserPayload } from '../schemas/user.schema';
+
+export type LoginUserPayload = {
+  username: string;
+  password: string;
+};
 
 export const postLoginUser = async (data: LoginUserPayload) => {
-  const response = await axiosInstance.post('/auth/login', data);
-  return response.data;
+  try {
+    const rawResponse = await axiosInstance.post('/auth/login', data);
+    const resposne = dataUserSchema.parse(rawResponse.data);
+    return resposne;
+  } catch (err) {
+    console.error('Login API error:', err);
+  }
 };
