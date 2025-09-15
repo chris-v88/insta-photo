@@ -71,8 +71,9 @@ export const authService = {
   },
 
   authCheck: async (req, res) => {
-    const token = req.cookies.access_token;
-    if (!token) throw new UnauthorizedException('Token đã hết hạn hoặc không hợp lệ');
+    const accessToken = req.cookies.access_token;
+    const refreshToken = req.cookies.refresh_token;
+    if (!accessToken || !refreshToken) throw new UnauthorizedException('Token đã hết hạn hoặc không hợp lệ');
 
     try {
       const decodedAccessToken = tokenService.verifyAccessToken(accessToken, {
