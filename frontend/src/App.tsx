@@ -5,7 +5,10 @@ import ProtectedRoute from './pages/ProtectedRoute';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import { useStore } from './stores';
-import HomePage from './pages/HomePage';
+
+function HomePage() {
+  return <h1>Home Page (Public)</h1>;
+}
 
 const App = () => {
   const isAuthenticated = useStore((state) => state.isAuthenticated);

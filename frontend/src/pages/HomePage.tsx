@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/layouts/Layout';
+// import PageSpinner from '../components/ui/PageSpinner';
 
 const HomePage: React.FC = () => {
+
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">

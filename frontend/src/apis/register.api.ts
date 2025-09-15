@@ -10,5 +10,5 @@ export type CreateUserPayload = {
 
 export const postRegisterUser = async (data: CreateUserPayload) => {
   const response = await axiosInstance.post('/auth/register', data);
-  return response.data.user;
+  return response.data;
 };

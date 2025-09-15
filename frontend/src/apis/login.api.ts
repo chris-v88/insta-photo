@@ -9,12 +9,8 @@ export type LoginUserPayload = {
 export const postLoginUser = async (data: LoginUserPayload) => {
   try {
     const rawResponse = await axiosInstance.post('/auth/login', data);
-    console.log('Login response:', rawResponse.data);
-    if (rawResponse.data && rawResponse.data.data && rawResponse.data.data.user) {
-      return dataUserSchema.parse(rawResponse.data.data.user);
-    } else {
-      throw new Error('No user data in response');
-    }
+    const response = dataUserSchema.parse(rawResponse.data);
+    return response;
   } catch (err) {
     console.error('Login API error:', err);
   }
