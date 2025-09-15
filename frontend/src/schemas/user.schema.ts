@@ -2,28 +2,14 @@ import { z } from 'zod';
 
 // User object returned from backend
 export const dataUserSchema = z.object({
-  id: z.string(),
+  id: z.union([z.string(), z.number()]),
   email: z.string().email(),
   username: z.string(),
-  fullName: z.string(),
-  avatar: z.string().url(),
-  bio: z.string().optional(),
-  createdAt: z.string().optional(),
-  updatedAt: z.string().optional(),
-  isAdmin: z.boolean().optional(),
+  full_name: z.string().optional(),
+  avatar: z.string().url().nullable().optional(),
+  bio: z.string().nullable().optional(),
+  created_at: z.string().optional(),
+  updated_at: z.string().optional(),
+  is_admin: z.boolean().optional(),
 });
 export type UserResponse = z.infer<typeof dataUserSchema>;
-
-// PAYLOAD -- for creating user
-export type CreateUserPayload = {
-  email: string;
-  username: string;
-  full_name: string;
-  password: string;
-};
-
-// PAYLOAD -- for login
-export type LoginUserPayload = {
-  username: string;
-  password: string;
-};

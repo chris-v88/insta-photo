@@ -1,14 +1,19 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import { LoginFormData, loginSchema } from '../../schemas/form-login.schema';
 import { postLoginUser } from '../../apis/login.api';
+import { useStore } from '../../stores';
+import { dataUserSchema, UserResponse } from '../../schemas/user.schema';
 
 const LoginPage: React.FC = () => {
+  const navigate = useNavigate();
+  const setLogin = useStore((state) => state.setLogin);
+
   const {
     register,
     handleSubmit,
@@ -19,14 +24,27 @@ const LoginPage: React.FC = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    console.log(data);
     try {
       const payload = {
         username: data.username,
         password: data.password,
       };
-      const response = await postLoginUser(payload);
-      console.log('Login successful:', response);
+      const user = await postLoginUser(payload);
+      if (user) {
+        // Map backend fields to frontend User type
+        setLogin({
+          id: String(user.id),
+          email: user.email,
+          username: user.username,
+          fullName: user.full_name ?? '',
+          avatar: user.avatar ?? '',
+          bio: user.bio ?? '',
+          createdAt: user.created_at ?? '',
+          updatedAt: user.updated_at ?? '',
+          isAdmin: user.is_admin ?? false,
+        });
+        navigate('/');
+      }
     } catch (err) {
       console.error('Login failed:', err);
     }
