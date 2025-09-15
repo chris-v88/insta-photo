@@ -3,8 +3,6 @@ import Layout from '../components/layouts/Layout';
 // import PageSpinner from '../components/ui/PageSpinner';
 
 const HomePage: React.FC = () => {
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
 
   return (
     <Layout>
