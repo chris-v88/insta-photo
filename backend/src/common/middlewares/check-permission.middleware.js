@@ -6,7 +6,7 @@ export const checkPermission = async (req, res, next) => {
   // user
   const user = req?.user;
   if (!user) {
-    throw BadResquestException('User not found');
+    throw new BadResquestException('User not found');
   }
 
   // role admin thì cho qua
@@ -42,7 +42,7 @@ export const checkPermission = async (req, res, next) => {
   });
 
   if (!rolePermission) {
-    throw BadResquestException('❌ You do not have permission to access this resource');
+  throw new BadResquestException('❌ You do not have permission to access this resource');
   }
 
   // console.log('📌 Check Permission :', { user, method, endpoint, rolePermission });
