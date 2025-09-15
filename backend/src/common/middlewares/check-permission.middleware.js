@@ -3,12 +3,9 @@ import prisma from '../prisma/init.prisma';
 import { BadResquestException } from '../helpers/exception.helper';
 
 export const checkPermission = async (req, res, next) => {
-  console.log('Checking permissions...');
-
   // user
   const user = req?.user;
   if (!user) {
-    console.log('User not found - Unauthorized');
     throw BadResquestException('User not found');
   }
 
@@ -45,7 +42,6 @@ export const checkPermission = async (req, res, next) => {
   });
 
   if (!rolePermission) {
-    console.log('❌ Permission denied');
     throw BadResquestException('❌ You do not have permission to access this resource');
   }
 

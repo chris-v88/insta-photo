@@ -22,7 +22,7 @@ export const protect = async (req, res, next) => {
     
     req.user = user;
 
-    console.log('⚔️ Protect middleware', { authorization, type, accessToken, userId, user });
+    // console.log('⚔️ Protect middleware', { authorization, type, accessToken, userId, user });
 
     next();
   } catch (err) {
