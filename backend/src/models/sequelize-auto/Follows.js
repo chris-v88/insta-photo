@@ -1,9 +1,6 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
-
-export default class Follows extends Model {
-  static init(sequelize, DataTypes) {
-  return super.init({
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('Follows', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -25,17 +22,11 @@ export default class Follows extends Model {
         model: 'Users',
         key: 'id'
       }
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     }
   }, {
     sequelize,
     tableName: 'Follows',
-    timestamps: false,
-    freeTableName: true,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",
@@ -63,5 +54,4 @@ export default class Follows extends Model {
       },
     ]
   });
-  }
-}
+};

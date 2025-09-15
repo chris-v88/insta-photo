@@ -1,10 +1,13 @@
 import * as bcrypt from 'bcrypt';
 
-import { BadResquestException } from '../common/helpers/exception.helper';
+import { BadResquestException, UnauthorizedException } from '../common/helpers/exception.helper';
 import prisma from '../common/prisma/init.prisma';
 import { tokenService } from './token.service';
 import { convertTimeToMilliseconds } from '../common/utils/convertors';
-import { ACCESS_TOKEN_EXPIRES_IN, ACCESS_REFRESH_EXPIRES_IN } from '../common/constants/app.constant';
+import {
+  ACCESS_TOKEN_EXPIRES_IN,
+  ACCESS_REFRESH_EXPIRES_IN,
+} from '../common/constants/app.constant';
 
 export const authService = {
   register: async (req) => {
@@ -65,6 +68,27 @@ export const authService = {
     return {
       user,
     };
+  },
+
+  authCheck: async (req, res) => {
+    const token = req.cookies.access_token;
+    if (!token) throw new UnauthorizedException('Token đã hết hạn hoặc không hợp lệ');
+
+    try {
+      const decodedAccessToken = tokenService.verifyAccessToken(accessToken, {
+        ignoreExpiration: true,
+      });
+      const decodedRefreshToken = tokenService.verifyRefreshToken(refreshToken);
+      if (decodedAccessToken.userId !== decodedRefreshToken.userId)
+        throw new UnauthorizedException('Token Invalid');
+
+      const user = await prisma.users.findUnique({ where: { id: decodedRefreshToken.userId } });
+      if (!user) throw new UnauthorizedException('Token Invalid');
+
+      return { isAuthenticated: true, user };
+    } catch (err) {
+      throw new UnauthorizedException('Token đã hết hạn hoặc không hợp lệ');
+    }
   },
 
   findAll: async (req) => {
