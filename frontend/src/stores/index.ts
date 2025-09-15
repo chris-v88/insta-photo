@@ -16,6 +16,6 @@ export type StoreSlice<T> = (
 export const useStore = create<RootState>((set, get) => {
   return {
     ...createAuthStateSlice(set, get),
-    ...createUserStateSlice(set, get), // if you have other slices, add them here
+    ...createUserStateSlice(set, get),
   };
 });
