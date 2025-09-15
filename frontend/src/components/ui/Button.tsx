@@ -10,17 +10,18 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   children: React.ReactNode;
 };
 
-const Button: React.FC<ButtonProps> = ({
-  variant = 'primary',
-  size = 'md',
-  isLoading = false,
-  leftIcon: LeftIcon,
-  rightIcon: RightIcon,
-  children,
-  className = '',
-  disabled,
-  ...props
-}) => {
+const Button = (props: ButtonProps) => {
+  const {
+    variant = 'primary',
+    size = 'md',
+    isLoading = false,
+    leftIcon: LeftIcon,
+    rightIcon: RightIcon,
+    children,
+    className = '',
+    disabled,
+  } = props;
+
   const baseClasses =
     'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
 

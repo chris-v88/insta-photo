@@ -10,7 +10,7 @@ import { postLoginUser } from '../../apis/login.api';
 import { useStore } from '../../stores';
 import { dataUserSchema, UserResponse } from '../../schemas/user.schema';
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
   const navigate = useNavigate();
   const setLogin = useStore((state) => state.setLogin);
 

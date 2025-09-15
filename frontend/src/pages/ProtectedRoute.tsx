@@ -7,7 +7,8 @@ export type ProtectedRouteProps = {
   requireAdmin?: boolean;
 };
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, requireAdmin = false }) => {
+const ProtectedRoute = (props: ProtectedRouteProps) => {
+  const { children, requireAdmin = false } = props;
   const isAuthenticated = useStore((state) => state.isAuthenticated);
   const user = useStore((state) => state.user);
   const isAdmin = user?.isAdmin || false;

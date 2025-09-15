@@ -8,7 +8,7 @@ import Button from '../../components/ui/Button';
 import { registerSchema, RegisterFormData } from '../../schemas/form-register.schema';
 import { postRegisterUser } from '../../apis/register.api';
 
-const RegisterPage: React.FC = () => {
+const RegisterPage = () => {
   const {
     register,
     handleSubmit,

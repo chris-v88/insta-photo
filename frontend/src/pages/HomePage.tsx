@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '../components/layouts/Layout';
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">

@@ -8,7 +8,8 @@ export type IconProps = {
   className?: string;
 };
 
-const Icon: React.FC<IconProps> = ({ name, size = 24, color = 'currentColor', className = '' }) => {
+const Icon = (props: IconProps) => {
+  const { name, size = 24, color = 'currentColor', className = '' } = props;
   // Convert kebab-case or lowercase to PascalCase
   const iconKey = name
     .split('-')

@@ -5,7 +5,9 @@ export type PageSpinnerProps = {
   className?: string;
 };
 
-const PageSpinner: React.FC<PageSpinnerProps> = ({ size = 'md', className = '' }) => {
+const PageSpinner = (props: PageSpinnerProps) => {
+  const { size = 'md', className = '' } = props;
+
   const sizeClasses = {
     sm: 'w-4 h-4',
     md: 'w-8 h-8',
