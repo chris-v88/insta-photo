@@ -1,9 +1,6 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
-
-export default class User_Sessions extends Model {
-  static init(sequelize, DataTypes) {
-  return super.init({
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('User_Sessions', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -25,17 +22,11 @@ export default class User_Sessions extends Model {
     expires_at: {
       type: DataTypes.DATE,
       allowNull: false
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     }
   }, {
     sequelize,
     tableName: 'User_Sessions',
-    timestamps: false,
-    freeTableName: true,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",
@@ -54,5 +45,4 @@ export default class User_Sessions extends Model {
       },
     ]
   });
-  }
-}
+};

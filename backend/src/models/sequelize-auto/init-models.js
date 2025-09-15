@@ -1,19 +1,18 @@
-import _sequelize from "sequelize";
-const DataTypes = _sequelize.DataTypes;
-import _Comments from  "./Comments.js";
-import _Follows from  "./Follows.js";
-import _Photo_Likes from  "./Photo_Likes.js";
-import _Photos from  "./Photos.js";
-import _User_Sessions from  "./User_Sessions.js";
-import _Users from  "./Users.js";
+var DataTypes = require("sequelize").DataTypes;
+var _Comments = require("./Comments");
+var _Follows = require("./Follows");
+var _Photo_Likes = require("./Photo_Likes");
+var _Photos = require("./Photos");
+var _User_Sessions = require("./User_Sessions");
+var _Users = require("./Users");
 
-export default function initModels(sequelize) {
-  const Comments = _Comments.init(sequelize, DataTypes);
-  const Follows = _Follows.init(sequelize, DataTypes);
-  const Photo_Likes = _Photo_Likes.init(sequelize, DataTypes);
-  const Photos = _Photos.init(sequelize, DataTypes);
-  const User_Sessions = _User_Sessions.init(sequelize, DataTypes);
-  const Users = _Users.init(sequelize, DataTypes);
+function initModels(sequelize) {
+  var Comments = _Comments(sequelize, DataTypes);
+  var Follows = _Follows(sequelize, DataTypes);
+  var Photo_Likes = _Photo_Likes(sequelize, DataTypes);
+  var Photos = _Photos(sequelize, DataTypes);
+  var User_Sessions = _User_Sessions(sequelize, DataTypes);
+  var Users = _Users(sequelize, DataTypes);
 
   Comments.belongsTo(Photos, { as: "photo", foreignKey: "photo_id"});
   Photos.hasMany(Comments, { as: "Comments", foreignKey: "photo_id"});
@@ -41,3 +40,6 @@ export default function initModels(sequelize) {
     Users,
   };
 }
+module.exports = initModels;
+module.exports.initModels = initModels;
+module.exports.default = initModels;

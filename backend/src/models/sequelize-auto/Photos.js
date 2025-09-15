@@ -1,9 +1,6 @@
-import _sequelize from 'sequelize';
-const { Model, Sequelize } = _sequelize;
-
-export default class Photos extends Model {
-  static init(sequelize, DataTypes) {
-  return super.init({
+const Sequelize = require('sequelize');
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('Photos', {
     id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
@@ -39,22 +36,11 @@ export default class Photos extends Model {
       type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: 0
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: true,
-      defaultValue: Sequelize.Sequelize.literal('CURRENT_TIMESTAMP')
     }
   }, {
     sequelize,
     tableName: 'Photos',
-    timestamps: false,
-    freeTableName: true,
+    timestamps: true,
     indexes: [
       {
         name: "PRIMARY",
@@ -73,5 +59,4 @@ export default class Photos extends Model {
       },
     ]
   });
-  }
-}
+};
