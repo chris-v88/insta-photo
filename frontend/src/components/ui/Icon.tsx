@@ -9,8 +9,11 @@ export type IconProps = {
 };
 
 const Icon: React.FC<IconProps> = ({ name, size = 24, color = 'currentColor', className = '' }) => {
-  // Convert string to PascalCase for Lucide exports
-  const iconKey = name.charAt(0).toUpperCase() + name.slice(1);
+  // Convert kebab-case or lowercase to PascalCase
+  const iconKey = name
+    .split('-')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join('');
   const LucideIcon: LucideIcon = (Icons as any)[iconKey];
 
   if (!LucideIcon) return null;

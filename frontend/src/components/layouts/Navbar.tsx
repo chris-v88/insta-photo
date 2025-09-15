@@ -58,11 +58,15 @@ const Navbar = () => {
               {/* TODO: Log out */}
             </button>
             <Link to="/profile" className="flex items-center space-x-2">
-              <img
-                src={user?.avatar || ''}
-                alt={user?.fullName || 'User Avatar'}
-                className="w-8 h-8 rounded-full"
-              />
+              {user?.avatar ? (
+                <img
+                  src={user.avatar}
+                  alt={user.fullName || 'User Avatar'}
+                  className="w-8 h-8 rounded-full"
+                />
+              ) : (
+                <Icon name="user-round" size={32} className="text-gray-400" />
+              )}
               <span className="hidden md:block text-sm font-medium text-gray-700">
                 {user?.username}
               </span>
