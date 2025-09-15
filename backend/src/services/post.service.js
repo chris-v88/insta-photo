@@ -1,10 +1,13 @@
+import prisma from "../common/prisma/init.prisma";
+
 export const postService = {
   create: async (req) => {
     return `This action create`;
   },
 
   findAll: async (req) => {
-    return `This action returns all post`;
+    const posts = await prisma.posts.findMany();
+    return posts;
   },
 
   findOne: async (req) => {

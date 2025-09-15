@@ -122,7 +122,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.CommentsScalarFieldEnum = {
   id: 'id',
-  photo_id: 'photo_id',
+  post_id: 'post_id',
   user_id: 'user_id',
   content: 'content',
   created_at: 'created_at'
@@ -133,25 +133,6 @@ exports.Prisma.FollowsScalarFieldEnum = {
   follower_id: 'follower_id',
   following_id: 'following_id',
   created_at: 'created_at'
-};
-
-exports.Prisma.Photo_LikesScalarFieldEnum = {
-  id: 'id',
-  photo_id: 'photo_id',
-  user_id: 'user_id',
-  created_at: 'created_at'
-};
-
-exports.Prisma.PhotosScalarFieldEnum = {
-  id: 'id',
-  user_id: 'user_id',
-  title: 'title',
-  description: 'description',
-  image_url: 'image_url',
-  likes_count: 'likes_count',
-  comments_count: 'comments_count',
-  created_at: 'created_at',
-  updated_at: 'updated_at'
 };
 
 exports.Prisma.User_SessionsScalarFieldEnum = {
@@ -177,6 +158,25 @@ exports.Prisma.UsersScalarFieldEnum = {
   updated_at: 'updated_at'
 };
 
+exports.Prisma.Post_LikesScalarFieldEnum = {
+  id: 'id',
+  post_id: 'post_id',
+  user_id: 'user_id',
+  created_at: 'created_at'
+};
+
+exports.Prisma.PostsScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  title: 'title',
+  description: 'description',
+  image_url: 'image_url',
+  likes_count: 'likes_count',
+  comments_count: 'comments_count',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -189,12 +189,6 @@ exports.Prisma.NullsOrder = {
 
 exports.Prisma.CommentsOrderByRelevanceFieldEnum = {
   content: 'content'
-};
-
-exports.Prisma.PhotosOrderByRelevanceFieldEnum = {
-  title: 'title',
-  description: 'description',
-  image_url: 'image_url'
 };
 
 exports.Prisma.User_SessionsOrderByRelevanceFieldEnum = {
@@ -210,14 +204,20 @@ exports.Prisma.UsersOrderByRelevanceFieldEnum = {
   bio: 'bio'
 };
 
+exports.Prisma.PostsOrderByRelevanceFieldEnum = {
+  title: 'title',
+  description: 'description',
+  image_url: 'image_url'
+};
+
 
 exports.Prisma.ModelName = {
   Comments: 'Comments',
   Follows: 'Follows',
-  Photo_Likes: 'Photo_Likes',
-  Photos: 'Photos',
   User_Sessions: 'User_Sessions',
-  Users: 'Users'
+  Users: 'Users',
+  Post_Likes: 'Post_Likes',
+  Posts: 'Posts'
 };
 
 /**
