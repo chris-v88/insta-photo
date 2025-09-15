@@ -9,8 +9,8 @@ export type LoginUserPayload = {
 export const postLoginUser = async (data: LoginUserPayload) => {
   try {
     const rawResponse = await axiosInstance.post('/auth/login', data);
-    const resposne = dataUserSchema.parse(rawResponse.data);
-    return resposne;
+    const response = dataUserSchema.parse(rawResponse.data);
+    return response;
   } catch (err) {
     console.error('Login API error:', err);
   }
