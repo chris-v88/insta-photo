@@ -1,7 +1,6 @@
 import React from 'react';
 import { Post } from '../../types';
 import PostCard from './PostCard';
-import PageSpinner from '../ui/PageSpinner';
 
 interface PostGridProps {
   posts: Post[];

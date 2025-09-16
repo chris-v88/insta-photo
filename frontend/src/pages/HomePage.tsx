@@ -4,7 +4,7 @@ import Layout from '../components/layouts/Layout';
 // import PostGrid from '../components/posts/PostGrid';
 import { fetchPosts } from '../apis/fetchPosts.api';
 import ErrorPage from './ErrorPage';
-import PageSpinner from '../components/ui/PageSpinner';
+import Spinner from '../components/ui/Spinner';
 
 const HomePage = () => {
   const {
@@ -28,7 +28,7 @@ const HomePage = () => {
               Explore the latest photos from photographers around the world
             </p>
           </div>
-          <PageSpinner />
+          <Spinner />
         </div>
       </Layout>
     );

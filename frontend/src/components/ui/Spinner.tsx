@@ -1,11 +1,11 @@
 import React from 'react';
 
-export type PageSpinnerProps = {
+export type SpinnerProps = {
   size?: 'sm' | 'md' | 'lg';
   className?: string;
 };
 
-const PageSpinner = (props: PageSpinnerProps) => {
+const Spinner = (props: SpinnerProps) => {
   const { size = 'md', className = '' } = props;
 
   const sizeClasses = {
@@ -23,4 +23,4 @@ const PageSpinner = (props: PageSpinnerProps) => {
   );
 };
 
-export default PageSpinner;
+export default Spinner;

@@ -28,7 +28,7 @@ const LoginPage = () => {
     mode: 'onChange',
   });
 
-  const loginMutation = useMutation({
+  const { mutate: login, isPending } = useMutation({
     mutationFn: postLoginUser,
     onSuccess: (data) => {
       const user = {
@@ -51,8 +51,9 @@ const LoginPage = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
+    if (isPending) return;
     setApiError('');
-    loginMutation.mutate({
+    login({
       username: data.username,
       password: data.password,
     });
@@ -102,8 +103,8 @@ const LoginPage = () => {
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
 
-          <Button type="submit" className="w-full" disabled={loginMutation.isPending}>
-            {loginMutation.isPending ? 'Logging in...' : 'Log in'}
+          <Button type="submit" className="w-full">
+            {isPending ? 'Logging in...' : 'Log in'}
           </Button>
 
           <div className="text-center">
