@@ -6,8 +6,41 @@ export const postService = {
   },
 
   findAll: async (req) => {
-    const posts = await prisma.posts.findMany();
-    return posts;
+    let { page, limit } = req.query;
+
+    // lấy danh sách bài viết từ cơ sở dữ liệu
+    page = page ? parseInt(page) : 1;
+    limit = limit ? parseInt(limit) : 10;
+    
+    const offset = (page - 1) * limit;
+    const paginatedPosts = await prisma.posts.findMany({
+      skip: offset,
+      take: limit,
+      include: {
+        Users: {
+          select: {
+            id: true,
+            username: true,
+            avatar: true,
+          }
+        },
+      }
+    });
+
+    const totalPosts = await prisma.posts.count();
+    const totalPages = Math.ceil(totalPosts / limit);
+    const [posts, totalPostsCount] = await Promise.all([
+      paginatedPosts,
+      totalPosts,
+    ]);
+    
+    return {
+      page: page,
+      limit: limit,
+      totalPages: totalPages,
+      totalPosts: totalPostsCount,
+      data: posts || [],
+    };
   },
 
   findOne: async (req) => {
