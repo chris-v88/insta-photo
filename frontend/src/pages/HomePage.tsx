@@ -6,7 +6,7 @@ import Layout from '../components/layouts/Layout';
 import { fetchPosts } from '../apis/fetchPosts.api';
 import ErrorPage from './ErrorPage';
 import Spinner from '../components/ui/Spinner';
-import { Post } from '../types';
+import { transformPosts } from '../utils/transformPost';
 
 const HomePage = () => {
   const setPosts = useStore((state) => state.setPosts);
@@ -21,16 +21,7 @@ const HomePage = () => {
   });
 
   useEffect(() => {
-    const posts: Post[] = data?.map((post) => ({
-      id: String(post.id),
-      title: post.title,
-      description: post.description,
-      imageUrl: post.image_url,
-      likes: post.likes_count,
-      commentsCount: post.comments_count,
-      createdAt: post.created_at,
-    }));
-    setPosts(posts || []);
+    setPosts(transformPosts(data || []));
   }, [data, setPosts]);
 
   if (isLoading) {
