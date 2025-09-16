@@ -103,7 +103,7 @@ const LoginPage = () => {
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full" tone="primary">
             {isPending ? 'Logging in...' : 'Log in'}
           </Button>
 

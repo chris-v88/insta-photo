@@ -20,7 +20,7 @@ const ProtectedRoute = (props: ProtectedRouteProps) => {
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Access Denied</h1>
           <p className="text-gray-600 mb-4">Please log in to access this page.</p>
           <Link to="/login">
-            <Button variant="primary">Go to Login</Button>
+            <Button tone="primary">Go to Login</Button>
           </Link>
         </div>
       </div>
@@ -36,7 +36,7 @@ const ProtectedRoute = (props: ProtectedRouteProps) => {
             You don&apos;t have admin privileges to access this page.
           </p>
           <Link to="/">
-            <Button variant="primary">Go to Home</Button>
+            <Button tone="primary">Go to Home</Button>
           </Link>
         </div>
       </div>

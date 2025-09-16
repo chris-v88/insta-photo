@@ -6,7 +6,6 @@ export const fetchPosts = async () => {
     const rawResponse = await axiosInstance.get('/posts');
     if (rawResponse.data && rawResponse.data.data) {
       const response = dataFeedSchema.parse(rawResponse.data.data);
-      console.log('🚀 ~ fetchPosts ~ response:', response);
       return response;
     } else {
       throw new Error('No posts data in response');

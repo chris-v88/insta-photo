@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import Icon from '../components/ui/Icon';
 import Button from '../components/ui/Button';
 
-interface ErrorPageProps {
+export type ErrorPageProps = {
   error?: Error | string;
   onRetry?: () => void;
   showHomeButton?: boolean;
-}
+};
 
 const ErrorPage = (props: ErrorPageProps) => {
   const { error, onRetry, showHomeButton = true } = props;
