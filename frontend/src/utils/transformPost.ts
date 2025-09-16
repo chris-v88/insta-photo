@@ -1,17 +1,31 @@
+import { PaginatedFeedSchema } from '../schemas/posts.schema';
 import { Post } from '../types';
 
-export function transformPost(raw: any): Post {
+export const transformPosts = (data: PaginatedFeedSchema) => {
+  const posts: Post[] = data.data.map((item) => ({
+    id: String(item.id),
+    title: item.title,
+    description: item.description,
+    imageUrl: item.image_url,
+    user: item.Users
+      ? {
+          id: String(item.Users.id),
+          username: item.Users.username,
+          avatar: item.Users.avatar,
+          email: '',
+          fullName: '',
+          createdAt: '',
+        }
+      : undefined,
+    likes: item.likes_count,
+    commentsCount: item.comments_count,
+    createdAt: item.created_at,
+  }));
   return {
-    id: String(raw.id),
-    title: raw.title,
-    description: raw.description,
-    imageUrl: raw.image_url,
-    likes: raw.likes_count,
-    commentsCount: raw.comments_count,
-    createdAt: raw.created_at,
+    posts,
+    page: data.page,
+    limit: data.limit,
+    totalPages: data.totalPages,
+    totalPosts: data.totalPosts,
   };
-}
-
-export function transformPosts(rawList: any[]): Post[] {
-  return rawList.map(transformPost);
-}
+};
