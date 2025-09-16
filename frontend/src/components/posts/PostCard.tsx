@@ -8,9 +8,8 @@ export type PostCardType = {
 };
 
 const PostCard = (props: PostCardType) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { photo, onLike } = props;
 
+  const { photo } = props;
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       {/* Header */}
