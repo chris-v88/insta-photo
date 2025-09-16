@@ -12,6 +12,6 @@ export const fetchPosts = async () => {
     }
   } catch (err) {
     console.error('Fetch posts API error:', err);
-    throw new Error('Error on fetching API error');
+    throw new Error('Failed to fetch posts');
   }
 };
