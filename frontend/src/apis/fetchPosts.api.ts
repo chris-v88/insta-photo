@@ -3,7 +3,7 @@ import { axiosInstance } from './axiosInstance.api';
 
 export const fetchPosts = async () => {
   try {
-    const rawResponse = await axiosInstance.get('/posts');
+    const rawResponse = await axiosInstance.get('/postxs');
     if (rawResponse.data && rawResponse.data.data) {
       const response = dataFeedSchema.parse(rawResponse.data.data);
       return response;

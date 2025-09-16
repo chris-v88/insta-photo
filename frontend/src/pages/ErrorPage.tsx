@@ -31,7 +31,11 @@ const ErrorPage = (props: ErrorPageProps) => {
 
         <div className="space-y-4">
           {onRetry && (
-            <Button onClick={onRetry} className="w-full flex items-center justify-center space-x-2">
+            <Button
+              tone="warning"
+              onClick={onRetry}
+              className="w-full flex items-center justify-center space-x-2"
+            >
               <Icon name="RefreshCw" size={20} />
               <span>Try Again</span>
             </Button>
