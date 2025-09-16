@@ -1,16 +1,16 @@
 import type { StoreApi } from 'zustand';
 import { Post } from '../types';
 
-export type UserState = {
+export type PostState = {
   posts: Post[];
 
   setPosts: (posts: Post[]) => void;
 };
 
-export const createUserStateSlice = (
-  set: StoreApi<UserState>['setState'],
-  get: StoreApi<UserState>['getState']
-): UserState => ({
+export const createPostStateSlice = (
+  set: StoreApi<PostState>['setState'],
+  get: StoreApi<PostState>['getState']
+): PostState => ({
   posts: [],
 
   setPosts: (posts) => set({ posts }),

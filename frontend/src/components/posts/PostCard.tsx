@@ -14,21 +14,7 @@ const PostCard = (props: PostCardType) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       {/* Header */}
-      <div className="flex items-center p-4">
-        <Link to={`/user/${photo.user.id}`} className="flex items-center space-x-3">
-          <img
-            src={photo.user.avatar || `https://ui-avatars.com/api/background=random`}
-            alt={'photo.user.fullName'}
-            className="w-8 h-8 rounded-full"
-          />
-          <div>
-            <p className="font-medium text-gray-900">{photo.user.username}</p>
-            <p className="text-sm text-gray-500">
-              {new Date(photo.createdAt).toLocaleDateString()}
-            </p>
-          </div>
-        </Link>
-      </div>
+      <div className="flex items-center p-4"></div>
 
       {/* Image */}
       <Link to={`/photo/${photo.id}`}>

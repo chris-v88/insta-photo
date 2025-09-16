@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useStore } from '../stores';
 import { useQuery } from '@tanstack/react-query';
 import Layout from '../components/layouts/Layout';
 // import PostGrid from '../components/posts/PostGrid';
 import { fetchPosts } from '../apis/fetchPosts.api';
 import ErrorPage from './ErrorPage';
 import Spinner from '../components/ui/Spinner';
+import { Post } from '../types';
 
 const HomePage = () => {
+  const setPosts = useStore((state) => state.setPosts);
   const {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    data: posts = [],
+    data = [],
     isLoading,
     error,
     refetch,
@@ -17,6 +19,19 @@ const HomePage = () => {
     queryKey: ['posts'],
     queryFn: fetchPosts,
   });
+
+  useEffect(() => {
+    const posts: Post[] = data?.map((post) => ({
+      id: String(post.id),
+      title: post.title,
+      description: post.description,
+      imageUrl: post.image_url,
+      likes: post.likes_count,
+      commentsCount: post.comments_count,
+      createdAt: post.created_at,
+    }));
+    setPosts(posts || []);
+  }, [data, setPosts]);
 
   if (isLoading) {
     return (

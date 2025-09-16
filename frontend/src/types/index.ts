@@ -14,14 +14,10 @@ export type Post = {
   title: string;
   description?: string;
   imageUrl: string;
-  userId: string;
-  user: User;
+  user?: User;
   likes: number;
   commentsCount: number;
   createdAt: string;
-  updatedAt: string;
-  isLiked?: boolean;
-  isSaved?: boolean;
 };
 
 export type Comment = {
