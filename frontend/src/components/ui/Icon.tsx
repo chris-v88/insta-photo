@@ -1,23 +1,19 @@
 import * as Icons from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
+
+// All Lucide icon names as a union type
+export type LucideIconName = keyof typeof Icons;
 
 export type IconProps = {
-  name: string;
+  name: LucideIconName;
   size?: number;
   color?: string;
   className?: string;
 };
 
-const Icon: React.FC<IconProps> = ({ name, size = 24, color = 'currentColor', className = '' }) => {
-  // Convert kebab-case or lowercase to PascalCase
-  const iconKey = name
-    .split('-')
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
-    .join('');
-  const LucideIcon: LucideIcon = (Icons as any)[iconKey];
-
+const Icon = (props: IconProps) => {
+  const { name, size = 24, color = 'currentColor', className = '' } = props;
+  const LucideIcon = Icons[name] as React.ElementType | undefined;
   if (!LucideIcon) return null;
-
   return <LucideIcon size={size} color={color} className={className} />;
 };
 

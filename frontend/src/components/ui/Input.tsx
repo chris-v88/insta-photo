@@ -6,14 +6,8 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   helperText?: string;
 };
 
-const Input: React.FC<InputProps> = ({
-  label,
-  error,
-  helperText,
-  className = '',
-  id,
-  ...props
-}) => {
+const Input = (props: InputProps) => {
+  const { label, error, helperText, className = '', id } = props;
   const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
 
   return (

@@ -1,36 +1,47 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
 import { registerSchema, RegisterFormData } from '../../schemas/form-register.schema';
 import { postRegisterUser } from '../../apis/register.api';
 
-const RegisterPage: React.FC = () => {
+const RegisterPage = () => {
+  const navigate = useNavigate();
+  const [apiError, setApiError] = useState<string>('');
+
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     mode: 'onChange',
   });
 
+  const registerMutation = useMutation({
+    mutationFn: postRegisterUser,
+    onSuccess: () => {
+      navigate('/login', {
+        state: { message: 'Registration successful! Please log in with your credentials.' },
+      });
+    },
+    onError: (error: Error) => {
+      setApiError(error.message);
+    },
+  });
+
   const onSubmit = async (data: RegisterFormData) => {
-    try {
-      const payload = {
-        full_name: data.name,
-        username: data.username,
-        email: data.email,
-        password: data.password,
-      };
-      const response = await postRegisterUser(payload);
-      console.log('Registration successful:', response);
-    } catch (error) {
-      console.error('Registration failed:', error);
-    }
+    setApiError('');
+    registerMutation.mutate({
+      full_name: data.name,
+      username: data.username,
+      email: data.email,
+      password: data.password,
+    });
   };
 
   return (
@@ -52,6 +63,12 @@ const RegisterPage: React.FC = () => {
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          {apiError && (
+            <div className="bg-red-50 border border-red-200 rounded-md p-4">
+              <p className="text-sm text-red-800">{apiError}</p>
+            </div>
+          )}
+
           <div className="space-y-4">
             <Input label="Full Name" type="text" autoComplete="name" {...register('name')} />
             {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
@@ -85,8 +102,8 @@ const RegisterPage: React.FC = () => {
             )}
           </div>
 
-          <Button type="submit" className="w-full" disabled={!isValid}>
-            Create account
+          <Button type="submit" className="w-full" disabled={registerMutation.isPending}>
+            {registerMutation.isPending ? 'Creating account...' : 'Create account'}
           </Button>
 
           <div className="text-center text-sm text-gray-500">

@@ -7,7 +7,8 @@ export type ProtectedRouteProps = {
   requireAdmin?: boolean;
 };
 
-const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, requireAdmin = false }) => {
+const ProtectedRoute = (props: ProtectedRouteProps) => {
+  const { children, requireAdmin = false } = props;
   const isAuthenticated = useStore((state) => state.isAuthenticated);
   const user = useStore((state) => state.user);
   const isAdmin = user?.isAdmin || false;
@@ -19,7 +20,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, requireAdmin 
           <h1 className="text-2xl font-bold text-gray-900 mb-4">Access Denied</h1>
           <p className="text-gray-600 mb-4">Please log in to access this page.</p>
           <Link to="/login">
-            <Button variant="primary">Go to Login</Button>
+            <Button tone="primary">Go to Login</Button>
           </Link>
         </div>
       </div>
@@ -35,7 +36,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, requireAdmin 
             You don&apos;t have admin privileges to access this page.
           </p>
           <Link to="/">
-            <Button variant="primary">Go to Home</Button>
+            <Button tone="primary">Go to Home</Button>
           </Link>
         </div>
       </div>

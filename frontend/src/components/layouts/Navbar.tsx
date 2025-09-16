@@ -1,17 +1,16 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useStore } from '../../stores';
-import Icon from '../ui/Icon';
+import Icon, { LucideIconName } from '../ui/Icon';
 
 const Navbar = () => {
   const user = useStore((state) => state.user);
   const location = useLocation();
-  const navigate = useNavigate();
 
   const navItems = [
-    { icon: 'home', label: 'Home', path: '/' },
-    { icon: 'search', label: 'Search', path: '/search' },
-    { icon: 'plus-square', label: 'Create', path: '/create' },
-    { icon: 'user', label: 'Profile', path: '/profile' },
+    { icon: 'home' as LucideIconName, label: 'Home', path: '/' },
+    { icon: 'search' as LucideIconName, label: 'Search', path: '/search' },
+    { icon: 'plus-square' as LucideIconName, label: 'Create', path: '/create' },
+    { icon: 'user' as LucideIconName, label: 'Profile', path: '/profile' },
   ];
 
   return (
@@ -65,7 +64,7 @@ const Navbar = () => {
                   className="w-8 h-8 rounded-full"
                 />
               ) : (
-                <Icon name="user-round" size={32} className="text-gray-400" />
+                <Icon name="UserRound" size={32} className="text-gray-400" />
               )}
               <span className="hidden md:block text-sm font-medium text-gray-700">
                 {user?.username}

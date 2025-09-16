@@ -1,5 +1,5 @@
-import { User } from '../types';
 import type { StoreApi } from 'zustand';
+import { User } from '../types';
 
 export type UserState = {
   user: User | null;
