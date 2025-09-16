@@ -1,5 +1,4 @@
 import * as Icons from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
 
 // All Lucide icon names as a union type
 export type LucideIconName = keyof typeof Icons;

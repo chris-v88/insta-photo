@@ -1,11 +1,10 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useStore } from '../../stores';
 import Icon, { LucideIconName } from '../ui/Icon';
 
 const Navbar = () => {
   const user = useStore((state) => state.user);
   const location = useLocation();
-  const navigate = useNavigate();
 
   const navItems = [
     { icon: 'home' as LucideIconName, label: 'Home', path: '/' },

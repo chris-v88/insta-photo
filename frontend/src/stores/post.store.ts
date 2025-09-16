@@ -1,5 +1,5 @@
 import type { StoreApi } from 'zustand';
-import { Post, User } from '../types';
+import { Post } from '../types';
 
 export type UserState = {
   posts: Post[];

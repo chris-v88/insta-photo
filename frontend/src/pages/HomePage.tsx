@@ -1,13 +1,14 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Layout from '../components/layouts/Layout';
-import PostGrid from '../components/posts/PostGrid';
+// import PostGrid from '../components/posts/PostGrid';
 import { fetchPosts } from '../apis/fetchPosts.api';
 import ErrorPage from './ErrorPage';
 import PageSpinner from '../components/ui/PageSpinner';
 
 const HomePage = () => {
   const {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     data: posts = [],
     isLoading,
     error,
