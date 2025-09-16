@@ -9,7 +9,8 @@ interface ErrorPageProps {
   showHomeButton?: boolean;
 }
 
-const ErrorPage: React.FC<ErrorPageProps> = ({ error, onRetry, showHomeButton = true }) => {
+const ErrorPage = (props: ErrorPageProps) => {
+  const { error, onRetry, showHomeButton = true } = props;
   const errorMessage = typeof error === 'string' ? error : error?.message || 'Something went wrong';
 
   return (
