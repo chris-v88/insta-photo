@@ -1,4 +1,4 @@
-export interface User {
+export type User = {
   id: string;
   email: string;
   username: string;
@@ -6,11 +6,10 @@ export interface User {
   avatar?: string;
   bio?: string;
   createdAt: string;
-  updatedAt: string;
   isAdmin?: boolean;
-}
+};
 
-export interface Photo {
+export type Post = {
   id: string;
   title: string;
   description?: string;
@@ -23,9 +22,9 @@ export interface Photo {
   updatedAt: string;
   isLiked?: boolean;
   isSaved?: boolean;
-}
+};
 
-export interface Comment {
+export type Comment = {
   id: string;
   content: string;
   userId: string;
@@ -33,35 +32,28 @@ export interface Comment {
   user: User;
   createdAt: string;
   updatedAt: string;
-}
+};
 
-export interface SavedPhoto {
-  id: string;
-  userId: string;
-  photoId: string;
-  photo: Photo;
-  createdAt: string;
-}
-
-export interface AuthResponse {
+export type AuthResponse = {
   user: User;
   token: string;
-}
+};
 
-export interface ApiResponse<T> {
+export type ApiResponse<T> = {
   success: boolean;
   data?: T;
   message?: string;
   error?: string;
-}
+};
 
-export interface PaginationMeta {
+export type PaginationMeta = {
   page: number;
   limit: number;
   total: number;
   totalPages: number;
-}
+};
 
-export interface PaginatedResponse<T> extends ApiResponse<T[]> {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type PaginatedResponse<T = any> = ApiResponse<T> & {
   meta?: PaginationMeta;
-}
+};

@@ -1,53 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
 
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import { LoginFormData, loginSchema } from '../../schemas/form-login.schema';
 import { postLoginUser } from '../../apis/login.api';
 import { useStore } from '../../stores';
-import { dataUserSchema, UserResponse } from '../../schemas/user.schema';
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const setLogin = useStore((state) => state.setLogin);
+  const [apiError, setApiError] = useState<string>('');
+
+  // Get success message from navigation state
+  const successMessage = location.state?.message;
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     mode: 'onChange',
   });
 
-  const onSubmit = async (data: LoginFormData) => {
-    try {
-      const payload = {
+  const loginMutation = useMutation({
+    mutationFn: postLoginUser,
+    onSuccess: (data) => {
+      const user = {
+        id: String(data.id),
+        email: data.email,
         username: data.username,
-        password: data.password,
+        fullName: data.full_name ?? '',
+        avatar: data.avatar ?? '',
+        bio: data.bio ?? '',
+        createdAt: data.created_at ?? '',
+        updatedAt: data.updated_at ?? '',
+        isAdmin: data.is_admin ?? false,
       };
-      const user = await postLoginUser(payload);
-      if (user) {
-        // Map backend fields to frontend User type
-        setLogin({
-          id: String(user.id),
-          email: user.email,
-          username: user.username,
-          fullName: user.full_name ?? '',
-          avatar: user.avatar ?? '',
-          bio: user.bio ?? '',
-          createdAt: user.created_at ?? '',
-          updatedAt: user.updated_at ?? '',
-          isAdmin: user.is_admin ?? false,
-        });
-        navigate('/');
-      }
-    } catch (err) {
-      console.error('Login failed:', err);
-    }
+      setLogin(user);
+      navigate('/');
+    },
+    onError: (error: Error) => {
+      setApiError(error.message);
+    },
+  });
+
+  const onSubmit = async (data: LoginFormData) => {
+    setApiError('');
+    loginMutation.mutate({
+      username: data.username,
+      password: data.password,
+    });
   };
 
   return (
@@ -69,6 +77,18 @@ const LoginPage = () => {
         </div>
 
         <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>
+          {successMessage && (
+            <div className="bg-green-50 border border-green-200 rounded-md p-4">
+              <p className="text-sm text-green-800">{successMessage}</p>
+            </div>
+          )}
+
+          {apiError && (
+            <div className="bg-red-50 border border-red-200 rounded-md p-4">
+              <p className="text-sm text-red-800">{apiError}</p>
+            </div>
+          )}
+
           <div className="space-y-4">
             <Input label="Username" type="text" autoComplete="username" {...register('username')} />
             {errors.username && <p className="text-red-500 text-sm">{errors.username.message}</p>}
@@ -82,8 +102,8 @@ const LoginPage = () => {
             {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
           </div>
 
-          <Button type="submit" className="w-full">
-            Login in
+          <Button type="submit" className="w-full" disabled={loginMutation.isPending}>
+            {loginMutation.isPending ? 'Logging in...' : 'Log in'}
           </Button>
 
           <div className="text-center">

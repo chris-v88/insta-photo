@@ -1,17 +1,17 @@
 import type { StoreApi } from 'zustand';
-import { User } from '../types';
+import { Post, User } from '../types';
 
 export type UserState = {
-  user: User | null;
+  posts: Post[];
 
-  setUser: (user: User | null) => void;
+  setPosts: (posts: Post[]) => void;
 };
 
 export const createUserStateSlice = (
   set: StoreApi<UserState>['setState'],
   get: StoreApi<UserState>['getState']
 ): UserState => ({
-  user: null,
+  posts: [],
 
-  setUser: (user) => set({ user }),
+  setPosts: (posts) => set({ posts }),
 });
