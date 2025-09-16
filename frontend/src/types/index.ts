@@ -49,7 +49,6 @@ export type PaginationMeta = {
   totalPages: number;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type PaginatedResponse<T = any> = ApiResponse<T> & {
+export type PaginatedResponse<T> = ApiResponse<T> & {
   meta?: PaginationMeta;
 };
