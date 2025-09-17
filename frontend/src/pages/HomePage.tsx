@@ -6,23 +6,40 @@ import Layout from '../components/layouts/Layout';
 import { fetchPosts } from '../apis/fetchPosts.api';
 import ErrorPage from './ErrorPage';
 import Spinner from '../components/ui/Spinner';
+// import { transformPosts } from '../utils/transformPost';
+import Dropdown from '../components/ui/Dropdown';
+import { useState } from 'react';
 import { transformPosts } from '../utils/transformPost';
+// import Pagination from '../components/ui/Pagination';
 
 const HomePage = () => {
+  const [limit, setLimit] = useState(10);
+  const [totalPages, setTotalPages] = useState(10);
+  const [page, setPage] = useState(1);
+
   const setPosts = useStore((state) => state.setPosts);
-  const {
-    data = [],
-    isLoading,
-    error,
-    refetch,
-  } = useQuery({
-    queryKey: ['posts'],
-    queryFn: fetchPosts,
+
+  const { data, isLoading, error, refetch } = useQuery({
+    queryKey: ['posts', limit, page],
+    queryFn: () => fetchPosts({ limit, page }),
   });
 
   useEffect(() => {
-    setPosts(transformPosts(data || []));
+    if (!data || Array.isArray(data)) {
+      setPosts([]);
+      setTotalPages(1);
+      setPage(1);
+      return;
+    }
+    const { posts, page: currentPage, totalPages } = transformPosts(data);
+    setPosts(posts);
+    setTotalPages(totalPages);
+    setPage(currentPage);
   }, [data, setPosts]);
+
+  useEffect(() => {
+    setPage(1); // Reset to first page when limit changes
+  }, [limit]);
 
   if (isLoading) {
     return (
@@ -53,18 +70,37 @@ const HomePage = () => {
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Discover Amazing Photos</h1>
-          <p className="text-gray-600">
-            Explore the latest photos from photographers around the world
-          </p>
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Discover Amazing Photos</h1>
+            <p className="text-gray-600">
+              Explore the latest photos from photographers around the world
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-gray-700">Show</span>
+            <Dropdown
+              className="w-20"
+              value={limit}
+              onChange={(v) => setLimit(Number(v))}
+              options={[
+                { label: 10, value: 10 },
+                { label: 20, value: 20 },
+                { label: 35, value: 35 },
+                { label: 50, value: 50 },
+              ]}
+            />
+            <span className="text-gray-700">posts</span>
+          </div>
         </div>
         {/* <PostGrid posts={posts} /> */}
-        {data.length === 0 && (
+        {/* {data.length === 0 && (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">No posts found</p>
           </div>
-        )}
+        )} */}
+        {/* Pagination at the bottom */}
+        {/* <Pagination page={page} totalPages={data.totalPages || 1} onPageChange={setPage} /> */}
       </div>
     </Layout>
   );
