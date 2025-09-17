@@ -6,7 +6,6 @@ export const fetchPosts = async ({ limit, page }: { limit: number; page: number 
     const rawResponse = await axiosInstance.get('/posts', { params: { limit, page } });
     if (rawResponse.data && rawResponse.data.data) {
       const response = paginatedFeedSchema.parse(rawResponse.data.data);
-      console.log('🚀 ~ fetchPosts ~ response:', response);
       return response;
     } else {
       throw new Error('No posts data in response');
