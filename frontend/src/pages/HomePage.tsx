@@ -41,11 +41,6 @@ const HomePage = () => {
     setPage(1); // Reset to first page when limit changes
   }, [limit]);
 
-  useEffect(() => {
-    refetch();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [limit, page, refetch]);
-
   if (isLoading) {
     return (
       <Layout>
