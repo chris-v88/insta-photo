@@ -29,17 +29,13 @@ export const postService = {
 
     const totalPosts = await prisma.posts.count();
     const totalPages = Math.ceil(totalPosts / limit);
-    const [posts, totalPostsCount] = await Promise.all([
-      paginatedPosts,
-      totalPosts,
-    ]);
     
     return {
       page: page,
       limit: limit,
       totalPages: totalPages,
-      totalPosts: totalPostsCount,
-      data: posts || [],
+      totalPosts: totalPosts,
+      data: paginatedPosts || [],
     };
   },
 
