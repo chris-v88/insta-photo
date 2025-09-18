@@ -110,18 +110,6 @@ export const authService = {
     return { message: 'Logged out successfully' };
   },
 
-  findAll: async (req) => {
-    return `This action returns all auth`;
-  },
-
-  findOne: async (req) => {
-    return `This action returns a id: ${req.params.id} auth`;
-  },
-
-  update: async (req) => {
-    return `This action updates a id: ${req.params.id} auth`;
-  },
-
   remove: async (req) => {
     return `This action removes a id: ${req.params.id} auth`;
   },
