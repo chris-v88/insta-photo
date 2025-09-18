@@ -16,7 +16,7 @@ export const authController = {
 
   logout: async (req, res, next) => {
     const result = await authService.logout(req, res);
-    const response = responseSuccess(result, `Logout successfully`);
+    const response = responseSuccess(result, `Logged out successfully`);
     res.status(response.statusCode).json(response);
   },
 
