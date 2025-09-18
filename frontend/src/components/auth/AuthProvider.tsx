@@ -1,27 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { useLocation } from 'react-router-dom';
 import { getAuthCheck } from '../../apis/auth.api';
 import { useStore } from '../../stores';
 import Spinner from '../ui/Spinner';
 
-interface AuthProviderProps {
+export type AuthProviderProps = {
   children: React.ReactNode;
-}
+};
 
-const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+export const PUBLIC_ROUTES = ['/login', '/register'];
+
+const AuthProvider = (props: AuthProviderProps) => {
+  const { children } = props;
+
   const [isInitialized, setIsInitialized] = useState(false);
-  const { setLogin, setLogout } = useStore();
+  const { setLogin, setLogout, isAuthenticated } = useStore();
+  const location = useLocation();
+
+  const shouldCheckAuth = !isInitialized && !PUBLIC_ROUTES.includes(location.pathname);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['auth-check'],
     queryFn: getAuthCheck,
-    retry: false, // Don't retry failed auth checks
+    enabled: shouldCheckAuth,
+    retry: false,
     refetchOnWindowFocus: false,
-    staleTime: Infinity, // Don't refetch unless explicitly invalidated
+    staleTime: Infinity,
   });
 
   useEffect(() => {
-    if (!isLoading) {
+    if (PUBLIC_ROUTES.includes(location.pathname) && !isAuthenticated) {
+      setIsInitialized(true);
+      return;
+    }
+
+    if (!isLoading && shouldCheckAuth) {
       if (data && data.isAuthenticated && data.user) {
         const user = {
           id: String(data.user.id),
@@ -40,10 +54,25 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       }
       setIsInitialized(true);
     }
-  }, [data, isLoading, error, setLogin, setLogout]);
 
-  // Show loading spinner while checking authentication
-  if (!isInitialized && isLoading) {
+    // If auth check failed or we shouldn't check, just initialize
+    if (!shouldCheckAuth && !isInitialized) {
+      setIsInitialized(true);
+    }
+  }, [
+    data,
+    isLoading,
+    error,
+    setLogin,
+    setLogout,
+    shouldCheckAuth,
+    isInitialized,
+    location.pathname,
+    isAuthenticated,
+  ]);
+
+  // Show loading spinner only when we're checking auth for the first time
+  if (!isInitialized && shouldCheckAuth && isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
