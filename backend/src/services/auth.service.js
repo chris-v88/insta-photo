@@ -57,12 +57,14 @@ export const authService = {
     res.cookie('access_token', tokens.accessToken, {
       httpOnly: true,
       maxAge: convertTimeToMilliseconds(ACCESS_TOKEN_EXPIRES_IN),
-      sameSite: 'strict',
+      sameSite: 'lax', // 'lax' for development
+      secure: process.env.NODE_ENV === 'production',
     });
     res.cookie('refresh_token', tokens.refreshToken, {
       httpOnly: true,
       maxAge: convertTimeToMilliseconds(ACCESS_REFRESH_EXPIRES_IN),
-      sameSite: 'strict',
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
     });
 
     return {
@@ -90,6 +92,22 @@ export const authService = {
     } catch (err) {
       throw new UnauthorizedException('Token đã hết hạn hoặc không hợp lệ');
     }
+  },
+
+  logout: async (req, res) => {
+    // Clear cookies
+    res.clearCookie('access_token', {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+    });
+    res.clearCookie('refresh_token', {
+      httpOnly: true,
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+    });
+    
+    return { message: 'Logged out successfully' };
   },
 
   findAll: async (req) => {

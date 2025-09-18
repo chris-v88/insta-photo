@@ -14,6 +14,18 @@ export const authController = {
     res.status(response.statusCode).json(response);
   },
 
+  logout: async (req, res, next) => {
+    const result = await authService.logout(req, res);
+    const response = responseSuccess(result, `Logout successfully`);
+    res.status(response.statusCode).json(response);
+  },
+
+  authCheck: async (req, res, next) => {
+    const result = await authService.authCheck(req, res);
+    const response = responseSuccess(result, `Auth check successfully`);
+    res.status(response.statusCode).json(response);
+  },
+
   remove: async (req, res, next) => {
     const result = await authService.remove(req);
     const response = responseSuccess(result, `Remove auth #${req.params.id} successfully`);
