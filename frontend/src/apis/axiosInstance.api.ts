@@ -9,4 +9,5 @@ if (!apiUrl) {
 }
 export const axiosInstance = axios.create({
   baseURL: apiUrl,
+  withCredentials: true, // Include cookies in requests
 });

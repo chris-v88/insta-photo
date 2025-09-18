@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import Button from '../../components/ui/Button';
 import Input from '../../components/ui/Input';
 import { LoginFormData, loginSchema } from '../../schemas/form-login.schema';
-import { postLoginUser } from '../../apis/login.api';
+import { postLoginUser } from '../../apis/auth.api';
 import { useStore } from '../../stores';
 
 const LoginPage = () => {

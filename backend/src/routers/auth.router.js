@@ -6,6 +6,8 @@ const authRouter = express.Router();
 // Tạo route CRUD
 authRouter.post('/register', authController.register);
 authRouter.post('/login', authController.login);
+authRouter.post('/logout', authController.logout);
+authRouter.get('/check', authController.authCheck);
 
 authRouter.delete('/:id', authController.remove);
 
