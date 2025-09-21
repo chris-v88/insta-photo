@@ -1,11 +1,13 @@
 import express from 'express';
+
 import { postController } from '../controllers/post.controller';
+import { protect } from '../common/middlewares/protect.middleware';
 
 const postRouter = express.Router();
 
-// Tạo route CRUD
-postRouter.post('/', postController.create);
 postRouter.get('/', postController.findAll);
+
+postRouter.post('/create', protect, postController.create);
 
 postRouter.get('/:id', postController.findOne);
 postRouter.patch('/:id', postController.update);
