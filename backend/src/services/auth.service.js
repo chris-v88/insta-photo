@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 
-import { BadResquestException, UnauthorizedException } from '../common/helpers/exception.helper';
+import { BadRequestException, UnauthorizedException } from '../common/helpers/exception.helper';
 import prisma from '../common/prisma/init.prisma';
 import { tokenService } from './token.service';
 import { convertTimeToMilliseconds } from '../common/utils/convertors';
@@ -18,7 +18,7 @@ export const authService = {
       },
     });
     if (isExistingUser) {
-      throw new BadResquestException('Email is already in use, please choose another email');
+      throw new BadRequestException('Email is already in use, please choose another email');
     }
     const passwordHash = bcrypt.hashSync(password, 10);
     const newUser = await prisma.users.create({
@@ -40,15 +40,15 @@ export const authService = {
       },
     });
     if (!user) {
-      throw new BadResquestException('Account does not exist');
+      throw new BadRequestException('Account does not exist');
     }
     if (!user.password) {
-      throw new BadResquestException('Password does not exist');
+      throw new BadRequestException('Password does not exist');
     }
 
     const isPasswordValid = bcrypt.compareSync(password, user.password);
     if (!isPasswordValid) {
-      throw new BadResquestException('Incorrect password');
+      throw new BadRequestException('Incorrect password');
     }
 
     const tokens = tokenService.createTokens(user.id);

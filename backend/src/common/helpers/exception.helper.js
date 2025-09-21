@@ -1,4 +1,4 @@
-export class BadResquestException extends Error {
+export class BadRequestException extends Error {
   constructor(message = 'Bad Request Exception') {
     super(message);
     this.code = 400;

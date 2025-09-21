@@ -1,12 +1,12 @@
 import { userService } from '../services/user.service';
 import { responseSuccess } from '../common/helpers/response.helpers';
-import { BadResquestException, UnauthorizedException } from '../common/helpers/exception.helper';
+import { BadRequestException, UnauthorizedException } from '../common/helpers/exception.helper';
 
 export const userController = {
 
   uploadAvatar: async (req, res, next) => {
     if (!req.file) {
-      throw new BadResquestException('No file uploaded');
+      throw new BadRequestException('No file uploaded');
     }
     if (!req.user || !req.user.id) {
       throw new UnauthorizedException('User not authenticated');

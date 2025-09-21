@@ -1,4 +1,4 @@
-import { BadResquestException } from '../common/helpers/exception.helper';
+import { BadRequestException } from '../common/helpers/exception.helper';
 import prisma from '../common/prisma/init.prisma';
 import cloudinary from '../common/cloudinary/init.cloudinary';
 
@@ -12,7 +12,7 @@ export const userService = {
       where: { id: userId },
     });
     if (!user) {
-      throw new BadResquestException('User not found');
+      throw new BadRequestException('User not found');
     }
 
     // 2. Upload new image to Cloudinary
@@ -83,7 +83,7 @@ export const userService = {
     });
 
     if (!user) {
-      throw new BadResquestException('User not found');
+      throw new BadRequestException('User not found');
     }
 
     return {
@@ -123,7 +123,7 @@ export const userService = {
         },
       });
       if (existingUser) {
-        throw new BadResquestException('Username is already taken');
+        throw new BadRequestException('Username is already taken');
       }
     }
 
