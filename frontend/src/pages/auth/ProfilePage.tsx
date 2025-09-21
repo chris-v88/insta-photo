@@ -9,7 +9,7 @@ import Button from '../../components/ui/Button';
 import Icon from '../../components/ui/Icon';
 import { UserProfilePost } from '../../schemas/response';
 
-const ProfilePage: React.FC = () => {
+const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState<'photos' | 'saved'>('photos');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
