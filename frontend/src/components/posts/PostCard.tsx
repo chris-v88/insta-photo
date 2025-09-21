@@ -8,7 +8,6 @@ export type PostCardType = {
 };
 
 const PostCard = (props: PostCardType) => {
-
   const { photo } = props;
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -20,7 +19,7 @@ const PostCard = (props: PostCardType) => {
         <div className="aspect-square bg-gray-200">
           <img
             src={photo.imageUrl}
-            alt={photo.title}
+            alt="post-image"
             className="w-full h-full object-cover hover:opacity-95 transition-opacity"
           />
         </div>

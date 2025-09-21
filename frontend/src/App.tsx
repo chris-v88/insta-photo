@@ -6,6 +6,7 @@ import ProtectedRoute from './pages/ProtectedRoute';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import ProfilePage from './pages/auth/ProfilePage';
+import CreatePostPage from './pages/auth/CreatePost';
 import AuthProvider from './components/auth/AuthProvider';
 import { useStore } from './stores';
 import HomePage from './pages/HomePage';
@@ -43,6 +44,14 @@ const App = () => {
                 element={
                   <ProtectedRoute>
                     <ProfilePage />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/create"
+                element={
+                  <ProtectedRoute>
+                    <CreatePostPage />
                   </ProtectedRoute>
                 }
               />

@@ -89,6 +89,8 @@ ALTER TABLE `Post_Likes` DROP FOREIGN KEY `post_likes_ibfk_1`;
 ALTER TABLE `Post_Likes` DROP FOREIGN KEY `post_likes_ibfk_2`;
 ALTER TABLE `Post_Likes` ADD FOREIGN KEY (`post_id`) REFERENCES `Posts`(id) ON DELETE CASCADE;
 ALTER TABLE `Post_Likes` ADD FOREIGN KEY (`user_id`) REFERENCES `Users`(id) ON DELETE CASCADE;
+-- Drop column
+ALTER TABLE `Posts` DROP COLUMN `title`;
 
 
 -- Mock data

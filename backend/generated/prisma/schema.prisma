@@ -80,7 +80,6 @@ model Post_Likes {
 model Posts {
   id             Int          @id @default(autoincrement())
   user_id        Int
-  title          String?      @db.VarChar(255)
   description    String?      @db.Text
   image_url      String       @db.VarChar(500)
   likes_count    Int?         @default(0)

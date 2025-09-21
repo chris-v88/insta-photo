@@ -61,7 +61,6 @@ export const userService = {
         Posts: {
           select: {
             id: true,
-            title: true,
             description: true,
             image_url: true,
             likes_count: true,
@@ -101,7 +100,6 @@ export const userService = {
       updatedAt: user.updated_at,
       posts: user.Posts.map(post => ({
         id: post.id,
-        title: post.title,
         description: post.description,
         imageUrl: post.image_url,
         likesCount: post.likes_count,

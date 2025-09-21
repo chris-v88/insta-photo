@@ -12,7 +12,6 @@ export type UserInfo = z.infer<typeof userInfoSchema>;
 export const dataPostSchema = z.object({
   id: z.union([z.string(), z.number()]),
   user_id: z.union([z.string(), z.number()]),
-  title: z.string(),
   description: z.string(),
   image_url: z.string(),
   likes_count: z.number(),
