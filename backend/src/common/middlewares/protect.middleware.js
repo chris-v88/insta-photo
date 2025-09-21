@@ -8,7 +8,7 @@ export const protect = async (req, res, next) => {
     if (!authorization) throw new UnauthorizedException('Not authorized');
 
     // authorization.split(' ')[1];
-    // tách chuỗi Bearer <token>
+    // split Bearer <token> string
     const [type, accessToken] = authorization.split(' ');
     if (type !== 'Bearer' || !accessToken) throw new UnauthorizedException('Unauthorized');
 

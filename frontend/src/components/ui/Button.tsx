@@ -1,13 +1,13 @@
 import React from 'react';
-import { LucideIcon } from 'lucide-react';
+import Icon, { LucideIconName } from './Icon';
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   tone?: 'primary' | 'secondary' | 'danger' | 'warning';
   variant?: 'solid' | 'outline' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
-  leftIcon?: LucideIcon;
-  rightIcon?: LucideIcon;
+  leftIcon?: LucideIconName;
+  rightIcon?: LucideIconName;
   children: React.ReactNode;
 };
 
@@ -17,8 +17,8 @@ const Button = (props: ButtonProps) => {
     variant = 'solid',
     size = 'md',
     isLoading = false,
-    leftIcon: LeftIcon,
-    rightIcon: RightIcon,
+    leftIcon,
+    rightIcon,
     children,
     className = '',
     disabled,
@@ -53,11 +53,11 @@ const Button = (props: ButtonProps) => {
     <button className={classes} disabled={disabled || isLoading} {...rest}>
       {isLoading ? (
         <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
-      ) : LeftIcon ? (
-        <LeftIcon className="w-4 h-4 mr-2" />
+      ) : leftIcon ? (
+        <Icon name={leftIcon} className="w-4 h-4 mr-2" />
       ) : null}
       {children}
-      {RightIcon && !isLoading && <RightIcon className="w-4 h-4 ml-2" />}
+      {rightIcon && !isLoading && <Icon name={rightIcon} className="w-4 h-4 ml-2" />}
     </button>
   );
 };

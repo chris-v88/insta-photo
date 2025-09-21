@@ -9,7 +9,7 @@ export const checkPermission = async (req, res, next) => {
     throw new BadResquestException('User not found');
   }
 
-  // role admin thì cho qua
+  // admin role gets access
   if (user.roleId === 1) {
     next();
     return;

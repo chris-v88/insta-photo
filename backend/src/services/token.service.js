@@ -28,7 +28,7 @@ export const tokenService = {
       return jwt.verify(accessToken, ACCESS_TOKEN_KEY, options);
     } catch (err) {
       console.error(err);
-      throw new BadResquestException('Token đã hết hạn hoặc không hợp lệ');
+      throw new BadResquestException('Token has expired or is invalid');
     }
   },
 
@@ -37,7 +37,7 @@ export const tokenService = {
       return jwt.verify(refreshToken, ACCESS_REFRESH_SECRET, options);
     } catch (err) {
       console.error(err);
-      throw new BadResquestException('Token đã hết hạn hoặc không hợp lệ');
+      throw new BadResquestException('Token has expired or is invalid');
     }
   },
 };

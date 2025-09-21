@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react';
-import { Grid, Bookmark, Settings as SettingsIcon, Upload, Camera } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -7,6 +6,7 @@ import { getUserProfile, uploadUserAvatar } from '../../apis/user.api';
 import Layout from '../../components/layouts/Layout';
 import Spinner from '../../components/ui/Spinner';
 import Button from '../../components/ui/Button';
+import Icon from '../../components/ui/Icon';
 import { UserProfilePost } from '../../schemas/response';
 
 const ProfilePage: React.FC = () => {
@@ -28,14 +28,11 @@ const ProfilePage: React.FC = () => {
   const avatarUploadMutation = useMutation({
     mutationFn: uploadUserAvatar,
     onSuccess: () => {
-      // Invalidate and refetch user profile
       queryClient.invalidateQueries({ queryKey: ['user-profile'] });
-      // Also invalidate auth check to update navbar
       queryClient.invalidateQueries({ queryKey: ['auth-check'] });
     },
     onError: (error) => {
       console.error('Avatar upload failed:', error);
-      // You can add toast notification here
     },
   });
 
@@ -96,7 +93,7 @@ const ProfilePage: React.FC = () => {
                 {avatarUploadMutation.isPending ? (
                   <Spinner size="sm" />
                 ) : (
-                  <Camera className="w-4 h-4" />
+                  <Icon name="Camera" className="w-4 h-4" />
                 )}
               </button>
               <input
@@ -112,7 +109,7 @@ const ProfilePage: React.FC = () => {
               <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mb-4">
                 <h1 className="text-2xl font-bold text-gray-900">{userProfile.username}</h1>
                 <Link to="/settings">
-                  <Button variant="outline" size="sm" leftIcon={SettingsIcon}>
+                  <Button variant="outline" size="sm" leftIcon="Settings">
                     Edit Profile
                   </Button>
                 </Link>
@@ -155,7 +152,7 @@ const ProfilePage: React.FC = () => {
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
-              <Grid className="w-4 h-4" />
+              <Icon name="Grid" className="w-4 h-4" />
               <span>Posts</span>
             </button>
             <button
@@ -166,7 +163,7 @@ const ProfilePage: React.FC = () => {
                   : 'border-transparent text-gray-500 hover:text-gray-700'
               }`}
             >
-              <Bookmark className="w-4 h-4" />
+              <Icon name="Bookmark" className="w-4 h-4" />
               <span>Saved</span>
             </button>
           </div>
@@ -177,9 +174,9 @@ const ProfilePage: React.FC = () => {
           <div className="text-center py-12">
             <div className="w-16 h-16 mx-auto mb-4 text-gray-300">
               {activeTab === 'photos' ? (
-                <Grid className="w-full h-full" />
+                <Icon name="Grid" className="w-full h-full" />
               ) : (
-                <Bookmark className="w-full h-full" />
+                <Icon name="Bookmark" className="w-full h-full" />
               )}
             </div>
             <h3 className="text-lg font-medium text-gray-900 mb-2">
@@ -192,7 +189,7 @@ const ProfilePage: React.FC = () => {
             </p>
             {activeTab === 'photos' && (
               <Link to="/create" className="mt-4 inline-block">
-                <Button leftIcon={Upload}>Upload Your First Post</Button>
+                <Button leftIcon="Upload">Upload Your First Post</Button>
               </Link>
             )}
           </div>
