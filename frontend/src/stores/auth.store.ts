@@ -18,10 +18,10 @@ export const createAuthStateSlice = (
   setIsAuthenticated: (isAuth) => set({ isAuthenticated: isAuth }),
   setLogin: (user) => {
     set({ isAuthenticated: true });
-    get().setUser(user); // <-- This sets the user in the user slice!
+    get().setUser(user);
   },
   setLogout: () => {
     set({ isAuthenticated: false });
-    get().setUser(null); // <-- Optionally clear user on logout
+    get().setUser(null);
   },
 });
