@@ -2,26 +2,26 @@ import type { StoreApi } from 'zustand';
 import { User } from '../types';
 
 export type AuthState = {
-  user: User | null;
   isAuthenticated: boolean;
 
-  setUser: (user: User | null) => void;
   setIsAuthenticated: (isAuth: boolean) => void;
   setLogin: (user: User) => void;
   setLogout: () => void;
 };
 
 export const createAuthStateSlice = (
-  set: StoreApi<AuthState>['setState'],
-  get: StoreApi<AuthState>['getState']
+  set: StoreApi<any>['setState'],
+  get: StoreApi<any>['getState']
 ): AuthState => ({
-  user: null,
   isAuthenticated: false,
 
-  setUser: (user) => set({ user }),
   setIsAuthenticated: (isAuth) => set({ isAuthenticated: isAuth }),
   setLogin: (user) => {
-    set({ user, isAuthenticated: true });
+    set({ isAuthenticated: true });
+    get().setUser(user); // <-- This sets the user in the user slice!
   },
-  setLogout: () => set({ user: null, isAuthenticated: false }),
+  setLogout: () => {
+    set({ isAuthenticated: false });
+    get().setUser(null); // <-- Optionally clear user on logout
+  },
 });

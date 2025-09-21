@@ -1,4 +1,4 @@
-import { dataUserSchema } from '../schemas/user.schema';
+import { dataUserSchema } from '../schemas/response';
 import { axiosInstance } from './axiosInstance.api';
 
 export type LoginUserPayload = {
