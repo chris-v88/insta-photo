@@ -8,7 +8,7 @@ export const postService = {
   findAll: async (req) => {
     let { page, limit } = req.query;
 
-    // lấy danh sách bài viết từ cơ sở dữ liệu
+    // get list of posts from database
     page = page ? parseInt(page) : 1;
     limit = limit ? parseInt(limit) : 10;
     

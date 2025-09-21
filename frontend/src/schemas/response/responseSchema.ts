@@ -10,7 +10,6 @@ export const dataCommentSchema = z.object({
 });
 export type CommentResponse = z.infer<typeof dataCommentSchema>;
 
-// Example: API response for user profile
 export const userProfileResponseSchema = z.object({
   user: dataUserSchema,
   photos: z.array(dataPostSchema),
@@ -18,7 +17,6 @@ export const userProfileResponseSchema = z.object({
 });
 export type UserProfileResponse = z.infer<typeof userProfileResponseSchema>;
 
-// Example: API response for search
 export const dataSearchSchema = z.object({
   results: z.array(dataPostSchema),
   total: z.number(),

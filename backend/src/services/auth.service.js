@@ -1,6 +1,6 @@
 import * as bcrypt from 'bcrypt';
 
-import { BadResquestException, UnauthorizedException } from '../common/helpers/exception.helper';
+import { BadRequestException, UnauthorizedException } from '../common/helpers/exception.helper';
 import prisma from '../common/prisma/init.prisma';
 import { tokenService } from './token.service';
 import { convertTimeToMilliseconds } from '../common/utils/convertors';
@@ -18,7 +18,7 @@ export const authService = {
       },
     });
     if (isExistingUser) {
-      throw new BadResquestException('Email đã được sử dụng, vui lòng chọn email khác');
+      throw new BadRequestException('Email is already in use, please choose another email');
     }
     const passwordHash = bcrypt.hashSync(password, 10);
     const newUser = await prisma.users.create({
@@ -40,15 +40,15 @@ export const authService = {
       },
     });
     if (!user) {
-      throw new BadResquestException('Tài khoản không tồn tại');
+      throw new BadRequestException('Account does not exist');
     }
     if (!user.password) {
-      throw new BadResquestException('Mật khẩu không tồn tại');
+      throw new BadRequestException('Password does not exist');
     }
 
     const isPasswordValid = bcrypt.compareSync(password, user.password);
     if (!isPasswordValid) {
-      throw new BadResquestException('Mật khẩu không đúng');
+      throw new BadRequestException('Incorrect password');
     }
 
     const tokens = tokenService.createTokens(user.id);
@@ -75,7 +75,7 @@ export const authService = {
   authCheck: async (req, res) => {
     const accessToken = req.cookies.access_token;
     const refreshToken = req.cookies.refresh_token;
-    if (!accessToken || !refreshToken) throw new UnauthorizedException('Token đã hết hạn hoặc không hợp lệ');
+    if (!accessToken || !refreshToken) throw new UnauthorizedException('Token has expired or is invalid');
 
     try {
       const decodedAccessToken = tokenService.verifyAccessToken(accessToken, {
@@ -90,7 +90,7 @@ export const authService = {
 
       return { isAuthenticated: true, user };
     } catch (err) {
-      throw new UnauthorizedException('Token đã hết hạn hoặc không hợp lệ');
+      throw new UnauthorizedException('Token has expired or is invalid');
     }
   },
 

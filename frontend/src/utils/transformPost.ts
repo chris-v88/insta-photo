@@ -1,8 +1,8 @@
-import { PaginatedFeedSchema } from '../schemas/posts.schema';
+import { PaginatedFeedSchema, PostResponse } from '../schemas/response';
 import { Post } from '../types';
 
 export const transformPosts = (data: PaginatedFeedSchema) => {
-  const posts: Post[] = data.data.map((item) => ({
+  const posts: Post[] = data.data.map((item: PostResponse) => ({
     id: String(item.id),
     title: item.title,
     description: item.description,

@@ -6,7 +6,7 @@ import { useMutation } from '@tanstack/react-query';
 
 import Input from '../../components/ui/Input';
 import Button from '../../components/ui/Button';
-import { registerSchema, RegisterFormData } from '../../schemas/form-register.schema';
+import { registerSchema, RegisterFormData } from '../../schemas/form';
 import { postRegisterUser } from '../../apis/register.api';
 
 const RegisterPage = () => {
@@ -71,15 +71,19 @@ const RegisterPage = () => {
 
           <div className="space-y-4">
             <Input label="Full Name" type="text" autoComplete="name" {...register('name')} />
-            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
+            {errors.name?.message && (
+              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+            )}
 
             <Input label="Username" type="text" autoComplete="username" {...register('username')} />
-            {errors.username && (
+            {errors.username?.message && (
               <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>
             )}
 
             <Input label="Email address" type="email" autoComplete="email" {...register('email')} />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
+            {errors.email?.message && (
+              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+            )}
 
             <Input
               label="Password"
@@ -87,7 +91,7 @@ const RegisterPage = () => {
               autoComplete="new-password"
               {...register('password')}
             />
-            {errors.password && (
+            {errors.password?.message && (
               <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
             )}
 
@@ -97,7 +101,7 @@ const RegisterPage = () => {
               autoComplete="new-password"
               {...register('confirmPassword')}
             />
-            {errors.confirmPassword && (
+            {errors.confirmPassword?.message && (
               <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>
             )}
           </div>

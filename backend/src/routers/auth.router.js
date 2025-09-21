@@ -3,7 +3,7 @@ import { authController } from '../controllers/auth.controller';
 
 const authRouter = express.Router();
 
-// Tạo route CRUD
+// Create CRUD routes
 authRouter.post('/register', authController.register);
 authRouter.post('/login', authController.login);
 authRouter.post('/logout', authController.logout);

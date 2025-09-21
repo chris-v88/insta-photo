@@ -1,4 +1,4 @@
-import { paginatedFeedSchema } from '../schemas/posts.schema';
+import { paginatedFeedSchema } from '../schemas/response';
 import { axiosInstance } from './axiosInstance.api';
 
 export const fetchPosts = async ({ limit, page }: { limit: number; page: number }) => {
