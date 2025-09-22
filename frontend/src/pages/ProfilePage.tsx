@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
@@ -12,7 +12,6 @@ import { useStore } from '../stores';
 
 const ProfilePage = () => {
   const { username } = useParams<{ username: string }>();
-  const [activeTab, setActiveTab] = useState<'photos' | 'saved'>('photos');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
   const currentUser = useStore((state) => state.user);
@@ -77,7 +76,7 @@ const ProfilePage = () => {
     );
   }
 
-  const currentPhotos = activeTab === 'photos' ? userProfile.posts || [] : [];
+  const userPosts = userProfile.posts || [];
 
   return (
     <Layout>
@@ -155,55 +154,19 @@ const ProfilePage = () => {
           </div>
         </div>
 
-        {/* Tabs */}
-        <div className="flex justify-center mb-8">
-          <div className="flex border-b border-gray-200">
-            <button
-              onClick={() => setActiveTab('photos')}
-              className={`flex items-center space-x-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'photos'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              <Icon name="Grid" className="w-4 h-4" />
-              <span>Posts</span>
-            </button>
-            <button
-              onClick={() => setActiveTab('saved')}
-              className={`flex items-center space-x-2 px-6 py-3 text-sm font-medium border-b-2 transition-colors ${
-                activeTab === 'saved'
-                  ? 'border-blue-500 text-blue-600'
-                  : 'border-transparent text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              <Icon name="Bookmark" className="w-4 h-4" />
-              <span>Saved</span>
-            </button>
-          </div>
-        </div>
-
         {/* Post Grid */}
-        {currentPhotos.length === 0 ? (
+        {userPosts.length === 0 ? (
           <div className="text-center py-12">
             <div className="w-16 h-16 mx-auto mb-4 text-gray-300">
-              {activeTab === 'photos' ? (
-                <Icon name="Grid" className="w-full h-full" />
-              ) : (
-                <Icon name="Bookmark" className="w-full h-full" />
-              )}
+              <Icon name="Grid" className="w-full h-full" />
             </div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">
-              {activeTab === 'photos' ? 'No posts yet' : 'No saved photos'}
-            </h3>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">No posts yet</h3>
             <p className="text-gray-500">
-              {activeTab === 'photos'
-                ? isOwnProfile
-                  ? 'Start sharing your photography with the world!'
-                  : `${userProfile.username} hasn't shared any posts yet.`
-                : 'Save photos you love to view them later.'}
+              {isOwnProfile
+                ? 'Start sharing your photography with the world!'
+                : `${userProfile.username} hasn't shared any posts yet.`}
             </p>
-            {activeTab === 'photos' && isOwnProfile && (
+            {isOwnProfile && (
               <Link to="/create" className="mt-4 inline-block">
                 <Button leftIcon="Upload">Upload Your First Post</Button>
               </Link>
@@ -211,7 +174,7 @@ const ProfilePage = () => {
           </div>
         ) : (
           <div className="grid grid-cols-3 gap-1 md:gap-4">
-            {currentPhotos.map((photo: UserProfilePost) => (
+            {userPosts.map((photo: UserProfilePost) => (
               <Link
                 key={photo.id}
                 to={`/photo/${photo.id}`}
