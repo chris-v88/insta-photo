@@ -170,8 +170,6 @@ exports.Prisma.PostsScalarFieldEnum = {
   user_id: 'user_id',
   description: 'description',
   image_url: 'image_url',
-  likes_count: 'likes_count',
-  comments_count: 'comments_count',
   created_at: 'created_at',
   updated_at: 'updated_at'
 };

@@ -72,18 +72,34 @@ export const postService = {
             avatar: true,
           }
         },
+        _count: {
+          select: {
+            Post_Likes: true,
+            Comments: true,
+          }
+        }
+      },
+      orderBy: {
+        created_at: 'desc'
       }
     });
 
     const totalPosts = await prisma.posts.count();
     const totalPages = Math.ceil(totalPosts / limit);
     
+    // Transform posts to include counts
+    const transformedPosts = paginatedPosts.map(post => ({
+      ...post,
+      likes_count: post._count.Post_Likes,
+      comments_count: post._count.Comments,
+    }));
+    
     return {
       page: page,
       limit: limit,
       totalPages: totalPages,
       totalPosts: totalPosts,
-      data: paginatedPosts || [],
+      data: transformedPosts || [],
     };
   },
 

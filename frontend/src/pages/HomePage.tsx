@@ -10,6 +10,7 @@ import Spinner from '../components/ui/Spinner';
 import Dropdown from '../components/ui/Dropdown';
 import { useState } from 'react';
 import { transformPosts } from '../utils/transformPost';
+import PostGrid from '../components/posts/PostGrid';
 // import Pagination from '../components/ui/Pagination';
 
 const HomePage = () => {
@@ -17,6 +18,7 @@ const HomePage = () => {
   const [totalPages, setTotalPages] = useState(10);
   const [page, setPage] = useState(1);
 
+  const posts = useStore((state) => state.posts);
   const setPosts = useStore((state) => state.setPosts);
 
   const { data, isLoading, error, refetch } = useQuery({
@@ -93,12 +95,13 @@ const HomePage = () => {
             <span className="text-gray-700">posts</span>
           </div>
         </div>
-        {/* <PostGrid posts={posts} /> */}
-        {/* {data.length === 0 && (
+        {posts && posts?.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">No posts found</p>
           </div>
-        )} */}
+        ) : (
+          <PostGrid posts={posts} columns={2} />
+        )}
         {/* Pagination at the bottom */}
         {/* <Pagination page={page} totalPages={data.totalPages || 1} onPageChange={setPage} /> */}
       </div>

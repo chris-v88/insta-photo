@@ -7,7 +7,9 @@ import Layout from '../components/layouts/Layout';
 import Spinner from '../components/ui/Spinner';
 import Button from '../components/ui/Button';
 import Icon from '../components/ui/Icon';
+import PostGrid from '../components/posts/PostGrid';
 import { UserProfilePost } from '../schemas/response';
+import { Post } from '../types';
 import { useStore } from '../stores';
 
 const ProfilePage = () => {
@@ -77,6 +79,25 @@ const ProfilePage = () => {
   }
 
   const userPosts = userProfile.posts || [];
+
+  // Transform UserProfilePost to Post type for PostGrid
+  const transformedPosts: Post[] = userPosts.map((post: UserProfilePost) => ({
+    id: post.id.toString(),
+    description: post.description || '',
+    imageUrl: post.imageUrl,
+    user: {
+      id: userProfile.id.toString(),
+      email: '', // Not needed for display
+      username: userProfile.username,
+      fullName: userProfile.fullName || '',
+      avatar: userProfile.avatar || '',
+      bio: userProfile.bio || '',
+      createdAt: userProfile.createdAt,
+    },
+    likes: post.likesCount || 0,
+    commentsCount: post.commentsCount || 0,
+    createdAt: post.createdAt,
+  }));
 
   return (
     <Layout>
@@ -155,7 +176,7 @@ const ProfilePage = () => {
         </div>
 
         {/* Post Grid */}
-        {userPosts.length === 0 ? (
+        {transformedPosts.length === 0 ? (
           <div className="text-center py-12">
             <div className="w-16 h-16 mx-auto mb-4 text-gray-300">
               <Icon name="Grid" className="w-full h-full" />
@@ -173,21 +194,7 @@ const ProfilePage = () => {
             )}
           </div>
         ) : (
-          <div className="grid grid-cols-3 gap-1 md:gap-4">
-            {userPosts.map((photo: UserProfilePost) => (
-              <Link
-                key={photo.id}
-                to={`/photo/${photo.id}`}
-                className="aspect-square bg-gray-200 hover:opacity-90 transition-opacity"
-              >
-                <img
-                  src={photo.imageUrl}
-                  alt={photo.description || 'Post'}
-                  className="w-full h-full object-cover"
-                />
-              </Link>
-            ))}
-          </div>
+          <PostGrid posts={transformedPosts} />
         )}
       </div>
     </Layout>

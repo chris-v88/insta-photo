@@ -91,6 +91,8 @@ ALTER TABLE `Post_Likes` ADD FOREIGN KEY (`post_id`) REFERENCES `Posts`(id) ON D
 ALTER TABLE `Post_Likes` ADD FOREIGN KEY (`user_id`) REFERENCES `Users`(id) ON DELETE CASCADE;
 -- Drop column
 ALTER TABLE `Posts` DROP COLUMN `title`;
+ALTER TABLE `Posts` DROP COLUMN `likes_count`;
+ALTER TABLE `Posts` DROP COLUMN `comments_count`;
 
 
 -- Mock data

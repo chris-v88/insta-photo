@@ -6477,15 +6477,11 @@ export namespace Prisma {
   export type PostsAvgAggregateOutputType = {
     id: number | null
     user_id: number | null
-    likes_count: number | null
-    comments_count: number | null
   }
 
   export type PostsSumAggregateOutputType = {
     id: number | null
     user_id: number | null
-    likes_count: number | null
-    comments_count: number | null
   }
 
   export type PostsMinAggregateOutputType = {
@@ -6493,8 +6489,6 @@ export namespace Prisma {
     user_id: number | null
     description: string | null
     image_url: string | null
-    likes_count: number | null
-    comments_count: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -6504,8 +6498,6 @@ export namespace Prisma {
     user_id: number | null
     description: string | null
     image_url: string | null
-    likes_count: number | null
-    comments_count: number | null
     created_at: Date | null
     updated_at: Date | null
   }
@@ -6515,8 +6507,6 @@ export namespace Prisma {
     user_id: number
     description: number
     image_url: number
-    likes_count: number
-    comments_count: number
     created_at: number
     updated_at: number
     _all: number
@@ -6526,15 +6516,11 @@ export namespace Prisma {
   export type PostsAvgAggregateInputType = {
     id?: true
     user_id?: true
-    likes_count?: true
-    comments_count?: true
   }
 
   export type PostsSumAggregateInputType = {
     id?: true
     user_id?: true
-    likes_count?: true
-    comments_count?: true
   }
 
   export type PostsMinAggregateInputType = {
@@ -6542,8 +6528,6 @@ export namespace Prisma {
     user_id?: true
     description?: true
     image_url?: true
-    likes_count?: true
-    comments_count?: true
     created_at?: true
     updated_at?: true
   }
@@ -6553,8 +6537,6 @@ export namespace Prisma {
     user_id?: true
     description?: true
     image_url?: true
-    likes_count?: true
-    comments_count?: true
     created_at?: true
     updated_at?: true
   }
@@ -6564,8 +6546,6 @@ export namespace Prisma {
     user_id?: true
     description?: true
     image_url?: true
-    likes_count?: true
-    comments_count?: true
     created_at?: true
     updated_at?: true
     _all?: true
@@ -6662,8 +6642,6 @@ export namespace Prisma {
     user_id: number
     description: string | null
     image_url: string
-    likes_count: number | null
-    comments_count: number | null
     created_at: Date | null
     updated_at: Date | null
     _count: PostsCountAggregateOutputType | null
@@ -6692,8 +6670,6 @@ export namespace Prisma {
     user_id?: boolean
     description?: boolean
     image_url?: boolean
-    likes_count?: boolean
-    comments_count?: boolean
     created_at?: boolean
     updated_at?: boolean
     Comments?: boolean | Posts$CommentsArgs<ExtArgs>
@@ -6709,13 +6685,11 @@ export namespace Prisma {
     user_id?: boolean
     description?: boolean
     image_url?: boolean
-    likes_count?: boolean
-    comments_count?: boolean
     created_at?: boolean
     updated_at?: boolean
   }
 
-  export type PostsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "description" | "image_url" | "likes_count" | "comments_count" | "created_at" | "updated_at", ExtArgs["result"]["posts"]>
+  export type PostsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "description" | "image_url" | "created_at" | "updated_at", ExtArgs["result"]["posts"]>
   export type PostsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Comments?: boolean | Posts$CommentsArgs<ExtArgs>
     Post_Likes?: boolean | Posts$Post_LikesArgs<ExtArgs>
@@ -6735,8 +6709,6 @@ export namespace Prisma {
       user_id: number
       description: string | null
       image_url: string
-      likes_count: number | null
-      comments_count: number | null
       created_at: Date | null
       updated_at: Date | null
     }, ExtArgs["result"]["posts"]>
@@ -7115,8 +7087,6 @@ export namespace Prisma {
     readonly user_id: FieldRef<"Posts", 'Int'>
     readonly description: FieldRef<"Posts", 'String'>
     readonly image_url: FieldRef<"Posts", 'String'>
-    readonly likes_count: FieldRef<"Posts", 'Int'>
-    readonly comments_count: FieldRef<"Posts", 'Int'>
     readonly created_at: FieldRef<"Posts", 'DateTime'>
     readonly updated_at: FieldRef<"Posts", 'DateTime'>
   }
@@ -7607,8 +7577,6 @@ export namespace Prisma {
     user_id: 'user_id',
     description: 'description',
     image_url: 'image_url',
-    likes_count: 'likes_count',
-    comments_count: 'comments_count',
     created_at: 'created_at',
     updated_at: 'updated_at'
   };
@@ -8056,8 +8024,6 @@ export namespace Prisma {
     user_id?: IntFilter<"Posts"> | number
     description?: StringNullableFilter<"Posts"> | string | null
     image_url?: StringFilter<"Posts"> | string
-    likes_count?: IntNullableFilter<"Posts"> | number | null
-    comments_count?: IntNullableFilter<"Posts"> | number | null
     created_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
     Comments?: CommentsListRelationFilter
@@ -8070,8 +8036,6 @@ export namespace Prisma {
     user_id?: SortOrder
     description?: SortOrderInput | SortOrder
     image_url?: SortOrder
-    likes_count?: SortOrderInput | SortOrder
-    comments_count?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     Comments?: CommentsOrderByRelationAggregateInput
@@ -8088,8 +8052,6 @@ export namespace Prisma {
     user_id?: IntFilter<"Posts"> | number
     description?: StringNullableFilter<"Posts"> | string | null
     image_url?: StringFilter<"Posts"> | string
-    likes_count?: IntNullableFilter<"Posts"> | number | null
-    comments_count?: IntNullableFilter<"Posts"> | number | null
     created_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
     Comments?: CommentsListRelationFilter
@@ -8102,8 +8064,6 @@ export namespace Prisma {
     user_id?: SortOrder
     description?: SortOrderInput | SortOrder
     image_url?: SortOrder
-    likes_count?: SortOrderInput | SortOrder
-    comments_count?: SortOrderInput | SortOrder
     created_at?: SortOrderInput | SortOrder
     updated_at?: SortOrderInput | SortOrder
     _count?: PostsCountOrderByAggregateInput
@@ -8121,8 +8081,6 @@ export namespace Prisma {
     user_id?: IntWithAggregatesFilter<"Posts"> | number
     description?: StringNullableWithAggregatesFilter<"Posts"> | string | null
     image_url?: StringWithAggregatesFilter<"Posts"> | string
-    likes_count?: IntNullableWithAggregatesFilter<"Posts"> | number | null
-    comments_count?: IntNullableWithAggregatesFilter<"Posts"> | number | null
     created_at?: DateTimeNullableWithAggregatesFilter<"Posts"> | Date | string | null
     updated_at?: DateTimeNullableWithAggregatesFilter<"Posts"> | Date | string | null
   }
@@ -8447,8 +8405,6 @@ export namespace Prisma {
   export type PostsCreateInput = {
     description?: string | null
     image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     Comments?: CommentsCreateNestedManyWithoutPostsInput
@@ -8461,8 +8417,6 @@ export namespace Prisma {
     user_id: number
     description?: string | null
     image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     Comments?: CommentsUncheckedCreateNestedManyWithoutPostsInput
@@ -8472,8 +8426,6 @@ export namespace Prisma {
   export type PostsUpdateInput = {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Comments?: CommentsUpdateManyWithoutPostsNestedInput
@@ -8486,8 +8438,6 @@ export namespace Prisma {
     user_id?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Comments?: CommentsUncheckedUpdateManyWithoutPostsNestedInput
@@ -8499,8 +8449,6 @@ export namespace Prisma {
     user_id: number
     description?: string | null
     image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
   }
@@ -8508,8 +8456,6 @@ export namespace Prisma {
   export type PostsUpdateManyMutationInput = {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -8519,8 +8465,6 @@ export namespace Prisma {
     user_id?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
@@ -9005,8 +8949,6 @@ export namespace Prisma {
     user_id?: SortOrder
     description?: SortOrder
     image_url?: SortOrder
-    likes_count?: SortOrder
-    comments_count?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -9014,8 +8956,6 @@ export namespace Prisma {
   export type PostsAvgOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    likes_count?: SortOrder
-    comments_count?: SortOrder
   }
 
   export type PostsMaxOrderByAggregateInput = {
@@ -9023,8 +8963,6 @@ export namespace Prisma {
     user_id?: SortOrder
     description?: SortOrder
     image_url?: SortOrder
-    likes_count?: SortOrder
-    comments_count?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -9034,8 +8972,6 @@ export namespace Prisma {
     user_id?: SortOrder
     description?: SortOrder
     image_url?: SortOrder
-    likes_count?: SortOrder
-    comments_count?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
   }
@@ -9043,8 +8979,6 @@ export namespace Prisma {
   export type PostsSumOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    likes_count?: SortOrder
-    comments_count?: SortOrder
   }
 
   export type UsersCreateNestedOneWithoutCommentsInput = {
@@ -9783,8 +9717,6 @@ export namespace Prisma {
   export type PostsCreateWithoutCommentsInput = {
     description?: string | null
     image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     Post_Likes?: Post_LikesCreateNestedManyWithoutPostsInput
@@ -9796,8 +9728,6 @@ export namespace Prisma {
     user_id: number
     description?: string | null
     image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     Post_Likes?: Post_LikesUncheckedCreateNestedManyWithoutPostsInput
@@ -9872,8 +9802,6 @@ export namespace Prisma {
   export type PostsUpdateWithoutCommentsInput = {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Post_Likes?: Post_LikesUpdateManyWithoutPostsNestedInput
@@ -9885,8 +9813,6 @@ export namespace Prisma {
     user_id?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Post_Likes?: Post_LikesUncheckedUpdateManyWithoutPostsNestedInput
@@ -10263,8 +10189,6 @@ export namespace Prisma {
   export type PostsCreateWithoutUsersInput = {
     description?: string | null
     image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     Comments?: CommentsCreateNestedManyWithoutPostsInput
@@ -10275,8 +10199,6 @@ export namespace Prisma {
     id?: number
     description?: string | null
     image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     Comments?: CommentsUncheckedCreateNestedManyWithoutPostsInput
@@ -10435,8 +10357,6 @@ export namespace Prisma {
     user_id?: IntFilter<"Posts"> | number
     description?: StringNullableFilter<"Posts"> | string | null
     image_url?: StringFilter<"Posts"> | string
-    likes_count?: IntNullableFilter<"Posts"> | number | null
-    comments_count?: IntNullableFilter<"Posts"> | number | null
     created_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
     updated_at?: DateTimeNullableFilter<"Posts"> | Date | string | null
   }
@@ -10471,8 +10391,6 @@ export namespace Prisma {
   export type PostsCreateWithoutPost_LikesInput = {
     description?: string | null
     image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     Comments?: CommentsCreateNestedManyWithoutPostsInput
@@ -10484,8 +10402,6 @@ export namespace Prisma {
     user_id: number
     description?: string | null
     image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
     Comments?: CommentsUncheckedCreateNestedManyWithoutPostsInput
@@ -10554,8 +10470,6 @@ export namespace Prisma {
   export type PostsUpdateWithoutPost_LikesInput = {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Comments?: CommentsUpdateManyWithoutPostsNestedInput
@@ -10567,8 +10481,6 @@ export namespace Prisma {
     user_id?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Comments?: CommentsUncheckedUpdateManyWithoutPostsNestedInput
@@ -10823,8 +10735,6 @@ export namespace Prisma {
     id?: number
     description?: string | null
     image_url: string
-    likes_count?: number | null
-    comments_count?: number | null
     created_at?: Date | string | null
     updated_at?: Date | string | null
   }
@@ -10910,8 +10820,6 @@ export namespace Prisma {
   export type PostsUpdateWithoutUsersInput = {
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Comments?: CommentsUpdateManyWithoutPostsNestedInput
@@ -10922,8 +10830,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Comments?: CommentsUncheckedUpdateManyWithoutPostsNestedInput
@@ -10934,8 +10840,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
-    likes_count?: NullableIntFieldUpdateOperationsInput | number | null
-    comments_count?: NullableIntFieldUpdateOperationsInput | number | null
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
