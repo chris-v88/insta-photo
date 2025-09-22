@@ -11,7 +11,6 @@ export type User = {
 
 export type Post = {
   id: string;
-  title: string;
   description?: string;
   imageUrl: string;
   user?: User;

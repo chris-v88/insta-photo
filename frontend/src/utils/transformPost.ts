@@ -4,7 +4,6 @@ import { Post } from '../types';
 export const transformPosts = (data: PaginatedFeedSchema) => {
   const posts: Post[] = data.data.map((item: PostResponse) => ({
     id: String(item.id),
-    title: item.title,
     description: item.description,
     imageUrl: item.image_url,
     user: item.Users

@@ -6491,7 +6491,6 @@ export namespace Prisma {
   export type PostsMinAggregateOutputType = {
     id: number | null
     user_id: number | null
-    title: string | null
     description: string | null
     image_url: string | null
     likes_count: number | null
@@ -6503,7 +6502,6 @@ export namespace Prisma {
   export type PostsMaxAggregateOutputType = {
     id: number | null
     user_id: number | null
-    title: string | null
     description: string | null
     image_url: string | null
     likes_count: number | null
@@ -6515,7 +6513,6 @@ export namespace Prisma {
   export type PostsCountAggregateOutputType = {
     id: number
     user_id: number
-    title: number
     description: number
     image_url: number
     likes_count: number
@@ -6543,7 +6540,6 @@ export namespace Prisma {
   export type PostsMinAggregateInputType = {
     id?: true
     user_id?: true
-    title?: true
     description?: true
     image_url?: true
     likes_count?: true
@@ -6555,7 +6551,6 @@ export namespace Prisma {
   export type PostsMaxAggregateInputType = {
     id?: true
     user_id?: true
-    title?: true
     description?: true
     image_url?: true
     likes_count?: true
@@ -6567,7 +6562,6 @@ export namespace Prisma {
   export type PostsCountAggregateInputType = {
     id?: true
     user_id?: true
-    title?: true
     description?: true
     image_url?: true
     likes_count?: true
@@ -6666,7 +6660,6 @@ export namespace Prisma {
   export type PostsGroupByOutputType = {
     id: number
     user_id: number
-    title: string | null
     description: string | null
     image_url: string
     likes_count: number | null
@@ -6697,7 +6690,6 @@ export namespace Prisma {
   export type PostsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     user_id?: boolean
-    title?: boolean
     description?: boolean
     image_url?: boolean
     likes_count?: boolean
@@ -6715,7 +6707,6 @@ export namespace Prisma {
   export type PostsSelectScalar = {
     id?: boolean
     user_id?: boolean
-    title?: boolean
     description?: boolean
     image_url?: boolean
     likes_count?: boolean
@@ -6724,7 +6715,7 @@ export namespace Prisma {
     updated_at?: boolean
   }
 
-  export type PostsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "title" | "description" | "image_url" | "likes_count" | "comments_count" | "created_at" | "updated_at", ExtArgs["result"]["posts"]>
+  export type PostsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "user_id" | "description" | "image_url" | "likes_count" | "comments_count" | "created_at" | "updated_at", ExtArgs["result"]["posts"]>
   export type PostsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Comments?: boolean | Posts$CommentsArgs<ExtArgs>
     Post_Likes?: boolean | Posts$Post_LikesArgs<ExtArgs>
@@ -6742,7 +6733,6 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       user_id: number
-      title: string | null
       description: string | null
       image_url: string
       likes_count: number | null
@@ -7123,7 +7113,6 @@ export namespace Prisma {
   interface PostsFieldRefs {
     readonly id: FieldRef<"Posts", 'Int'>
     readonly user_id: FieldRef<"Posts", 'Int'>
-    readonly title: FieldRef<"Posts", 'String'>
     readonly description: FieldRef<"Posts", 'String'>
     readonly image_url: FieldRef<"Posts", 'String'>
     readonly likes_count: FieldRef<"Posts", 'Int'>
@@ -7616,7 +7605,6 @@ export namespace Prisma {
   export const PostsScalarFieldEnum: {
     id: 'id',
     user_id: 'user_id',
-    title: 'title',
     description: 'description',
     image_url: 'image_url',
     likes_count: 'likes_count',
@@ -7671,7 +7659,6 @@ export namespace Prisma {
 
 
   export const PostsOrderByRelevanceFieldEnum: {
-    title: 'title',
     description: 'description',
     image_url: 'image_url'
   };
@@ -8067,7 +8054,6 @@ export namespace Prisma {
     NOT?: PostsWhereInput | PostsWhereInput[]
     id?: IntFilter<"Posts"> | number
     user_id?: IntFilter<"Posts"> | number
-    title?: StringNullableFilter<"Posts"> | string | null
     description?: StringNullableFilter<"Posts"> | string | null
     image_url?: StringFilter<"Posts"> | string
     likes_count?: IntNullableFilter<"Posts"> | number | null
@@ -8082,7 +8068,6 @@ export namespace Prisma {
   export type PostsOrderByWithRelationInput = {
     id?: SortOrder
     user_id?: SortOrder
-    title?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     image_url?: SortOrder
     likes_count?: SortOrderInput | SortOrder
@@ -8101,7 +8086,6 @@ export namespace Prisma {
     OR?: PostsWhereInput[]
     NOT?: PostsWhereInput | PostsWhereInput[]
     user_id?: IntFilter<"Posts"> | number
-    title?: StringNullableFilter<"Posts"> | string | null
     description?: StringNullableFilter<"Posts"> | string | null
     image_url?: StringFilter<"Posts"> | string
     likes_count?: IntNullableFilter<"Posts"> | number | null
@@ -8116,7 +8100,6 @@ export namespace Prisma {
   export type PostsOrderByWithAggregationInput = {
     id?: SortOrder
     user_id?: SortOrder
-    title?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     image_url?: SortOrder
     likes_count?: SortOrderInput | SortOrder
@@ -8136,7 +8119,6 @@ export namespace Prisma {
     NOT?: PostsScalarWhereWithAggregatesInput | PostsScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"Posts"> | number
     user_id?: IntWithAggregatesFilter<"Posts"> | number
-    title?: StringNullableWithAggregatesFilter<"Posts"> | string | null
     description?: StringNullableWithAggregatesFilter<"Posts"> | string | null
     image_url?: StringWithAggregatesFilter<"Posts"> | string
     likes_count?: IntNullableWithAggregatesFilter<"Posts"> | number | null
@@ -8463,7 +8445,6 @@ export namespace Prisma {
   }
 
   export type PostsCreateInput = {
-    title?: string | null
     description?: string | null
     image_url: string
     likes_count?: number | null
@@ -8478,7 +8459,6 @@ export namespace Prisma {
   export type PostsUncheckedCreateInput = {
     id?: number
     user_id: number
-    title?: string | null
     description?: string | null
     image_url: string
     likes_count?: number | null
@@ -8490,7 +8470,6 @@ export namespace Prisma {
   }
 
   export type PostsUpdateInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8505,7 +8484,6 @@ export namespace Prisma {
   export type PostsUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8519,7 +8497,6 @@ export namespace Prisma {
   export type PostsCreateManyInput = {
     id?: number
     user_id: number
-    title?: string | null
     description?: string | null
     image_url: string
     likes_count?: number | null
@@ -8529,7 +8506,6 @@ export namespace Prisma {
   }
 
   export type PostsUpdateManyMutationInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null
@@ -8541,7 +8517,6 @@ export namespace Prisma {
   export type PostsUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null
@@ -9028,7 +9003,6 @@ export namespace Prisma {
   export type PostsCountOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    title?: SortOrder
     description?: SortOrder
     image_url?: SortOrder
     likes_count?: SortOrder
@@ -9047,7 +9021,6 @@ export namespace Prisma {
   export type PostsMaxOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    title?: SortOrder
     description?: SortOrder
     image_url?: SortOrder
     likes_count?: SortOrder
@@ -9059,7 +9032,6 @@ export namespace Prisma {
   export type PostsMinOrderByAggregateInput = {
     id?: SortOrder
     user_id?: SortOrder
-    title?: SortOrder
     description?: SortOrder
     image_url?: SortOrder
     likes_count?: SortOrder
@@ -9809,7 +9781,6 @@ export namespace Prisma {
   }
 
   export type PostsCreateWithoutCommentsInput = {
-    title?: string | null
     description?: string | null
     image_url: string
     likes_count?: number | null
@@ -9823,7 +9794,6 @@ export namespace Prisma {
   export type PostsUncheckedCreateWithoutCommentsInput = {
     id?: number
     user_id: number
-    title?: string | null
     description?: string | null
     image_url: string
     likes_count?: number | null
@@ -9900,7 +9870,6 @@ export namespace Prisma {
   }
 
   export type PostsUpdateWithoutCommentsInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null
@@ -9914,7 +9883,6 @@ export namespace Prisma {
   export type PostsUncheckedUpdateWithoutCommentsInput = {
     id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10293,7 +10261,6 @@ export namespace Prisma {
   }
 
   export type PostsCreateWithoutUsersInput = {
-    title?: string | null
     description?: string | null
     image_url: string
     likes_count?: number | null
@@ -10306,7 +10273,6 @@ export namespace Prisma {
 
   export type PostsUncheckedCreateWithoutUsersInput = {
     id?: number
-    title?: string | null
     description?: string | null
     image_url: string
     likes_count?: number | null
@@ -10467,7 +10433,6 @@ export namespace Prisma {
     NOT?: PostsScalarWhereInput | PostsScalarWhereInput[]
     id?: IntFilter<"Posts"> | number
     user_id?: IntFilter<"Posts"> | number
-    title?: StringNullableFilter<"Posts"> | string | null
     description?: StringNullableFilter<"Posts"> | string | null
     image_url?: StringFilter<"Posts"> | string
     likes_count?: IntNullableFilter<"Posts"> | number | null
@@ -10504,7 +10469,6 @@ export namespace Prisma {
   }
 
   export type PostsCreateWithoutPost_LikesInput = {
-    title?: string | null
     description?: string | null
     image_url: string
     likes_count?: number | null
@@ -10518,7 +10482,6 @@ export namespace Prisma {
   export type PostsUncheckedCreateWithoutPost_LikesInput = {
     id?: number
     user_id: number
-    title?: string | null
     description?: string | null
     image_url: string
     likes_count?: number | null
@@ -10589,7 +10552,6 @@ export namespace Prisma {
   }
 
   export type PostsUpdateWithoutPost_LikesInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10603,7 +10565,6 @@ export namespace Prisma {
   export type PostsUncheckedUpdateWithoutPost_LikesInput = {
     id?: IntFieldUpdateOperationsInput | number
     user_id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10860,7 +10821,6 @@ export namespace Prisma {
 
   export type PostsCreateManyUsersInput = {
     id?: number
-    title?: string | null
     description?: string | null
     image_url: string
     likes_count?: number | null
@@ -10948,7 +10908,6 @@ export namespace Prisma {
   }
 
   export type PostsUpdateWithoutUsersInput = {
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10961,7 +10920,6 @@ export namespace Prisma {
 
   export type PostsUncheckedUpdateWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null
@@ -10974,7 +10932,6 @@ export namespace Prisma {
 
   export type PostsUncheckedUpdateManyWithoutUsersInput = {
     id?: IntFieldUpdateOperationsInput | number
-    title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     image_url?: StringFieldUpdateOperationsInput | string
     likes_count?: NullableIntFieldUpdateOperationsInput | number | null

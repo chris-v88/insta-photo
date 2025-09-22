@@ -2,7 +2,6 @@ import { z } from 'zod';
 
 export const userProfilePostSchema = z.object({
   id: z.number(),
-  title: z.string().nullable(),
   description: z.string().nullable(),
   imageUrl: z.string(),
   likesCount: z.number().nullable(),

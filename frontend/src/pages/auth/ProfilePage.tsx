@@ -203,7 +203,7 @@ const ProfilePage = () => {
               >
                 <img
                   src={photo.imageUrl}
-                  alt={photo.title || 'Post'}
+                  alt={photo.description || 'Post'}
                   className="w-full h-full object-cover"
                 />
               </Link>
