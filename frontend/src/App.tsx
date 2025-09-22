@@ -5,9 +5,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import ProtectedRoute from './pages/ProtectedRoute';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
-import ProfilePage from './pages/auth/ProfilePage';
+import ProfilePage from './pages/ProfilePage';
 import CreatePostPage from './pages/auth/CreatePost';
 import AuthProvider from './components/auth/AuthProvider';
+import ProfileRedirect from './components/ProfileRedirect';
 import { useStore } from './stores';
 import HomePage from './pages/HomePage';
 
@@ -31,22 +32,9 @@ const App = () => {
           <div className="App">
             <Routes>
               {/* Public Routes */}
-              <Route
-                path="/"
-                element={
-                  <ProtectedRoute>
-                    <HomePage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/profile"
-                element={
-                  <ProtectedRoute>
-                    <ProfilePage />
-                  </ProtectedRoute>
-                }
-              />
+              <Route path="/" element={<HomePage />} />
+              <Route path="/profile/:username" element={<ProfilePage />} />
+              <Route path="/profile/" element={<ProfileRedirect />} />
               <Route
                 path="/create"
                 element={

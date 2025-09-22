@@ -1,15 +1,24 @@
 import { axiosInstance } from './axiosInstance.api';
 import {
   userProfileResponseSchema,
+  publicProfileResponseSchema,
   updateProfileResponseSchema,
-  type UpdateUserProfile,
   type UserProfile,
-} from '../schemas/form';
+  type PublicProfile,
+} from '../schemas/response/user.schema';
+import { type UpdateUserProfile } from '../schemas/form/form-profile.schema';
 
-// Fetch user profile
+// Fetch user profile (current user)
 export const getUserProfile = async (): Promise<UserProfile> => {
   const response = await axiosInstance.get('/user/profile');
   const validatedResponse = userProfileResponseSchema.parse(response.data);
+  return validatedResponse.data;
+};
+
+// Fetch user profile by username (public)
+export const getUserProfileByUsername = async (username: string): Promise<PublicProfile> => {
+  const response = await axiosInstance.get(`/user/${username}`);
+  const validatedResponse = publicProfileResponseSchema.parse(response.data);
   return validatedResponse.data;
 };
 

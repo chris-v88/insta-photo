@@ -25,6 +25,13 @@ export const userController = {
     res.status(response.statusCode).json(response);
   },
 
+  getProfileByUsername: async (req, res, next) => {
+    const { username } = req.params;
+    const result = await userService.getProfileByUsername(username);
+    const response = responseSuccess(result, 'User profile fetched successfully');
+    res.status(response.statusCode).json(response);
+  },
+
   updateProfile: async (req, res, next) => {
     if (!req.user || !req.user.id) {
       throw new UnauthorizedException('User not authenticated');

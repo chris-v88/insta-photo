@@ -109,6 +109,66 @@ export const userService = {
     };
   },
 
+  getProfileByUsername: async (username) => {
+    const user = await prisma.users.findUnique({
+      where: { username },
+      select: {
+        id: true,
+        username: true,
+        full_name: true,
+        avatar: true,
+        bio: true,
+        followers_count: true,
+        following_count: true,
+        created_at: true,
+        Posts: {
+          select: {
+            id: true,
+            description: true,
+            image_url: true,
+            likes_count: true,
+            comments_count: true,
+            created_at: true,
+          },
+          orderBy: {
+            created_at: 'desc',
+          },
+        },
+        _count: {
+          select: {
+            Posts: true,
+            Follows_Follows_follower_idToUsers: true,
+            Follows_Follows_following_idToUsers: true,
+          },
+        },
+      },
+    });
+
+    if (!user) {
+      throw new BadRequestException('User not found');
+    }
+
+    return {
+      id: user.id,
+      username: user.username,
+      fullName: user.full_name,
+      avatar: user.avatar,
+      bio: user.bio,
+      followersCount: user.followers_count || user._count.Follows_Follows_following_idToUsers,
+      followingCount: user.following_count || user._count.Follows_Follows_follower_idToUsers,
+      postsCount: user._count.Posts,
+      createdAt: user.created_at,
+      posts: user.Posts.map(post => ({
+        id: post.id,
+        description: post.description,
+        imageUrl: post.image_url,
+        likesCount: post.likes_count,
+        commentsCount: post.comments_count,
+        createdAt: post.created_at,
+      })),
+    };
+  },
+
   updateProfile: async (userId, profileData) => {
     const { fullName, bio, username } = profileData;
 
