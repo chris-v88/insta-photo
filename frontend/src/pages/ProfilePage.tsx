@@ -28,7 +28,7 @@ const ProfilePage = () => {
       if (!username) throw new Error('Username is required');
       return getUserProfileByUsername(username);
     },
-    enabled: !!username,
+    enabled: typeof username === 'string' && username.trim().length > 0,
     retry: 1,
     refetchOnWindowFocus: false,
   });
