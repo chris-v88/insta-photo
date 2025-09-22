@@ -35,7 +35,11 @@ const Navbar = () => {
     { icon: 'Home' as LucideIconName, label: 'Home', path: '/' },
     { icon: 'Search' as LucideIconName, label: 'Search', path: '/search' },
     { icon: 'PlusSquare' as LucideIconName, label: 'Create', path: '/create' },
-    { icon: 'User' as LucideIconName, label: 'Profile', path: '/profile' },
+    {
+      icon: 'User' as LucideIconName,
+      label: 'Profile',
+      path: user?.username ? `/profile/${user.username}` : '/profile/',
+    },
   ];
 
   return (
@@ -82,7 +86,10 @@ const Navbar = () => {
             >
               <Icon name="LogOut" size={20} />
             </button>
-            <Link to="/profile" className="flex items-center space-x-2">
+            <Link
+              to={user?.username ? `/profile/${user.username}` : '/profile/'}
+              className="flex items-center space-x-2"
+            >
               {user?.avatar ? (
                 <img
                   src={user.avatar}

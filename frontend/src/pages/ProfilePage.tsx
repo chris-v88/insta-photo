@@ -1,26 +1,34 @@
 import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { getUserProfile, uploadUserAvatar } from '../../apis/user.api';
-import Layout from '../../components/layouts/Layout';
-import Spinner from '../../components/ui/Spinner';
-import Button from '../../components/ui/Button';
-import Icon from '../../components/ui/Icon';
-import { UserProfilePost } from '../../schemas/response';
+import { getUserProfileByUsername, uploadUserAvatar } from '../apis/user.api';
+import Layout from '../components/layouts/Layout';
+import Spinner from '../components/ui/Spinner';
+import Button from '../components/ui/Button';
+import Icon from '../components/ui/Icon';
+import { UserProfilePost } from '../schemas/response';
+import { useStore } from '../stores';
 
 const ProfilePage = () => {
+  const { username } = useParams<{ username: string }>();
   const [activeTab, setActiveTab] = useState<'photos' | 'saved'>('photos');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const queryClient = useQueryClient();
+  const currentUser = useStore((state) => state.user);
+  const isOwnProfile = currentUser?.username === username;
 
   const {
     data: userProfile,
     isLoading,
     error,
   } = useQuery({
-    queryKey: ['user-profile'],
-    queryFn: getUserProfile,
+    queryKey: ['user-profile', username],
+    queryFn: () => {
+      if (!username) throw new Error('Username is required');
+      return getUserProfileByUsername(username);
+    },
+    enabled: !!username,
     retry: 1,
     refetchOnWindowFocus: false,
   });
@@ -57,11 +65,13 @@ const ProfilePage = () => {
     );
   }
 
-  if (error || !userProfile) {
+  if (error || !userProfile || !username) {
     return (
       <Layout>
         <div className="text-center py-12">
-          <p className="text-red-600 text-lg">{error?.message || 'Failed to load profile'}</p>
+          <p className="text-red-600 text-lg">
+            {!username ? 'Username is required' : error?.message || 'Failed to load profile'}
+          </p>
         </div>
       </Layout>
     );
@@ -81,21 +91,23 @@ const ProfilePage = () => {
                   `https://ui-avatars.com/api/?name=${userProfile.fullName || userProfile.username}&background=random&size=128`
                 }
                 alt={userProfile.fullName || userProfile.username}
-                className="w-32 h-32 rounded-full object-cover cursor-pointer hover:opacity-90 transition-opacity"
-                onClick={handleAvatarClick}
+                className={`w-32 h-32 rounded-full object-cover ${isOwnProfile ? 'cursor-pointer hover:opacity-90' : ''} transition-opacity`}
+                onClick={isOwnProfile ? handleAvatarClick : undefined}
               />
-              <button
-                onClick={handleAvatarClick}
-                disabled={avatarUploadMutation.isPending}
-                className="absolute bottom-2 right-2 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-lg transition-colors disabled:opacity-50"
-                title="Change avatar"
-              >
-                {avatarUploadMutation.isPending ? (
-                  <Spinner size="sm" />
-                ) : (
-                  <Icon name="Camera" className="w-4 h-4" />
-                )}
-              </button>
+              {isOwnProfile && (
+                <button
+                  onClick={handleAvatarClick}
+                  disabled={avatarUploadMutation.isPending}
+                  className="absolute bottom-2 right-2 bg-blue-500 hover:bg-blue-600 text-white p-2 rounded-full shadow-lg transition-colors disabled:opacity-50"
+                  title="Change avatar"
+                >
+                  {avatarUploadMutation.isPending ? (
+                    <Spinner size="sm" />
+                  ) : (
+                    <Icon name="Camera" className="w-4 h-4" />
+                  )}
+                </button>
+              )}
               <input
                 ref={fileInputRef}
                 type="file"
@@ -108,11 +120,13 @@ const ProfilePage = () => {
             <div className="flex-1 text-center md:text-left">
               <div className="flex flex-col md:flex-row md:items-center md:space-x-4 mb-4">
                 <h1 className="text-2xl font-bold text-gray-900">{userProfile.username}</h1>
-                <Link to="/settings">
-                  <Button variant="outline" size="sm" leftIcon="Settings">
-                    Edit Profile
-                  </Button>
-                </Link>
+                {isOwnProfile && (
+                  <Link to="/settings">
+                    <Button variant="outline" size="sm" leftIcon="Settings">
+                      Edit Profile
+                    </Button>
+                  </Link>
+                )}
               </div>
 
               <p className="text-gray-600 mb-4">{userProfile.fullName}</p>
@@ -184,10 +198,12 @@ const ProfilePage = () => {
             </h3>
             <p className="text-gray-500">
               {activeTab === 'photos'
-                ? 'Start sharing your photography with the world!'
+                ? isOwnProfile
+                  ? 'Start sharing your photography with the world!'
+                  : `${userProfile.username} hasn't shared any posts yet.`
                 : 'Save photos you love to view them later.'}
             </p>
-            {activeTab === 'photos' && (
+            {activeTab === 'photos' && isOwnProfile && (
               <Link to="/create" className="mt-4 inline-block">
                 <Button leftIcon="Upload">Upload Your First Post</Button>
               </Link>

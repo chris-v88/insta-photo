@@ -13,6 +13,9 @@ userRouter.patch('/profile', protect, userController.updateProfile);
 // Avatar upload route
 userRouter.post('/avatar', protect, uploadCloud.single('avatar'), userController.uploadAvatar);
 
+// Public route for getting user profile by username
+userRouter.get('/:username', userController.getProfileByUsername);
+
 // userRouter.post('/', userController.create);
 // userRouter.get('/', userController.findAll);
 // userRouter.get('/:id', userController.findOne);

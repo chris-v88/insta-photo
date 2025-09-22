@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { userProfileSchema } from '../response/user.schema';
 
 // User profile update schema
 export const updateUserProfileSchema = z.object({
@@ -24,24 +23,6 @@ export const profileFormSchema = z.object({
     .regex(/^[a-zA-Z0-9_]+$/, 'Username can only contain letters, numbers, and underscores'),
 });
 
-// API response schemas
-export const userProfileResponseSchema = z.object({
-  status: z.string(),
-  statusCode: z.number(),
-  message: z.string(),
-  data: userProfileSchema,
-});
-
-export const updateProfileResponseSchema = z.object({
-  status: z.string(),
-  statusCode: z.number(),
-  message: z.string(),
-  data: userProfileSchema.omit({ posts: true }),
-});
-
 // Type exports
-export type UserProfile = z.infer<typeof userProfileSchema>;
 export type UpdateUserProfile = z.infer<typeof updateUserProfileSchema>;
 export type ProfileForm = z.infer<typeof profileFormSchema>;
-export type UserProfileResponse = z.infer<typeof userProfileResponseSchema>;
-export type UpdateProfileResponse = z.infer<typeof updateProfileResponseSchema>;

@@ -1,24 +1,18 @@
 import { z } from 'zod';
-import { dataUserSchema } from './user.schema';
-import { dataPostSchema } from './posts.schema';
 
-export const dataCommentSchema = z.object({
-  id: z.string(),
-  content: z.string(),
-  author: dataUserSchema,
-  createdAt: z.string(),
-});
-export type CommentResponse = z.infer<typeof dataCommentSchema>;
+// Generic API response schema factory - shared across all schemas
+export const createApiResponseSchema = <T extends z.ZodTypeAny>(dataSchema: T) =>
+  z.object({
+    status: z.string(),
+    statusCode: z.number(),
+    message: z.string(),
+    data: dataSchema,
+  });
 
-export const userProfileResponseSchema = z.object({
-  user: dataUserSchema,
-  photos: z.array(dataPostSchema),
-  saved: z.array(dataPostSchema).optional(),
-});
-export type UserProfileResponse = z.infer<typeof userProfileResponseSchema>;
-
-export const dataSearchSchema = z.object({
-  results: z.array(dataPostSchema),
-  total: z.number(),
-});
-export type SearchResponse = z.infer<typeof dataSearchSchema>;
+// Generic API response type
+export type ApiResponse<T> = {
+  status: string;
+  statusCode: number;
+  message: string;
+  data: T;
+};
