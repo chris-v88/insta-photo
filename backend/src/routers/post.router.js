@@ -8,7 +8,7 @@ const postRouter = express.Router();
 
 postRouter.get('/', postController.findAll);
 
-postRouter.post('/create', protect, uploadCloud.single('image'), postController.create);
+postRouter.post('/', protect, uploadCloud.single('image'), postController.create);
 
 postRouter.get('/:id', postController.findOne);
 postRouter.patch('/:id', postController.update);

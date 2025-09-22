@@ -10,7 +10,7 @@ export const createPost = async (data: CreatePostData) => {
   formData.append('description', data.description);
   formData.append('image', data.image);
 
-  const response = await axiosInstance.post('/posts/create', formData);
+  const response = await axiosInstance.post('/posts', formData);
 
   return response.data;
 };
