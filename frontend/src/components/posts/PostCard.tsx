@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { Post } from '../../types';
 import Icon from '../ui/Icon';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { likePost } from '../../apis/post.api';
 
 export type PostCardType = {
   post: Post;
@@ -10,8 +12,25 @@ export type PostCardType = {
 
 const PostCard = (props: PostCardType) => {
   const { post } = props;
+  const queryClient = useQueryClient();
 
-  const isLiked = false; // Placeholder for now
+  const isLiked = false; // TODO: Implement actual like status
+
+  const likeMutation = useMutation({
+    mutationFn: (postId: string) => likePost(postId),
+    onSuccess: () => {
+      // Refetch both home page posts and user profile
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] });
+    },
+    onError: (error) => {
+      console.error('Like failed:', error);
+    },
+  });
+
+  const handleLike = () => {
+    likeMutation.mutate(post.id);
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -48,7 +67,7 @@ const PostCard = (props: PostCardType) => {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center space-x-4">
             <button
-              // onClick={handleLike}
+              onClick={handleLike}
               // disabled={isLoading}
               className={`p-1 rounded-full transition-colors ${
                 isLiked ? 'text-red-500 hover:text-red-600' : 'text-gray-700 hover:text-red-500'
