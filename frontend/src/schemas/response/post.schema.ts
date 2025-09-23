@@ -31,6 +31,7 @@ export const dataPostSchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   Users: userInfoSchema,
+  isLikedByCurrentUser: z.boolean().optional(),
 });
 export type PostResponse = z.infer<typeof dataPostSchema>;
 

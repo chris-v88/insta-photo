@@ -14,12 +14,11 @@ const PostCard = (props: PostCardType) => {
   const { post } = props;
   const queryClient = useQueryClient();
 
-  const isLiked = false; // TODO: Implement actual like status
+  const isLiked = post.isLikedByCurrentUser || false;
 
   const likeMutation = useMutation({
     mutationFn: (postId: string) => likePost(postId),
     onSuccess: () => {
-      // Refetch both home page posts and user profile
       queryClient.invalidateQueries({ queryKey: ['posts'] });
       queryClient.invalidateQueries({ queryKey: ['user-profile'] });
     },
@@ -68,12 +67,16 @@ const PostCard = (props: PostCardType) => {
           <div className="flex items-center space-x-4">
             <button
               onClick={handleLike}
-              // disabled={isLoading}
+              disabled={likeMutation.isPending}
               className={`p-1 rounded-full transition-colors ${
                 isLiked ? 'text-red-500 hover:text-red-600' : 'text-gray-700 hover:text-red-500'
-              }`}
+              } ${likeMutation.isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              <Icon name="Heart" className={`w-6 h-6 ${isLiked ? 'fill-current' : ''}`} />
+              {likeMutation.isPending ? (
+                <Icon name="Loader2" className="w-6 h-6 animate-spin" />
+              ) : (
+                <Icon name="Heart" className={`w-6 h-6 ${isLiked ? 'fill-current' : ''}`} />
+              )}
             </button>
             <Link
               to={`/post/${post.id}`}

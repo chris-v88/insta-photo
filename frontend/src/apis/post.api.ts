@@ -42,7 +42,7 @@ export const likePost = async (postId: string) => {
   try {
     const rawResponse = await axiosInstance.post(`/posts/${postId}/like`);
     if (rawResponse.data && rawResponse.data.data) {
-      const response = likePostResponseSchema.parse(rawResponse.data);
+      const response = likePostResponseSchema.parse(rawResponse.data.data);
       return response;
     } else {
       throw new Error('No like post data in response');

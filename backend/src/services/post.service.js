@@ -55,6 +55,7 @@ export const postService = {
 
   findAll: async (req) => {
     let { page, limit } = req.query;
+    const user = req.user; // Current user from protect middleware
 
     // get list of posts from database
     page = page ? parseInt(page) : 1;
@@ -78,6 +79,14 @@ export const postService = {
             Comments: true,
           },
         },
+        Post_Likes: user ? {
+          where: {
+            user_id: user.id,
+          },
+          select: {
+            user_id: true,
+          },
+        } : false,
       },
       orderBy: {
         created_at: 'desc',
@@ -87,11 +96,12 @@ export const postService = {
     const totalPosts = await prisma.posts.count();
     const totalPages = Math.ceil(totalPosts / limit);
 
-    // Transform posts to include counts
+    // Transform posts to include counts and like status
     const transformedPosts = paginatedPosts.map((post) => ({
       ...post,
       likes_count: post._count.Post_Likes,
       comments_count: post._count.Comments,
+      isLikedByCurrentUser: user ? post.Post_Likes.length > 0 : false,
     }));
 
     return {
@@ -129,9 +139,9 @@ export const postService = {
     // Check if user already liked the post
     const alreadyLiked = await prisma.Post_Likes.findUnique({
       where: {
-        user_id_post_id: {
-          user_id: user.id,
+        post_id_user_id: {
           post_id: postId,
+          user_id: user.id,
         },
       },
     });

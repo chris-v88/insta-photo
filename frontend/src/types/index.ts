@@ -21,6 +21,7 @@ export type Post = {
   likes: number;
   commentsCount: number;
   createdAt: string;
+  isLikedByCurrentUser?: boolean;
 };
 
 export type Comment = {
