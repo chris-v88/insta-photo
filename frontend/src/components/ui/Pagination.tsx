@@ -1,11 +1,9 @@
-import React from 'react';
-
-interface PaginationProps {
+export type PaginationProps = {
   page: number;
   totalPages: number;
   onPageChange: (page: number) => void;
   className?: string;
-}
+};
 
 const Pagination = (props: PaginationProps) => {
   const { page, totalPages, onPageChange, className } = props;
@@ -34,6 +32,7 @@ const Pagination = (props: PaginationProps) => {
     }
     return pages;
   };
+  const pageNumbers = getPageNumbers();
 
   return (
     <nav
@@ -48,7 +47,7 @@ const Pagination = (props: PaginationProps) => {
       >
         &lt;
       </button>
-      {getPageNumbers().map((num) => (
+      {pageNumbers.map((num) => (
         <button
           key={num}
           className={`px-3 py-1 rounded ${num === page ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
@@ -58,12 +57,9 @@ const Pagination = (props: PaginationProps) => {
           {num}
         </button>
       ))}
-      {(() => {
-        const pageNumbers = getPageNumbers();
-        return pageNumbers.length > 0 && pageNumbers[pageNumbers.length - 1] < totalPages ? (
-          <span className="px-2">...</span>
-        ) : null;
-      })()}
+      {pageNumbers.length > 0 && pageNumbers[pageNumbers.length - 1] < totalPages && (
+        <span className="px-2">...</span>
+      )}
       <button
         className="px-3 py-1 rounded bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50"
         onClick={handleNext}

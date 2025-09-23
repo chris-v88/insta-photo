@@ -63,9 +63,13 @@ export const userService = {
             id: true,
             description: true,
             image_url: true,
-            likes_count: true,
-            comments_count: true,
             created_at: true,
+            _count: {
+              select: {
+                Post_Likes: true,
+                Comments: true,
+              },
+            },
           },
           orderBy: {
             created_at: 'desc',
@@ -102,8 +106,8 @@ export const userService = {
         id: post.id,
         description: post.description,
         imageUrl: post.image_url,
-        likesCount: post.likes_count,
-        commentsCount: post.comments_count,
+        likesCount: post._count.Post_Likes,
+        commentsCount: post._count.Comments,
         createdAt: post.created_at,
       })),
     };
@@ -126,9 +130,13 @@ export const userService = {
             id: true,
             description: true,
             image_url: true,
-            likes_count: true,
-            comments_count: true,
             created_at: true,
+            _count: {
+              select: {
+                Post_Likes: true,
+                Comments: true,
+              },
+            },
           },
           orderBy: {
             created_at: 'desc',
@@ -162,8 +170,8 @@ export const userService = {
         id: post.id,
         description: post.description,
         imageUrl: post.image_url,
-        likesCount: post.likes_count,
-        commentsCount: post.comments_count,
+        likesCount: post._count.Post_Likes,
+        commentsCount: post._count.Comments,
         createdAt: post.created_at,
       })),
     };

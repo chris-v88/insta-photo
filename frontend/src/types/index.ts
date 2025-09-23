@@ -13,7 +13,11 @@ export type Post = {
   id: string;
   description?: string;
   imageUrl: string;
-  user?: User;
+  user?: {
+    id: string;
+    username: string;
+    avatar?: string;
+  };
   likes: number;
   commentsCount: number;
   createdAt: string;

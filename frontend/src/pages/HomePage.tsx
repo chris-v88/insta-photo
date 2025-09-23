@@ -1,28 +1,34 @@
-import React, { useEffect } from 'react';
-import { useStore } from '../stores';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import Layout from '../components/layouts/Layout';
-// import PostGrid from '../components/posts/PostGrid';
-import { fetchPosts } from '../apis/fetchPosts.api';
-import ErrorPage from './ErrorPage';
-import Spinner from '../components/ui/Spinner';
-// import { transformPosts } from '../utils/transformPost';
+
 import Dropdown from '../components/ui/Dropdown';
-import { useState } from 'react';
-import { transformPosts } from '../utils/transformPost';
-// import Pagination from '../components/ui/Pagination';
+import ErrorPage from './ErrorPage';
+import Layout from '../components/layouts/Layout';
+import PostGrid from '../components/posts/PostGrid';
+import Spinner from '../components/ui/Spinner';
+
+import { useStore } from '../stores';
+import { fetchPosts } from '../apis/fetchPosts.api';
+import { transformFeed } from '../utils/helpers';
+import { PaginatedFeedSchema } from '../schemas/response';
+import Pagination from '../components/ui/Pagination';
 
 const HomePage = () => {
   const [limit, setLimit] = useState(10);
   const [totalPages, setTotalPages] = useState(10);
   const [page, setPage] = useState(1);
 
+  const posts = useStore((state) => state.posts);
   const setPosts = useStore((state) => state.setPosts);
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ['posts', limit, page],
     queryFn: () => fetchPosts({ limit, page }),
   });
+
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
 
   useEffect(() => {
     if (!data || Array.isArray(data)) {
@@ -31,11 +37,10 @@ const HomePage = () => {
       setPage(1);
       return;
     }
-    const { posts, page: currentPage, totalPages } = transformPosts(data);
+    const { posts, totalPages } = transformFeed(data as PaginatedFeedSchema);
     setPosts(posts);
     setTotalPages(totalPages);
-    setPage(currentPage);
-  }, [data, setPosts]);
+  }, [page, data, setPosts]);
 
   useEffect(() => {
     setPage(1); // Reset to first page when limit changes
@@ -93,14 +98,18 @@ const HomePage = () => {
             <span className="text-gray-700">posts</span>
           </div>
         </div>
-        {/* <PostGrid posts={posts} /> */}
-        {/* {data.length === 0 && (
+        {posts && posts?.length === 0 ? (
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">No posts found</p>
           </div>
-        )} */}
-        {/* Pagination at the bottom */}
-        {/* <Pagination page={page} totalPages={data.totalPages || 1} onPageChange={setPage} /> */}
+        ) : (
+          <PostGrid posts={posts} columns={2} />
+        )}
+        <Pagination
+          page={page}
+          totalPages={data?.totalPages || 1}
+          onPageChange={handlePageChange}
+        />
       </div>
     </Layout>
   );

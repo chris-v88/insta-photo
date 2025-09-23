@@ -91,6 +91,8 @@ ALTER TABLE `Post_Likes` ADD FOREIGN KEY (`post_id`) REFERENCES `Posts`(id) ON D
 ALTER TABLE `Post_Likes` ADD FOREIGN KEY (`user_id`) REFERENCES `Users`(id) ON DELETE CASCADE;
 -- Drop column
 ALTER TABLE `Posts` DROP COLUMN `title`;
+ALTER TABLE `Posts` DROP COLUMN `likes_count`;
+ALTER TABLE `Posts` DROP COLUMN `comments_count`;
 
 
 -- Mock data
@@ -151,3 +153,71 @@ VALUES
 INSERT INTO Follows (follower_id, following_id)
 VALUES
 (1,2),(2,3),(3,4),(4,5),(5,6),(6,7),(7,8),(8,9),(9,10),(10,1),(2,1),(3,2),(4,3),(5,4),(6,5),(7,6),(8,7),(9,8),(10,9),(1,10);
+
+-- Additional Comments (50 more entries)
+INSERT INTO Comments (post_id, user_id, content)
+VALUES
+(1,4,'Ảnh đẹp lắm!'),(1,5,'Nha Trang thật tuyệt!'),(1,6,'Muốn đi du lịch quá!'),(1,7,'Bình minh thơ mộng!'),(1,8,'Biển đẹp như tranh vẽ!'),
+(2,1,'Hội An cổ kính!'),(2,6,'Cà phê thơm ngon!'),(2,7,'Phố cổ làm tôi say mê!'),(2,8,'Kiến trúc độc đáo!'),(2,9,'Muốn quay lại Hội An!'),
+(3,1,'Chợ nổi thú vị!'),(3,2,'Miền Tây hấp dẫn!'),(3,8,'Văn hóa đậm đà!'),(3,9,'Sông nước miền Tây!'),(3,10,'Cần Thơ đẹp quá!'),
+(4,1,'Đèo nổi tiếng!'),(4,2,'Cảnh quan hùng vĩ!'),(4,3,'Đường đèo thơ mộng!'),(4,6,'Thiên nhiên tuyệt đẹp!'),(4,10,'Muốn chinh phục đèo này!'),
+(5,2,'Bún bò Huế đặc sản!'),(5,3,'Món ăn ngon tuyệt!'),(5,4,'Hương vị khó quên!'),(5,6,'Huế có nhiều món ngon!'),(5,7,'Thèm bún bò quá!'),
+(6,1,'Hoa xuân rực rỡ!'),(6,4,'Sài Gòn mùa xuân đẹp!'),(6,5,'Hội hoa tuyệt vời!'),(6,8,'Màu sắc rực rỡ!'),(6,9,'Xuân về trên phố!'),
+(7,1,'Thác nước hùng vĩ!'),(7,2,'Cao Bằng đẹp quá!'),(7,3,'Thiên nhiên kỳ vĩ!'),(7,6,'Muốn khám phá Cao Bằng!'),(7,10,'Thác Bản Giốc nổi tiếng!'),
+(8,1,'Phố đi bộ sôi động!'),(8,2,'TP.HCM năng động!'),(8,4,'Cuối tuần vui vẻ!'),(8,5,'Phố Nguyễn Huệ đẹp!'),(8,9,'Không khí rất vui!'),
+(9,1,'Bánh mì Sài Gòn ngon!'),(9,2,'Món ăn đường phố tuyệt!'),(9,3,'Giá rẻ mà ngon!'),(9,6,'Bánh mì đặc sản!'),(9,10,'Sài Gòn có nhiều món ngon!'),
+(10,2,'Cầu Rồng phun lửa đẹp!'),(10,3,'Đà Nẵng hiện đại!'),(10,4,'Kiến trúc ấn tượng!'),(10,5,'Cầu nổi tiếng thế giới!'),(10,6,'Đà Nẵng phát triển nhanh!');
+
+-- Additional Post_Likes (50 more entries)
+INSERT INTO Post_Likes (post_id, user_id)
+VALUES
+(1,4),(1,5),(1,6),(1,7),(1,8),(1,9),(1,10),
+(2,1),(2,6),(2,7),(2,8),(2,9),(2,10),
+(3,1),(3,2),(3,8),(3,9),(3,10),
+(4,1),(4,2),(4,3),(4,6),(4,10),
+(5,2),(5,3),(5,4),(5,6),(5,7),(5,8),(5,9),
+(6,1),(6,4),(6,5),(6,7),(6,8),(6,9),(6,10),
+(7,1),(7,2),(7,3),(7,6),(7,8),(7,9),(7,10),
+(8,1),(8,2),(8,3),(8,4),(8,5),(8,9),(8,10),
+(9,1),(9,2),(9,3),(9,4),(9,5),(9,6),(9,7),(9,10),
+(10,2),(10,3),(10,4),(10,5),(10,6),(10,7),(10,8),(10,9);
+
+INSERT INTO Post_Likes (post_id, user_id)
+VALUES
+(16,1),(16,2),(16,3),
+(17,4),(17,5),(17,6),
+(18,7),(18,8),(18,9),
+(19,10),(19,1),(19,2),
+(20,3),(20,4),(20,5),
+(21,6),(21,7),(21,8),
+(22,9),(22,10),(22,1),
+(23,2),(23,3),(23,4),
+(24,5),(24,6),(24,7),
+(25,8),(25,9),(25,10),
+(26,1),(26,2),(26,3),
+(27,4),(27,5),(27,6),
+(28,7),(28,8),(28,9),
+(29,10),(29,1),(29,2),
+(30,3),(30,4),(30,5),
+(31,6),(31,7),(31,8),
+(32,9),(32,10),(32,1);
+
+INSERT INTO Post_Likes (post_id, user_id)
+VALUES
+(16,7),(16,9),
+(17,2),
+(18,1),(18,5),
+(19,3),
+(20,7),(20,8),
+(21,2),
+(22,3),(22,6),
+(23,1),(23,7),
+(24,2),(24,8),
+(25,1),(25,6),
+(26,4),(26,9),
+(27,1),(27,3),(27,8),
+(28,2),(28,5),(28,10),
+(29,3),(29,7),
+(30,1),(30,8),
+(31,5),(31,9),
+(32,7),(32,8);
