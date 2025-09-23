@@ -1,4 +1,9 @@
-import { PaginatedFeedSchema, PostResponse, UserProfilePost } from '../schemas/response';
+import {
+  PaginatedFeedSchema,
+  PostResponse,
+  PublicProfile,
+  UserProfilePost,
+} from '../schemas/response';
 import { Post } from '../types';
 
 export const transformFeed = (data: PaginatedFeedSchema) => {
@@ -26,7 +31,7 @@ export const transformFeed = (data: PaginatedFeedSchema) => {
   };
 };
 
-export const transformUserProfilePosts = (userProfile: any): Post[] => {
+export const transformUserProfilePosts = (userProfile: PublicProfile): Post[] => {
   const userPosts = userProfile.posts || [];
   return userPosts.map((post: UserProfilePost) => ({
     id: post.id.toString(),

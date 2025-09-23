@@ -8,9 +8,10 @@ import Spinner from '../components/ui/Spinner';
 import Button from '../components/ui/Button';
 import Icon from '../components/ui/Icon';
 import PostGrid from '../components/posts/PostGrid';
-import { UserProfilePost } from '../schemas/response';
+import { PublicProfile, UserProfilePost } from '../schemas/response';
 import { Post } from '../types';
 import { useStore } from '../stores';
+import { transformUserProfilePosts } from '../utils/helpers';
 
 const ProfilePage = () => {
   const { username } = useParams<{ username: string }>();
@@ -78,26 +79,7 @@ const ProfilePage = () => {
     );
   }
 
-  const userPosts = userProfile.posts || [];
-
-  // Transform UserProfilePost to Post type for PostGrid
-  const transformedPosts: Post[] = userPosts.map((post: UserProfilePost) => ({
-    id: post.id.toString(),
-    description: post.description || '',
-    imageUrl: post.imageUrl,
-    user: {
-      id: userProfile.id.toString(),
-      email: '', // Not needed for display
-      username: userProfile.username,
-      fullName: userProfile.fullName || '',
-      avatar: userProfile.avatar || '',
-      bio: userProfile.bio || '',
-      createdAt: userProfile.createdAt,
-    },
-    likes: post.likesCount || 0,
-    commentsCount: post.commentsCount || 0,
-    createdAt: post.createdAt,
-  }));
+  const transformedPosts: Post[] = transformUserProfilePosts(userProfile as PublicProfile);
 
   return (
     <Layout>
