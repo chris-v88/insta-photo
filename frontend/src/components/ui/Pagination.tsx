@@ -1,11 +1,9 @@
-import React from 'react';
-
-interface PaginationProps {
+export type PaginationProps = {
   page: number;
   totalPages: number;
   onPageChange: (page: number) => void;
   className?: string;
-}
+};
 
 const Pagination = (props: PaginationProps) => {
   const { page, totalPages, onPageChange, className } = props;
@@ -35,6 +33,7 @@ const Pagination = (props: PaginationProps) => {
     return pages;
   };
   const pageNumbers = getPageNumbers();
+
   return (
     <nav
       className={`flex items-center justify-center gap-2 mt-8 ${className || ''}`}
@@ -48,7 +47,7 @@ const Pagination = (props: PaginationProps) => {
       >
         &lt;
       </button>
-      {getPageNumbers().map((num) => (
+      {pageNumbers.map((num) => (
         <button
           key={num}
           className={`px-3 py-1 rounded ${num === page ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
