@@ -10,6 +10,7 @@ export const userProfilePostSchema = z.object({
   commentsCount: z.number().nullable(),
   createdAt: z.string(),
 });
+export type UserProfilePost = z.infer<typeof userProfilePostSchema>;
 
 // User info nested in post (for feed/dashboard)
 export const userInfoSchema = z.object({
@@ -17,6 +18,7 @@ export const userInfoSchema = z.object({
   username: z.string(),
   avatar: z.string(),
 });
+export type UserInfo = z.infer<typeof userInfoSchema>;
 
 // Dashboard/feed post schema (with user info)
 export const dataPostSchema = z.object({
@@ -30,6 +32,7 @@ export const dataPostSchema = z.object({
   updated_at: z.string(),
   Users: userInfoSchema,
 });
+export type PostResponse = z.infer<typeof dataPostSchema>;
 
 // Paginated feed response
 export const paginatedFeedSchema = z.object({
@@ -39,15 +42,10 @@ export const paginatedFeedSchema = z.object({
   totalPosts: z.number(),
   data: z.array(dataPostSchema),
 });
-
-// API response schemas
-export const postsResponseSchema = createApiResponseSchema(paginatedFeedSchema);
-export const postResponseSchema = createApiResponseSchema(dataPostSchema);
-
-// Type exports
-export type UserProfilePost = z.infer<typeof userProfilePostSchema>;
-export type UserInfo = z.infer<typeof userInfoSchema>;
-export type PostResponse = z.infer<typeof dataPostSchema>;
 export type PaginatedFeedSchema = z.infer<typeof paginatedFeedSchema>;
+
+export const postsResponseSchema = createApiResponseSchema(paginatedFeedSchema);
 export type PostsResponse = z.infer<typeof postsResponseSchema>;
+
+export const postResponseSchema = createApiResponseSchema(dataPostSchema);
 export type SinglePostResponse = z.infer<typeof postResponseSchema>;

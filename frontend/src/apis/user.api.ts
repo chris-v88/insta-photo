@@ -3,10 +3,10 @@ import {
   userProfileResponseSchema,
   publicProfileResponseSchema,
   updateProfileResponseSchema,
-  type UserProfile,
-  type PublicProfile,
-} from '../schemas/response/user.schema';
-import { type UpdateUserProfile } from '../schemas/form/form-profile.schema';
+} from '../schemas/response';
+
+import type { UserProfile, PublicProfile } from '../schemas/response';
+import type { UpdateUserProfile } from '../schemas/form/form-profile.schema';
 
 // Fetch user profile (current user)
 export const getUserProfile = async (): Promise<UserProfile> => {

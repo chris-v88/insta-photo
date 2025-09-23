@@ -20,7 +20,7 @@ const PostCard = (props: PostCardType) => {
           {photo.user?.avatar ? (
             <img
               src={photo.user?.avatar}
-              alt={photo.user?.fullName}
+              alt={photo.user?.username}
               className="w-8 h-8 rounded-full"
             />
           ) : (

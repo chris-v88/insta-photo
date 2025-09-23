@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react';
-import { useStore } from '../stores';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import Layout from '../components/layouts/Layout';
-// import PostGrid from '../components/posts/PostGrid';
-import { fetchPosts } from '../apis/fetchPosts.api';
-import ErrorPage from './ErrorPage';
-import Spinner from '../components/ui/Spinner';
-// import { transformPosts } from '../utils/transformPost';
+
 import Dropdown from '../components/ui/Dropdown';
-import { useState } from 'react';
-import { transformPosts } from '../utils/transformPost';
+import ErrorPage from './ErrorPage';
+import Layout from '../components/layouts/Layout';
 import PostGrid from '../components/posts/PostGrid';
+import Spinner from '../components/ui/Spinner';
+
+import { useStore } from '../stores';
+import { fetchPosts } from '../apis/fetchPosts.api';
+import { transformFeed } from '../utils/helpers';
+import { PaginatedFeedSchema } from '../schemas/response';
 // import Pagination from '../components/ui/Pagination';
 
 const HomePage = () => {
@@ -33,7 +33,8 @@ const HomePage = () => {
       setPage(1);
       return;
     }
-    const { posts, page: currentPage, totalPages } = transformPosts(data);
+    console.log('🚀 ~ HomePage ~ data:', data);
+    const { posts, page: currentPage, totalPages } = transformFeed(data as PaginatedFeedSchema);
     setPosts(posts);
     setTotalPages(totalPages);
     setPage(currentPage);
