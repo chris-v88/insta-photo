@@ -45,7 +45,7 @@ const PostCard = (props: PostCardType) => {
 
       {/* Actions */}
       <div className="p-4">
-        <div className="flex items-ce nter justify-between mb-3">
+        <div className="flex items-center justify-between mb-3">
           <div className="flex items-center space-x-4">
             <button
               // onClick={handleLike}
