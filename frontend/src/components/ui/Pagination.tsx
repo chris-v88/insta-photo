@@ -34,7 +34,7 @@ const Pagination = (props: PaginationProps) => {
     }
     return pages;
   };
-
+  const pageNumbers = getPageNumbers();
   return (
     <nav
       className={`flex items-center justify-center gap-2 mt-8 ${className || ''}`}
@@ -58,12 +58,9 @@ const Pagination = (props: PaginationProps) => {
           {num}
         </button>
       ))}
-      {(() => {
-        const pageNumbers = getPageNumbers();
-        return pageNumbers.length > 0 && pageNumbers[pageNumbers.length - 1] < totalPages ? (
-          <span className="px-2">...</span>
-        ) : null;
-      })()}
+      {pageNumbers.length > 0 && pageNumbers[pageNumbers.length - 1] < totalPages && (
+        <span className="px-2">...</span>
+      )}
       <button
         className="px-3 py-1 rounded bg-gray-100 text-gray-700 hover:bg-gray-200 disabled:opacity-50"
         onClick={handleNext}

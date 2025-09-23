@@ -11,7 +11,7 @@ import { useStore } from '../stores';
 import { fetchPosts } from '../apis/fetchPosts.api';
 import { transformFeed } from '../utils/helpers';
 import { PaginatedFeedSchema } from '../schemas/response';
-// import Pagination from '../components/ui/Pagination';
+import Pagination from '../components/ui/Pagination';
 
 const HomePage = () => {
   const [limit, setLimit] = useState(10);
@@ -26,6 +26,10 @@ const HomePage = () => {
     queryFn: () => fetchPosts({ limit, page }),
   });
 
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  };
+
   useEffect(() => {
     if (!data || Array.isArray(data)) {
       setPosts([]);
@@ -33,12 +37,10 @@ const HomePage = () => {
       setPage(1);
       return;
     }
-    console.log('🚀 ~ HomePage ~ data:', data);
-    const { posts, page: currentPage, totalPages } = transformFeed(data as PaginatedFeedSchema);
+    const { posts, totalPages } = transformFeed(data as PaginatedFeedSchema);
     setPosts(posts);
     setTotalPages(totalPages);
-    setPage(currentPage);
-  }, [data, setPosts]);
+  }, [page, data, setPosts]);
 
   useEffect(() => {
     setPage(1); // Reset to first page when limit changes
@@ -103,8 +105,11 @@ const HomePage = () => {
         ) : (
           <PostGrid posts={posts} columns={2} />
         )}
-        {/* Pagination at the bottom */}
-        {/* <Pagination page={page} totalPages={data.totalPages || 1} onPageChange={setPage} /> */}
+        <Pagination
+          page={page}
+          totalPages={data?.totalPages || 1}
+          onPageChange={handlePageChange}
+        />
       </div>
     </Layout>
   );
