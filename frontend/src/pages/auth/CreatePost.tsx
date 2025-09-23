@@ -8,7 +8,7 @@ import Layout from '../../components/layouts/Layout';
 import Button from '../../components/ui/Button';
 import Icon from '../../components/ui/Icon';
 import { PostFormData, postSchema } from '../../schemas/form';
-import { createPost } from '../../apis/createPost.api';
+import { createPost } from '../../apis/post.api';
 
 const CreatePostPage: React.FC = () => {
   const navigate = useNavigate();

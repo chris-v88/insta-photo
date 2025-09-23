@@ -49,3 +49,9 @@ export type PostsResponse = z.infer<typeof postsResponseSchema>;
 
 export const postResponseSchema = createApiResponseSchema(dataPostSchema);
 export type SinglePostResponse = z.infer<typeof postResponseSchema>;
+
+export const likePostResponseSchema = z.object({
+  message: z.string(),
+  post: dataPostSchema,
+});
+export type LikePostResponse = z.infer<typeof likePostResponseSchema>;

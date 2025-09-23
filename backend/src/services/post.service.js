@@ -1,35 +1,35 @@
-import prisma from "../common/prisma/init.prisma";
-import cloudinary from "../common/cloudinary/init.cloudinary.js";
+import prisma from '../common/prisma/init.prisma';
+import cloudinary from '../common/cloudinary/init.cloudinary.js';
+import { BadRequestException, UnauthorizedException } from '../common/helpers/exception.helper';
 
 export const postService = {
   create: async (req) => {
     const { description } = req.body;
     const user = req.user; // From protect middleware
-    
+
     if (!user || !user.id) {
       throw new Error('User not authenticated');
     }
-    
+
     if (!req.file) {
       throw new Error('Image file is required');
     }
 
     // Upload image to Cloudinary
     const uploadResult = await new Promise((resolve, reject) => {
-      cloudinary.uploader.upload_stream(
-        {
-          resource_type: 'image',
-          folder: 'insta-photo/posts',
-          transformation: [
-            { width: 1080, height: 1080, crop: 'limit' },
-            { quality: 'auto' }
-          ]
-        },
-        (error, result) => {
-          if (error) reject(error);
-          else resolve(result);
-        }
-      ).end(req.file.buffer);
+      cloudinary.uploader
+        .upload_stream(
+          {
+            resource_type: 'image',
+            folder: 'insta-photo/posts',
+            transformation: [{ width: 1080, height: 1080, crop: 'limit' }, { quality: 'auto' }],
+          },
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          },
+        )
+        .end(req.file.buffer);
     });
 
     // Create post in database
@@ -45,11 +45,11 @@ export const postService = {
             id: true,
             username: true,
             avatar: true,
-          }
+          },
         },
-      }
+      },
     });
-    
+
     return newPost;
   },
 
@@ -59,7 +59,7 @@ export const postService = {
     // get list of posts from database
     page = page ? parseInt(page) : 1;
     limit = limit ? parseInt(limit) : 10;
-    
+
     const offset = (page - 1) * limit;
     const paginatedPosts = await prisma.posts.findMany({
       skip: offset,
@@ -70,30 +70,30 @@ export const postService = {
             id: true,
             username: true,
             avatar: true,
-          }
+          },
         },
         _count: {
           select: {
             Post_Likes: true,
             Comments: true,
-          }
-        }
+          },
+        },
       },
       orderBy: {
-        created_at: 'desc'
-      }
+        created_at: 'desc',
+      },
     });
 
     const totalPosts = await prisma.posts.count();
     const totalPages = Math.ceil(totalPosts / limit);
-    
+
     // Transform posts to include counts
-    const transformedPosts = paginatedPosts.map(post => ({
+    const transformedPosts = paginatedPosts.map((post) => ({
       ...post,
       likes_count: post._count.Post_Likes,
       comments_count: post._count.Comments,
     }));
-    
+
     return {
       page: page,
       limit: limit,
@@ -113,5 +113,65 @@ export const postService = {
 
   remove: async (req) => {
     return `This action removes a id: ${req.params.id} post`;
+  },
+
+  like: async (req) => {
+    const user = req.user;
+    const postId = parseInt(req.params.id);
+
+    if (!user || !user.id) throw new UnauthorizedException('User not authenticated');
+    if (!postId) throw new BadRequestException('Post ID is required');
+
+    // Check if post exists
+    const post = await prisma.posts.findUnique({ where: { id: postId } });
+    if (!post) throw new BadRequestException('Post not found');
+
+    // Check if user already liked the post
+    const alreadyLiked = await prisma.Post_Likes.findUnique({
+      where: {
+        user_id_post_id: {
+          user_id: user.id,
+          post_id: postId,
+        },
+      },
+    });
+    if (alreadyLiked) throw new BadRequestException('You have already liked this post');
+
+    // Create like
+    await prisma.Post_Likes.create({
+      data: {
+        post_id: postId,
+        user_id: user.id,
+      },
+    });
+
+    // update the post data
+    const updatedPost = await prisma.posts.findUnique({
+      where: { id: postId },
+      include: {
+        Users: {
+          select: {
+            id: true,
+            username: true,
+            avatar: true,
+          },
+        },
+        _count: {
+          select: {
+            Post_Likes: true,
+            Comments: true,
+          },
+        },
+      },
+    });
+
+    return {
+      message: 'Post liked successfully',
+      post: {
+        ...updatedPost,
+        likes_count: updatedPost._count.Post_Likes,
+        comments_count: updatedPost._count.Comments,
+      },
+    };
   },
 };

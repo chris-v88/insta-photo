@@ -8,7 +8,7 @@ import PostGrid from '../components/posts/PostGrid';
 import Spinner from '../components/ui/Spinner';
 
 import { useStore } from '../stores';
-import { fetchPosts } from '../apis/fetchPosts.api';
+import { fetchPosts } from '../apis/post.api';
 import { transformFeed } from '../utils/helpers';
 import { PaginatedFeedSchema } from '../schemas/response';
 import Pagination from '../components/ui/Pagination';

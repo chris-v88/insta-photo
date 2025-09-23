@@ -31,4 +31,10 @@ export const postController = {
     const response = responseSuccess(result, `Remove post #${req.params.id} successfully`);
     res.status(response.statusCode).json(response);
   },
+
+  like: async (req, res, next) => {
+    const result = await postService.like(req);
+    const response = responseSuccess(result, `Like post #${req.params.id} successfully`);
+    res.status(response.statusCode).json(response);
+  },
 };
