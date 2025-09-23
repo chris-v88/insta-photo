@@ -18,8 +18,8 @@ export const transformFeed = (data: PaginatedFeedSchema) => {
           avatar: item.Users.avatar,
         }
       : undefined,
-    likes: item.likes_count,
-    commentsCount: item.comments_count,
+    likes: item.likes_count ?? 0,
+    commentsCount: item.comments_count ?? 0,
     createdAt: item.created_at,
   }));
   return {
