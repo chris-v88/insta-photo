@@ -5,7 +5,7 @@ import PostCard from './PostCard';
 interface PostGridProps {
   posts: Post[];
   columns?: 1 | 2 | 3;
-  onLike?: (photoId: string) => void;
+  onLike?: (postId: string) => void;
 }
 
 const PostGrid: React.FC<PostGridProps> = (props: PostGridProps) => {
@@ -25,8 +25,8 @@ const PostGrid: React.FC<PostGridProps> = (props: PostGridProps) => {
 
   return (
     <div className={getGridClasses()}>
-      {posts.map((photo) => (
-        <PostCard key={photo.id} photo={photo} onLike={onLike} />
+      {posts.map((post) => (
+        <PostCard key={post.id} post={post} onLike={onLike} />
       ))}
     </div>
   );
