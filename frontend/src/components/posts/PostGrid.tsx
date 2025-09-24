@@ -14,19 +14,21 @@ const PostGrid: React.FC<PostGridProps> = (props: PostGridProps) => {
   const getGridClasses = () => {
     switch (columns) {
       case 1:
-        return 'grid grid-cols-1 gap-6';
+        return 'flex flex-col gap-6';
       case 2:
-        return 'grid grid-cols-1 md:grid-cols-2 gap-6';
+        return 'columns-1 md:columns-2 gap-6 space-y-6';
       case 3:
       default:
-        return 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
+        return 'columns-1 md:columns-2 lg:columns-3 gap-6 space-y-6';
     }
   };
 
   return (
     <div className={getGridClasses()}>
       {posts.map((post) => (
-        <PostCard key={post.id} post={post} onLike={onLike} />
+        <div key={post.id} className="break-inside-avoid mb-6">
+          <PostCard post={post} />
+        </div>
       ))}
     </div>
   );

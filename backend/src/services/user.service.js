@@ -1,6 +1,7 @@
 import { BadRequestException } from '../common/helpers/exception.helper';
 import prisma from '../common/prisma/init.prisma';
 import cloudinary from '../common/cloudinary/init.cloudinary';
+import jwt from 'jsonwebtoken';
 
 export const userService = {
   uploadAvatar: async (userId, file) => {
@@ -109,11 +110,31 @@ export const userService = {
         likesCount: post._count.Post_Likes,
         commentsCount: post._count.Comments,
         createdAt: post.created_at,
+        isLikedByCurrentUser: false, // Always false for public access
       })),
     };
   },
 
-  getProfileByUsername: async (username) => {
+  getProfileByUsername: async (username, req = null) => {
+    // Check if user is authenticated by looking for Authorization header
+    let currentUser = null;
+    if (req) {
+      const token = req.headers.authorization?.replace('Bearer ', '');
+      if (token) {
+        try {
+
+          const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
+          const user = await prisma.users.findUnique({
+            where: { id: decoded.userId },
+            select: { id: true }
+          });
+          if (user) currentUser = user;
+        } catch (error) {
+          // Invalid token, continue as anonymous user
+        }
+      }
+    }
+
     const user = await prisma.users.findUnique({
       where: { username },
       select: {
@@ -137,6 +158,14 @@ export const userService = {
                 Comments: true,
               },
             },
+            Post_Likes: currentUser ? {
+              where: {
+                user_id: currentUser.id,
+              },
+              select: {
+                user_id: true,
+              },
+            } : false,
           },
           orderBy: {
             created_at: 'desc',
@@ -173,6 +202,7 @@ export const userService = {
         likesCount: post._count.Post_Likes,
         commentsCount: post._count.Comments,
         createdAt: post.created_at,
+        isLikedByCurrentUser: currentUser ? post.Post_Likes.length > 0 : false,
       })),
     };
   },

@@ -27,7 +27,7 @@ export const userController = {
 
   getProfileByUsername: async (req, res, next) => {
     const { username } = req.params;
-    const result = await userService.getProfileByUsername(username);
+    const result = await userService.getProfileByUsername(username, req);
     const response = responseSuccess(result, 'User profile fetched successfully');
     res.status(response.statusCode).json(response);
   },

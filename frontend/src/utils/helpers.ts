@@ -21,6 +21,7 @@ export const transformFeed = (data: PaginatedFeedSchema) => {
     likes: item.likes_count ?? 0,
     commentsCount: item.comments_count ?? 0,
     createdAt: item.created_at,
+    isLikedByCurrentUser: item.isLikedByCurrentUser ?? false,
   }));
   return {
     posts,
@@ -49,5 +50,6 @@ export const transformUserProfilePosts = (userProfile: PublicProfile): Post[] =>
     likes: post.likesCount || 0,
     commentsCount: post.commentsCount || 0,
     createdAt: post.createdAt,
+    isLikedByCurrentUser: post.isLikedByCurrentUser || false,
   }));
 };

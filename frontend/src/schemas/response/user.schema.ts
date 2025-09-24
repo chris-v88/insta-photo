@@ -31,6 +31,7 @@ export const userProfileSchema = z.object({
   createdAt: z.string(),
   updatedAt: z.string().nullable(),
   posts: z.array(userProfilePostSchema).optional(),
+  isLikedByCurrentUser: z.boolean().optional(),
 });
 export type UserProfile = z.infer<typeof userProfileSchema>;
 
@@ -46,6 +47,7 @@ export const publicProfileSchema = z.object({
   postsCount: z.number(),
   createdAt: z.string(),
   posts: z.array(userProfilePostSchema).optional(),
+  isLikedByCurrentUser: z.boolean().optional(),
 });
 export type PublicProfile = z.infer<typeof publicProfileSchema>;
 

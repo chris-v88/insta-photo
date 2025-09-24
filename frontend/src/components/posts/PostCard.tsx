@@ -1,17 +1,33 @@
 import { Link } from 'react-router-dom';
 import { Post } from '../../types';
 import Icon from '../ui/Icon';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toggleLikePost } from '../../apis/post.api';
 
 export type PostCardType = {
   post: Post;
-
-  onLike?: (postId: string) => void;
 };
 
 const PostCard = (props: PostCardType) => {
   const { post } = props;
+  const queryClient = useQueryClient();
 
-  const isLiked = false; // Placeholder for now
+  const isLiked = post.isLikedByCurrentUser || false;
+
+  const toggleLikeMutation = useMutation({
+    mutationFn: (postId: string) => toggleLikePost(postId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['posts'] });
+      queryClient.invalidateQueries({ queryKey: ['user-profile'] });
+    },
+    onError: (error) => {
+      console.error('Toggle like failed:', error);
+    },
+  });
+
+  const handleToggleLike = () => {
+    toggleLikeMutation.mutate(post.id);
+  };
 
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -48,13 +64,17 @@ const PostCard = (props: PostCardType) => {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center space-x-4">
             <button
-              // onClick={handleLike}
-              // disabled={isLoading}
+              onClick={handleToggleLike}
+              disabled={toggleLikeMutation.isPending}
               className={`p-1 rounded-full transition-colors ${
                 isLiked ? 'text-red-500 hover:text-red-600' : 'text-gray-700 hover:text-red-500'
-              }`}
+              } ${toggleLikeMutation.isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              <Icon name="Heart" className={`w-6 h-6 ${isLiked ? 'fill-current' : ''}`} />
+              {toggleLikeMutation.isPending ? (
+                <Icon name="Loader2" className="w-6 h-6 animate-spin" />
+              ) : (
+                <Icon name="Heart" className={`w-6 h-6 ${isLiked ? 'fill-current' : ''}`} />
+              )}
             </button>
             <Link
               to={`/post/${post.id}`}

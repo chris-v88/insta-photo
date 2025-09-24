@@ -9,6 +9,7 @@ export const userProfilePostSchema = z.object({
   likesCount: z.number().nullable(),
   commentsCount: z.number().nullable(),
   createdAt: z.string(),
+  isLikedByCurrentUser: z.boolean().optional(),
 });
 export type UserProfilePost = z.infer<typeof userProfilePostSchema>;
 
@@ -31,6 +32,7 @@ export const dataPostSchema = z.object({
   created_at: z.string(),
   updated_at: z.string(),
   Users: userInfoSchema,
+  isLikedByCurrentUser: z.boolean().optional(),
 });
 export type PostResponse = z.infer<typeof dataPostSchema>;
 
@@ -49,3 +51,10 @@ export type PostsResponse = z.infer<typeof postsResponseSchema>;
 
 export const postResponseSchema = createApiResponseSchema(dataPostSchema);
 export type SinglePostResponse = z.infer<typeof postResponseSchema>;
+
+export const likePostResponseSchema = z.object({
+  message: z.string(),
+  isLiked: z.boolean(),
+  post: dataPostSchema,
+});
+export type LikePostResponse = z.infer<typeof likePostResponseSchema>;

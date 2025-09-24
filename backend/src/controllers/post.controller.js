@@ -31,4 +31,10 @@ export const postController = {
     const response = responseSuccess(result, `Remove post #${req.params.id} successfully`);
     res.status(response.statusCode).json(response);
   },
+
+  toggleLike: async (req, res, next) => {
+    const result = await postService.toggleLike(req);
+    const response = responseSuccess(result, result.message);
+    res.status(response.statusCode).json(response);
+  },
 };
