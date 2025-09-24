@@ -10,7 +10,7 @@ postRouter.get('/', postController.findAll);
 
 postRouter.post('/', protect, uploadCloud.single('image'), postController.create);
 
-postRouter.post('/:id/like', protect, postController.like);
+postRouter.post('/:id/like', protect, postController.toggleLike);
 
 // postRouter.get('/:id', postController.findOne);
 // postRouter.patch('/:id', postController.update);

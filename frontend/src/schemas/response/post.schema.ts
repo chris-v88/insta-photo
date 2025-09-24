@@ -54,6 +54,7 @@ export type SinglePostResponse = z.infer<typeof postResponseSchema>;
 
 export const likePostResponseSchema = z.object({
   message: z.string(),
+  isLiked: z.boolean(),
   post: dataPostSchema,
 });
 export type LikePostResponse = z.infer<typeof likePostResponseSchema>;

@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { Post } from '../../types';
 import Icon from '../ui/Icon';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { likePost } from '../../apis/post.api';
+import { toggleLikePost } from '../../apis/post.api';
 
 export type PostCardType = {
   post: Post;
@@ -16,19 +16,19 @@ const PostCard = (props: PostCardType) => {
 
   const isLiked = post.isLikedByCurrentUser || false;
 
-  const likeMutation = useMutation({
-    mutationFn: (postId: string) => likePost(postId),
+  const toggleLikeMutation = useMutation({
+    mutationFn: (postId: string) => toggleLikePost(postId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['posts'] });
       queryClient.invalidateQueries({ queryKey: ['user-profile'] });
     },
     onError: (error) => {
-      console.error('Like failed:', error);
+      console.error('Toggle like failed:', error);
     },
   });
 
-  const handleLike = () => {
-    likeMutation.mutate(post.id);
+  const handleToggleLike = () => {
+    toggleLikeMutation.mutate(post.id);
   };
 
   return (
@@ -66,13 +66,13 @@ const PostCard = (props: PostCardType) => {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center space-x-4">
             <button
-              onClick={handleLike}
-              disabled={likeMutation.isPending}
+              onClick={handleToggleLike}
+              disabled={toggleLikeMutation.isPending}
               className={`p-1 rounded-full transition-colors ${
                 isLiked ? 'text-red-500 hover:text-red-600' : 'text-gray-700 hover:text-red-500'
-              } ${likeMutation.isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
+              } ${toggleLikeMutation.isPending ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              {likeMutation.isPending ? (
+              {toggleLikeMutation.isPending ? (
                 <Icon name="Loader2" className="w-6 h-6 animate-spin" />
               ) : (
                 <Icon name="Heart" className={`w-6 h-6 ${isLiked ? 'fill-current' : ''}`} />

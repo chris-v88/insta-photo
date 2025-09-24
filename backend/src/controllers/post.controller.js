@@ -32,9 +32,9 @@ export const postController = {
     res.status(response.statusCode).json(response);
   },
 
-  like: async (req, res, next) => {
-    const result = await postService.like(req);
-    const response = responseSuccess(result, `Like post #${req.params.id} successfully`);
+  toggleLike: async (req, res, next) => {
+    const result = await postService.toggleLike(req);
+    const response = responseSuccess(result, result.message);
     res.status(response.statusCode).json(response);
   },
 };

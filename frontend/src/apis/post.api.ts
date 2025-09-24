@@ -38,17 +38,17 @@ export const createPost = async (data: CreatePostData) => {
   }
 };
 
-export const likePost = async (postId: string) => {
+export const toggleLikePost = async (postId: string) => {
   try {
     const rawResponse = await axiosInstance.post(`/posts/${postId}/like`);
     if (rawResponse.data && rawResponse.data.data) {
       const response = likePostResponseSchema.parse(rawResponse.data.data);
       return response;
     } else {
-      throw new Error('No like post data in response');
+      throw new Error('No toggle like data in response');
     }
   } catch (err) {
-    console.error('Like post API error:', err);
-    throw new Error('Failed to like post');
+    console.error('Toggle like post API error:', err);
+    throw new Error('Failed to toggle post like');
   }
 };

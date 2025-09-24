@@ -143,9 +143,12 @@ export const postService = {
     return `This action removes a id: ${req.params.id} post`;
   },
 
-  like: async (req) => {
+  toggleLike: async (req) => {
     const user = req.user;
     const postId = parseInt(req.params.id);
+
+    let message;
+    let isLiked;
 
     if (!user || !user.id) throw new UnauthorizedException('User not authenticated');
     if (!postId) throw new BadRequestException('Post ID is required');
@@ -163,17 +166,29 @@ export const postService = {
         },
       },
     });
-    if (alreadyLiked) throw new BadRequestException('You have already liked this post');
 
-    // Create like
-    await prisma.Post_Likes.create({
-      data: {
-        post_id: postId,
-        user_id: user.id,
-      },
-    });
+    if (alreadyLiked) {
+      await prisma.Post_Likes.delete({
+        where: {
+          post_id_user_id: {
+            post_id: postId,
+            user_id: user.id,
+          },
+        },
+      });
+      message = 'Post unliked successfully';
+      isLiked = false;
+    } else {
+      await prisma.Post_Likes.create({
+        data: {
+          post_id: postId,
+          user_id: user.id,
+        },
+      });
+      message = 'Post liked successfully';
+      isLiked = true;
+    }
 
-    // update the post data
     const updatedPost = await prisma.posts.findUnique({
       where: { id: postId },
       include: {
@@ -194,11 +209,13 @@ export const postService = {
     });
 
     return {
-      message: 'Post liked successfully',
+      message,
+      isLiked,
       post: {
         ...updatedPost,
         likes_count: updatedPost._count.Post_Likes,
         comments_count: updatedPost._count.Comments,
+        isLikedByCurrentUser: isLiked,
       },
     };
   },
