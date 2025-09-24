@@ -6,8 +6,6 @@ import { toggleLikePost } from '../../apis/post.api';
 
 export type PostCardType = {
   post: Post;
-
-  onLike?: (postId: string) => void;
 };
 
 const PostCard = (props: PostCardType) => {

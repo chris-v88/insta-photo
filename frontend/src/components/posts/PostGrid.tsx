@@ -27,7 +27,7 @@ const PostGrid: React.FC<PostGridProps> = (props: PostGridProps) => {
     <div className={getGridClasses()}>
       {posts.map((post) => (
         <div key={post.id} className="break-inside-avoid mb-6">
-          <PostCard post={post} onLike={onLike} />
+          <PostCard post={post} />
         </div>
       ))}
     </div>
