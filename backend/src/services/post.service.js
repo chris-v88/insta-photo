@@ -1,5 +1,6 @@
 import prisma from '../common/prisma/init.prisma';
 import cloudinary from '../common/cloudinary/init.cloudinary.js';
+import jwt from 'jsonwebtoken';
 import { BadRequestException, UnauthorizedException } from '../common/helpers/exception.helper';
 
 export const postService = {
@@ -55,7 +56,24 @@ export const postService = {
 
   findAll: async (req) => {
     let { page, limit } = req.query;
-    const user = req.user; // Current user from protect middleware
+
+    // Check if user is authenticated by looking for Authorization header
+    const token = req.headers.authorization?.replace('Bearer ', '');
+    let currentUser = null;
+    
+    if (token) {
+      try {
+
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
+        const user = await prisma.users.findUnique({
+          where: { id: decoded.userId },
+          select: { id: true }
+        });
+        if (user) currentUser = user;
+      } catch (error) {
+        // Invalid token, continue as anonymous user
+      }
+    }
 
     // get list of posts from database
     page = page ? parseInt(page) : 1;
@@ -79,9 +97,9 @@ export const postService = {
             Comments: true,
           },
         },
-        Post_Likes: user ? {
+        Post_Likes: currentUser ? {
           where: {
-            user_id: user.id,
+            user_id: currentUser.id,
           },
           select: {
             user_id: true,
@@ -101,7 +119,7 @@ export const postService = {
       ...post,
       likes_count: post._count.Post_Likes,
       comments_count: post._count.Comments,
-      isLikedByCurrentUser: user ? post.Post_Likes.length > 0 : false,
+      isLikedByCurrentUser: currentUser ? post.Post_Likes.length > 0 : false,
     }));
 
     return {

@@ -50,6 +50,6 @@ export const transformUserProfilePosts = (userProfile: PublicProfile): Post[] =>
     likes: post.likesCount || 0,
     commentsCount: post.commentsCount || 0,
     createdAt: post.createdAt,
-    isLikedByCurrentUser: item.isLikedByCurrentUser ?? false,
+    isLikedByCurrentUser: post.isLikedByCurrentUser || false,
   }));
 };

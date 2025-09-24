@@ -9,6 +9,7 @@ export const userProfilePostSchema = z.object({
   likesCount: z.number().nullable(),
   commentsCount: z.number().nullable(),
   createdAt: z.string(),
+  isLikedByCurrentUser: z.boolean().optional(),
 });
 export type UserProfilePost = z.infer<typeof userProfilePostSchema>;
 
