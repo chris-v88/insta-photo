@@ -6,7 +6,7 @@ import { BadRequestException, UnauthorizedException } from '../common/helpers/ex
 export const postService = {
   create: async (req) => {
     const { description } = req.body;
-    const user = req.user; // From protect middleware
+    const user = req.user;
 
     if (!user || !user.id) {
       throw new Error('User not authenticated');
@@ -57,13 +57,12 @@ export const postService = {
   findAll: async (req) => {
     let { page, limit } = req.query;
 
-    // Check if user is authenticated by looking for Authorization header
+    // kiểm tra có token k --> có nghĩa là có user đăng nhập r
     const token = req.headers.authorization?.replace('Bearer ', '');
     let currentUser = null;
     
     if (token) {
       try {
-
         const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
         const user = await prisma.users.findUnique({
           where: { id: decoded.userId },
@@ -71,7 +70,7 @@ export const postService = {
         });
         if (user) currentUser = user;
       } catch (error) {
-        // Invalid token, continue as anonymous user
+        // khỏi log eror tại vì k cần đăng nhập vẫn có thể xem được bài
       }
     }
 
@@ -114,7 +113,7 @@ export const postService = {
     const totalPosts = await prisma.posts.count();
     const totalPages = Math.ceil(totalPosts / limit);
 
-    // Transform posts to include counts and like status
+    // thêm vô để có thông tin sô lượng like và comment 
     const transformedPosts = paginatedPosts.map((post) => ({
       ...post,
       likes_count: post._count.Post_Likes,
@@ -132,7 +131,144 @@ export const postService = {
   },
 
   findOne: async (req) => {
-    return `This action returns a id: ${req.params.id} post`;
+    const postId = parseInt(req.params.id);
+    
+    if (!postId) {
+      throw new BadRequestException('Post ID is required');
+    }
+
+    // kiểm tra có token k --> có nghĩa là có user đăng nhập r
+    const token = req.headers.authorization?.replace('Bearer ', '');
+    let currentUser = null;
+    
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_KEY);
+        const user = await prisma.users.findUnique({
+          where: { id: decoded.userId },
+          select: { id: true }
+        });
+        if (user) currentUser = user;
+      } catch (error) {
+        // khỏi log eror tại vì k cần đăng nhập vẫn có thể xem được bài
+      }
+    }
+
+    // Get post with user info, counts, and comments
+    const post = await prisma.posts.findUnique({
+      where: { id: postId },
+      include: {
+        Users: {
+          select: {
+            id: true,
+            username: true,
+            avatar: true,
+            full_name: true,
+          },
+        },
+        _count: {
+          select: {
+            Post_Likes: true,
+            Comments: true,
+          },
+        },
+        Post_Likes: currentUser ? {
+          where: {
+            user_id: currentUser.id,
+          },
+          select: {
+            user_id: true,
+          },
+        } : false,
+        Comments: {
+          include: {
+            Users: {
+              select: {
+                id: true,
+                username: true,
+                avatar: true,
+                full_name: true,
+              },
+            },
+          },
+          orderBy: {
+            created_at: 'desc',
+          },
+        },
+      },
+    });
+
+    if (!post) {
+      throw new BadRequestException('Post not found');
+    }
+
+    // api này cần thông tin người comment
+    const transformedPost = {
+      ...post,
+      likes_count: post._count.Post_Likes,
+      comments_count: post._count.Comments,
+      isLikedByCurrentUser: currentUser ? post.Post_Likes.length > 0 : false,
+      Comments: post.Comments.map(comment => ({
+        id: comment.id,
+        content: comment.content,
+        created_at: comment.created_at,
+        updated_at: comment.updated_at,
+        user: {
+          id: comment.Users.id,
+          username: comment.Users.username,
+          avatar: comment.Users.avatar,
+          fullName: comment.Users.full_name,
+        },
+      })),
+    };
+
+    return transformedPost;
+  },
+
+  addComment: async (req) => {
+    const user = req.user;
+    const postId = parseInt(req.params.id);
+    const { content } = req.body;
+
+    if (!user || !user.id) throw new UnauthorizedException('User not authenticated');
+    if (!postId) throw new BadRequestException('Post ID is required');
+    if (!content || !content.trim()) throw new BadRequestException('Comment content is required');
+
+    // Check if post exists
+    const post = await prisma.posts.findUnique({ where: { id: postId } });
+    if (!post) throw new BadRequestException('Post not found');
+
+    // Create comment
+    const newComment = await prisma.comments.create({
+      data: {
+        post_id: postId,
+        user_id: user.id,
+        content: content.trim(),
+      },
+      include: {
+        Users: {
+          select: {
+            id: true,
+            username: true,
+            avatar: true,
+            full_name: true,
+          },
+        },
+      },
+    });
+
+    return {
+      id: newComment.id,
+      content: newComment.content,
+      created_at: newComment.created_at,
+      updated_at: newComment.updated_at,
+      user: {
+        id: newComment.Users.id,
+        username: newComment.Users.username,
+        avatar: newComment.Users.avatar,
+        fullName: newComment.Users.full_name,
+      },
+    };
   },
 
   update: async (req) => {

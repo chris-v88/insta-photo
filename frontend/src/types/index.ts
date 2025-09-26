@@ -34,6 +34,36 @@ export type Comment = {
   updatedAt: string;
 };
 
+export type PostDetail = {
+  id: number;
+  user_id: number;
+  description?: string;
+  image_url: string;
+  created_at: string;
+  updated_at: string;
+  Users: {
+    id: number;
+    username: string;
+    avatar?: string;
+    full_name?: string;
+  };
+  likes_count: number;
+  comments_count: number;
+  isLikedByCurrentUser?: boolean;
+  Comments: Array<{
+    id: number;
+    content: string;
+    created_at: string;
+    updated_at: string;
+    user: {
+      id: number;
+      username: string;
+      avatar?: string;
+      fullName?: string;
+    };
+  }>;
+};
+
 export type AuthResponse = {
   user: User;
   token: string;
