@@ -151,7 +151,10 @@ const PostDetailPage: React.FC = () => {
             <div className="md:w-96 p-6">
               {/* Header */}
               <div className="flex items-center justify-between mb-4">
-                <Link to={`/user/${postDetail.Users.id}`} className="flex items-center space-x-3">
+                <Link
+                  to={`/profile/${postDetail.Users.username}`}
+                  className="flex items-center space-x-3"
+                >
                   <img
                     src={
                       postDetail.Users.avatar ||
