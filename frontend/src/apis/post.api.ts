@@ -52,3 +52,33 @@ export const toggleLikePost = async (postId: string) => {
     throw new Error('Failed to toggle post like');
   }
 };
+
+export const fetchPostDetail = async (postId: string) => {
+  try {
+    const rawResponse = await axiosInstance.get(`/posts/${postId}`);
+    if (rawResponse.data && rawResponse.data.data) {
+      return rawResponse.data.data;
+    } else {
+      throw new Error('No post data in response');
+    }
+  } catch (err) {
+    console.error('Fetch post detail API error:', err);
+    throw new Error('Failed to fetch post details');
+  }
+};
+
+export const addComment = async (postId: string, content: string) => {
+  try {
+    const rawResponse = await axiosInstance.post(`/posts/${postId}/comments`, {
+      content,
+    });
+    if (rawResponse.data && rawResponse.data.data) {
+      return rawResponse.data.data;
+    } else {
+      throw new Error('No comment data in response');
+    }
+  } catch (err) {
+    console.error('Add comment API error:', err);
+    throw new Error('Failed to add comment');
+  }
+};

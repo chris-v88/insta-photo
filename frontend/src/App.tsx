@@ -6,6 +6,7 @@ import ProtectedRoute from './pages/ProtectedRoute';
 import LoginPage from './pages/auth/LoginPage';
 import RegisterPage from './pages/auth/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
+import PostDetailPage from './pages/PostDetailPage';
 import CreatePostPage from './pages/auth/CreatePost';
 import AuthProvider from './components/auth/AuthProvider';
 import ProfileRedirect from './components/ProfileRedirect';
@@ -33,6 +34,7 @@ const App = () => {
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<HomePage />} />
+              <Route path="/post/:id" element={<PostDetailPage />} />
               <Route path="/profile/:username" element={<ProfilePage />} />
               <Route path="/profile/" element={<ProfileRedirect />} />
               <Route

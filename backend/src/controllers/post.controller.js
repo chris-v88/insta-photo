@@ -37,4 +37,10 @@ export const postController = {
     const response = responseSuccess(result, result.message);
     res.status(response.statusCode).json(response);
   },
+
+  addComment: async (req, res, next) => {
+    const result = await postService.addComment(req);
+    const response = responseSuccess(result, 'Comment added successfully');
+    res.status(response.statusCode).json(response);
+  },
 };

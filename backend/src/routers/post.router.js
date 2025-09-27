@@ -8,9 +8,13 @@ const postRouter = express.Router();
 
 postRouter.get('/', postController.findAll);
 
+postRouter.get('/:id', postController.findOne);
+
 postRouter.post('/', protect, uploadCloud.single('image'), postController.create);
 
 postRouter.post('/:id/like', protect, postController.toggleLike);
+
+postRouter.post('/:id/comments', protect, postController.addComment);
 
 // postRouter.get('/:id', postController.findOne);
 // postRouter.patch('/:id', postController.update);
