@@ -32,7 +32,7 @@ const PostCard = (props: PostCardType) => {
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       <div className="flex items-center p-4">
-        <Link to={`/user/${post.user?.id}`} className="flex items-center space-x-3">
+        <Link to={`/profile/${post.user?.username}`} className="flex items-center space-x-3">
           {post.user?.avatar ? (
             <img
               src={post.user?.avatar}
@@ -90,7 +90,7 @@ const PostCard = (props: PostCardType) => {
         </p>
 
         <div className="text-gray-900">
-          <Link to={`/user/${post.user?.id}`} className="font-medium">
+          <Link to={`/profile/${post.user?.username}`} className="font-medium">
             {post.user?.username}
           </Link>{' '}
           <span>{post.description}</span>
